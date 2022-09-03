@@ -1,3 +1,11 @@
+.idea
+*.iml
+out
+*.pyc
+*.class
+*.tasty
+target
+*.xml
 # Compiled class file
 *.class
 
