@@ -15,25 +15,47 @@ class Robot():
 class Slug():
     def eat() = println("eating grass")
 
-trait Speak[T]:
-    extension (t:T) def eat(): Unit = t.eat()
-    extension (t:T) def communicate(): Unit
+trait Nourish[T]:
+    extension (t:T)
+        def consume(): Unit
+        def communicate(): Unit
 
-given Speak[Person] with extension (t: Person)
-    override def communicate(): Unit = t.greet()
+given Nourish[Person] with
+    extension (t: Person)
+        def consume(): Unit = t.eat()
+        def communicate(): Unit = t.greet()
 
-given Speak[Dog] with extension (t: Dog)
-    override def communicate(): Unit = t.bark()
+given Nourish[Dog] with
+    extension (t: Dog)
+        def consume(): Unit = t.eat()
+        def communicate(): Unit = t.bark()
 
-given Speak[Robot] with extension (t: Robot)
-    override def communicate(): Unit = t.initiate()
+given Nourish[Robot] with
+    extension (t: Robot)
+        def consume(): Unit = t.eat()
+        def communicate(): Unit = t.initiate()
 
-given Speak[Slug] with extension (t: Slug)
-    override def communicate() {}
+given Nourish[Slug] with
+    extension (t: Slug)
+        def consume(): Unit = t.eat()
+        def communicate() = {}
 
-def demo[T](instance: T)(using Speak[T]):
-    instance.eat()
+def demo[T](instance: T)(using Nourish[T]): Unit =
+    instance.consume()
     instance.communicate()
 
-@main def typeClassDemo() =
-    List(Dog(), Person(), Robot(), Slug()).map(demo(_))
+@main def main() =
+    demo(Dog())
+    val list = List(Dog(), Person(), Robot(), Slug())
+//    list.map(demo(_))
+//    list.foreach(demo(_))
+// Both produce:
+// no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method demo in package typeclass
+
+//    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
+// This produces:
+//-- [E007] Type Mismatch Error: C:\Git\PolymorphismUnbound\src\scala\.\TypeClassDemo.scala:54:33
+//    54 |    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
+//      |                              ^^^^^
+//    |Found:    typeclass.Dog
+//    |Required: typeclass.Nourish
