@@ -46,10 +46,13 @@ def demo[T](instance: T)(using Nourish[T]): Unit =
 
 @main def main() =
     demo(Dog())
+    demo(Person())
+    demo(Robot())
+    demo(Slug())
+
     val list = List(Dog(), Person(), Robot(), Slug())
 //    list.map(demo(_))
-//    list.foreach(demo(_))
-// Both produce:
+// Produces:
 // no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method demo in package typeclass
 
 //    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
