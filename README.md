@@ -6,6 +6,7 @@ I wrote in the process of creating the presentation.
 
 ## Notes
 
+- Prefer single-level inheritance (implementing traits). Use composition for code reuse instead of multi-level inheritance.
 - Liskov because of static languages vs Smalltalk and Python
 - Duck typing in Python and C++ (Go with help from Jack)
 - No duck typing with erasure, unless you do it by hand
