@@ -1,6 +1,6 @@
-// src/scala/ADTs.scala
+// src/scala/ADT.scala
 // Algebraic Data Types
-package adts
+package adt
 import ADT._
 
 enum ADT:
