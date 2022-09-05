@@ -40,20 +40,20 @@ given Nourish[Slug] with
         def consume(): Unit = t.eat()
         def communicate() = {}
 
-def demo[T](x: T)(using Nourish[T]): Unit =
+def poly[T](x: T)(using Nourish[T]): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    demo(Dog())
-    demo(Person())
-    demo(Robot())
-    demo(Slug())
+    poly(Dog())
+    poly(Person())
+    poly(Robot())
+    poly(Slug())
 
     val list = List(Dog(), Person(), Robot(), Slug())
-//    list.map(demo(_))
+//    list.map(poly(_))
 // Produces:
-// no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method demo in package typeclass
+// no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method poly in package typeclass
 
 //    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
 // This produces:

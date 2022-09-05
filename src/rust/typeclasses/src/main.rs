@@ -18,11 +18,11 @@ impl Communicate for Person {
   fn speak(t: Person) -> Unit { t.greet(); }
 }
 
-pub fn demo<T>(x: T)(using Communicate[T]) {
+pub fn poly<T>(x: T)(using Communicate[T]) {
     x.speak();
 }
 
 fn main() {
-    demo(Dog());
-    demo(Person());
+    poly(Dog());
+    poly(Person());
 }

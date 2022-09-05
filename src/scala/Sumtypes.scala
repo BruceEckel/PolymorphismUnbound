@@ -16,7 +16,7 @@ class Slug:
     def absorb() = println("eating grass")
 
 // 'x' is a sumtype:
-def demo(x: Dog | Person | Robot | Slug) = x match
+def poly(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
         d.eat()
         d.bark()
@@ -32,4 +32,4 @@ def demo(x: Dog | Person | Robot | Slug) = x match
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())
-    list.foreach(demo(_))
+    list.foreach(poly(_))

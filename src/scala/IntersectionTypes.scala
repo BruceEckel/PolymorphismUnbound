@@ -23,9 +23,9 @@ class Slug extends Consumer, Communicator:
     def talk() = {}
 
 // 'x' is an intersection type:
-def demo(x: Consumer & Communicator) =
+def poly(x: Consumer & Communicator) =
     x.eat()
     x.talk()
 
 @main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(demo(_))
+    List(Dog(), Person(), Robot(), Slug()).foreach(poly(_))

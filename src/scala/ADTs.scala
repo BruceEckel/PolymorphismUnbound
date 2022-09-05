@@ -16,9 +16,9 @@ enum ADT:
         case Robot => println("operational")
         case Slug => ()
 
-def demo(x: ADT): Unit =
+def poly(x: ADT): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(demo(_))
+    List(Dog, Person, Robot, Slug).foreach(poly(_))
