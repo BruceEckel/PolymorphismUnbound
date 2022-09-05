@@ -40,9 +40,9 @@ given Nourish[Slug] with
         def consume(): Unit = t.eat()
         def communicate() = {}
 
-def demo[T](instance: T)(using Nourish[T]): Unit =
-    instance.consume()
-    instance.communicate()
+def demo[T](x: T)(using Nourish[T]): Unit =
+    x.consume()
+    x.communicate()
 
 @main def main() =
     demo(Dog())

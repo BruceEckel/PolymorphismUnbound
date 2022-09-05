@@ -22,9 +22,10 @@ class Slug extends Consumer, Communicator:
     def eat() = println("eating grass")
     def talk() = {}
 
-def demo(instance: Consumer & Communicator) =
-    instance.eat()
-    instance.talk()
+// 'x' is an intersection type:
+def demo(x: Consumer & Communicator) =
+    x.eat()
+    x.talk()
 
 @main def main() =
     List(Dog(), Person(), Robot(), Slug()).foreach(demo(_))

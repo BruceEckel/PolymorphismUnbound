@@ -15,7 +15,8 @@ class Robot:
 class Slug:
     def absorb() = println("eating grass")
 
-def demo(o: Dog | Person | Robot | Slug) = o match
+// 'x' is a sumtype:
+def demo(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
         d.eat()
         d.bark()

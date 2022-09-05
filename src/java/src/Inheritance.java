@@ -1,4 +1,4 @@
-// InheritancePolymorphism.java
+// Inheritance.java
 package inheritancepolymorphism;
 import java.util.stream.*;
 

@@ -18,8 +18,8 @@ impl Communicate for Person {
   fn speak(t: Person) -> Unit { t.greet(); }
 }
 
-pub fn demo<T>(instance: T)(using Communicate[T]) {
-    instance.speak();
+pub fn demo<T>(x: T)(using Communicate[T]) {
+    x.speak();
 }
 
 fn main() {
