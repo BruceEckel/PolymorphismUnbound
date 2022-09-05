@@ -9,7 +9,7 @@ class Person():
     def greet() = println("hello")
 
 class Robot():
-    def eat() = println("recharging")
+    def eat() = println("charging")
     def initiate() = println("operational")
 
 class Slug():
@@ -57,7 +57,7 @@ def demo[T](instance: T)(using Nourish[T]): Unit =
 
 //    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
 // This produces:
-//-- [E007] Type Mismatch Error: C:\Git\PolymorphismUnbound\src\scala\.\TypeClassDemo.scala:54:33
+//-- [E007] Type Mismatch Error: C:\Git\PolymorphismUnbound\src\scala\.\TypeClasses.scala:54:33
 //    54 |    val list2 = List[Nourish](Dog(), Person(), Robot(), Slug())
 //      |                              ^^^^^
 //    |Found:    typeclass.Dog

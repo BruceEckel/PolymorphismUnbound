@@ -13,7 +13,7 @@ class Person extends Base:
     def communicate() = println("hello")
 
 class Robot extends Base:
-    def consume() = println("recharging")
+    def consume() = println("charging")
     def communicate() = println("operational")
 
 class Slug extends Base:
