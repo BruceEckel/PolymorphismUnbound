@@ -1,18 +1,18 @@
 package sumtype
 
-case class Dog():
+class Dog:
     def eat() = println("eating dog food")
     def bark() = println("woof")
 
-case class Person():
+class Person:
     def scarf() = println("eating pizza")
     def talk() = println("hello")
 
-case class Robot():
-    def charge() = println("recharging")
+class Robot:
+    def charge() = println("charging")
     def communicate() = println("operational")
 
-case class Slug():
+class Slug:
     def absorb() = println("eating grass")
 
 def demo(o: Dog | Person | Robot | Slug) = o match
