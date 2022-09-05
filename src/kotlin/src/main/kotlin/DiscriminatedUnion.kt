@@ -12,7 +12,7 @@ sealed class SumType {
         fun greet() { println("hello") }
     }
     class Robot : SumType() {
-        override fun eat() { println("recharging") }
+        override fun eat() { println("charging") }
         fun initiate() { println("operational") }
     }
     class Slug : SumType() {

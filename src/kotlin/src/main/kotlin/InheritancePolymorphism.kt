@@ -16,7 +16,7 @@ class Person: Base()  {
 }
 
 class Robot: Base()  {
-    override fun eat() { println("recharging") }
+    override fun eat() { println("charging") }
     override fun speak() { println("operational") }
 }
 

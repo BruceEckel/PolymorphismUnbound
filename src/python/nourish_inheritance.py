@@ -9,7 +9,7 @@ class Person(Base):
     def speak(self): print("hello")
 
 class Robot(Base):
-    def eat(self): print("recharging")
+    def eat(self): print("charging")
     def speak(self): print("operational")
 
 class Slug(Base):

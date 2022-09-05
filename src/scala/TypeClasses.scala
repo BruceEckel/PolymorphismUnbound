@@ -1,18 +1,18 @@
 package typeclass
 
-class Dog():
+class Dog:
     def eat() = println("eating dog food")
     def bark() = println("woof")
 
-class Person():
+class Person:
     def eat() = println("eating pizza")
     def greet() = println("hello")
 
-class Robot():
+class Robot:
     def eat() = println("charging")
     def initiate() = println("operational")
 
-class Slug():
+class Slug:
     def eat() = println("eating grass")
 
 trait Nourish[T]:

@@ -1,4 +1,4 @@
-package typeclass
+package inheritance
 
 trait Base:
     def consume(): Unit

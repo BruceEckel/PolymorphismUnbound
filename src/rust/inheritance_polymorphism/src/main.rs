@@ -19,7 +19,7 @@ impl Base for Person {
 }
 
 impl Base for Robot {
-  fn eat(&self) { println!("recharging"); }
+  fn eat(&self) { println!("charging"); }
   fn speak(&self) { println!("operational"); }
 }
 

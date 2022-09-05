@@ -18,7 +18,7 @@ class Person {
 
 class Robot {
     public:
-    void eat() { cout << "recharging" << endl; }
+    void eat() { cout << "charging" << endl; }
     void initiate() { cout << "operational" << endl; }
 };
 
@@ -73,7 +73,7 @@ eating dog food
 woof
 eating pizza
 hello
-recharging
+charging
 operational
 eating grass
 */

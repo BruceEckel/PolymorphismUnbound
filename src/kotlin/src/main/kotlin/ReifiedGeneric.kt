@@ -11,7 +11,7 @@ class Person {
 }
 
 class Robot {
-    fun eat() = println("recharging")
+    fun eat() = println("charging")
     fun initiate() = println("operational")
 }
 

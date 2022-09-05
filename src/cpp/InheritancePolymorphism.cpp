@@ -23,7 +23,7 @@ class Person: public Base {
 
 class Robot: public Base {
     public:
-    void eat() override { cout << "recharging" << endl; }
+    void eat() override { cout << "charging" << endl; }
     void speak() override { cout << "operational" << endl; }
 };
 
@@ -49,7 +49,7 @@ eating dog food
 woof
 eating pizza
 hello
-recharging
+charging
 operational
 eating grass
 */

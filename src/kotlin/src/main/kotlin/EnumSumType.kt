@@ -20,7 +20,7 @@ enum class SumType {
     },
     Robot {
         override fun eat() {
-            println("${this.name} recharging")
+            println("${this.name} charging")
         }
         fun initiate() {
             println("operational")

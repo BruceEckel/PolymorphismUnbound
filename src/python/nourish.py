@@ -7,7 +7,7 @@ class Person:
     def greet(self): print("hello")
 
 class Robot:
-    def eat(self): print("recharging")
+    def eat(self): print("charging")
     def initiate(self): print("operational")
 
 class Slug:

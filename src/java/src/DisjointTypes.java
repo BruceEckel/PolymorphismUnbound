@@ -22,7 +22,7 @@ class Person {
 
 class Robot {
   void eat() {
-    System.out.println("recharging");
+    System.out.println("charging");
   }
   void initiate() {
     System.out.println("operational");

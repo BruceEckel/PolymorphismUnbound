@@ -32,7 +32,7 @@ class Person extends Base {
 class Robot extends Base {
   @Override
   void eat() {
-    System.out.println("recharging");
+    System.out.println("charging");
   }
   @Override
   void speak() {
