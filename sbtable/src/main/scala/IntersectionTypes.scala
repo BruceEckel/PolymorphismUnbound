@@ -1,4 +1,4 @@
-package inheritance
+package inheritancetypess
 
 trait Consumer:
     def eat(): Unit
