@@ -1,30 +1,38 @@
 struct Dog;
 impl Dog {
-  fn bark(&self) { println!("woof"); }
+    fn bark(&self) {
+        println!("woof");
+    }
 }
 
 struct Person;
 impl Person {
-  fn greet(&self) { println!("hello"); }
+    fn greet(&self) {
+        println!("hello");
+    }
 }
 
-pub trait Communicate<T> {
-  fn speak(t:T);
+pub trait Communicate {
+    fn speak(&self);
 }
 
-impl Communicate<Dog> for Dog {
-  fn speak(t: Dog) { t.bark(); }
+impl Communicate for Dog {
+    fn speak(&self) {
+        self.bark();
+    }
 }
 
-impl Communicate<Person> for Person {
-  fn speak(t: Person) { t.greet(); }
+impl Communicate for Person {
+    fn speak(&self) {
+        self.greet();
+    }
 }
 
-pub fn poly<T>(x: T) {
-    Communicate::<T>::speak(x);
+pub fn poly<T: Communicate>(x: &T) {
+    x.speak();
 }
 
 fn main() {
-    poly(&Dog{});
-    poly(&Person{});
+    poly(&Dog {});
+    poly(&Person {});
 }
