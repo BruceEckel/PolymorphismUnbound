@@ -1,28 +1,30 @@
-class Dog() {
-  fn bark() { println!("woof"); }
+struct Dog;
+impl Dog {
+  fn bark(&self) { println!("woof"); }
 }
 
-class Person() {
-  fn greet() { println!("hello"); }
+struct Person;
+impl Person {
+  fn greet(&self) { println!("hello"); }
 }
 
-pub trait Communicate[T] {
-  fn speak(t:T) -> Unit
+pub trait Communicate<T> {
+  fn speak(t:T);
 }
 
-impl Communicate for Dog {
-  fn speak(t: Dog) -> Unit { t.bark(); }
+impl Communicate<Dog> for Dog {
+  fn speak(t: Dog) { t.bark(); }
 }
 
-impl Communicate for Person {
-  fn speak(t: Person) -> Unit { t.greet(); }
+impl Communicate<Person> for Person {
+  fn speak(t: Person) { t.greet(); }
 }
 
-pub fn poly<T>(x: T)(using Communicate[T]) {
-    x.speak();
+pub fn poly<T>(x: T) {
+    Communicate::<T>::speak(x);
 }
 
 fn main() {
-    poly(Dog());
-    poly(Person());
+    poly(&Dog{});
+    poly(&Person{});
 }
