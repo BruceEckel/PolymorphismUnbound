@@ -50,7 +50,7 @@ def poly[T](x: T)(using Nourish[T]): Unit =
     x.consume()
     x.communicate()
 
-// alternate syntax
+// Alternate syntax
 def poly2[T: Nourish](x: T): Unit =
     x.consume()
     x.communicate()
@@ -64,14 +64,10 @@ def poly2[T: Nourish](x: T): Unit =
     // Sum Type for all the elements (otherwise it becomes List[Object]
     val hlist = List[Dog | Person | Robot | Slug](Dog(), Person(), Robot(), Slug())
 
-    // hlist.map(poly)
-
-    // Produces:
+    // hlist.map(poly) produces:
     // no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method poly in package typeclass
 
-    // poly(hlist)
-
-    // Produces:
+    // poly(hlist) produces:
     // But no implicit values were found that match type
     // typeclass.Nourish[typeclass.Dog | typeclass.Person | typeclass.Robot | typeclass.Slug
 

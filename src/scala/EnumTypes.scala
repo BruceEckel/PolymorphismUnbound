@@ -1,9 +1,9 @@
-// src/scala/ADT.scala
-// Algebraic Data Types
-package adt
-import ADT._
+// src/scala/EnumTypes.scala
+// Enumerated Data Types
+package enumtypes
+import EnumType._
 
-enum ADT:
+enum EnumType:
     case Dog, Person, Robot, Slug
     def consume() = this match
         case Dog => println("eating dog food")
@@ -16,7 +16,7 @@ enum ADT:
         case Robot => println("operational")
         case Slug => ()
 
-def poly(x: ADT): Unit =
+def poly(x: EnumType): Unit =
     x.consume()
     x.communicate()
 

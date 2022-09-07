@@ -1,4 +1,5 @@
-package sumtype
+// Union types aka sum types
+package uniontypes
 
 class Dog:
     def eat() = println("eating dog food")
@@ -15,7 +16,7 @@ class Robot:
 class Slug:
     def absorb() = println("eating grass")
 
-// 'x' is a sumtype:
+// 'x' is a union type:
 def poly(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
         d.eat()

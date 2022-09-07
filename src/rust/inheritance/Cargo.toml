@@ -1,5 +1,5 @@
 [package]
-name = "inheritance_polymorphism"
+name = "inheritance"
 version = "0.1.0"
 edition = "2021"
 
