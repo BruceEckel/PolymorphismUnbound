@@ -1,22 +1,33 @@
 # Polymorphism Unbound
 
 This repository contains the code examples for the presentation I gave
-at StrangeLoop 2022, along with the article (in this README.md) that
+at StrangeLoop 2022, along with some prose and notes that
 I wrote in the process of creating the presentation.
 
 ## Notes
 
-- Prefer single-level inheritance (implementing traits). Use composition for code reuse instead of multi-level inheritance.
+- Prefer single-level inheritance (implementing traits). 
+  - Use composition for code reuse instead of multi-level inheritance.
 - Liskov because of static languages vs Smalltalk and Python
 - Duck typing in Python and C++ (Go with help from Jack)
 - No duck typing with erasure, unless you do it by hand
-- Better Duck Typing: Sum Types + Pattern Matching
-- Type classes? (See bookmarked article)
-
 - Polymorphism -> "many forms." I assumed this meant "many forms of
   objects" but it really meant that a function argument could take on multiple
   forms.
-
+- How we got here:
+  - Simula: a simulation needs a common interface for all simulation objects, so you can tell them all to update themselves.
+  - Smalltalk: takes Simula concept and applies it to all elements
+    - BUT Smalltalk is inherently dynamic
+    - It's really about "message-oriented programming"
+  - C++: Object-Based Encapsulation for data control
+    - BUT Objects are completely optional
+    - Might as well add inheritance and dynamic binding
+    - Everything statically typed for safety, very different from Smalltalk
+  - Java: Everything is an Object, like Smalltalk
+    - BUT static typing makes it quite different
+    - The concept of dynamic messages is lost, not really like Smalltalk
+    - Making new types by inheritance didn't really work out
+    
 
 ## The Inheritance Bias
 
@@ -38,8 +49,10 @@ which later resulted in folks unfamiliar with C++'s origins to claim that it was
 
 In those early days there was very little in the way of documentation for the
 language, and it was not clear that C++ would become the behemoth that it did
-(arguably primarily because of C source compatibility). When I first encountered
-the `virtual` keyword, there were no clear explanations of why it existed. I floundered for awhile, but eventually realized I could look at the C output of `cfront` to discover what was going on.
+(primarily because of C source compatibility). When I first encountered
+the `virtual` keyword, there were no clear explanations of why it existed. I 
+floundered for awhile, but eventually realized I could look at the C output of 
+`cfront` to discover what was going on.
 
 To even create a compiling program containing the `virtual` keyword required a
 lot of scaffolding: you needed a base class and a derived class, and a member
@@ -72,7 +85,9 @@ Thinking that polymorphism is only about inheritance, because that was my entry
 point and that was what was emphasized by OOP. I've done a lot of writing and
 speaking over the years, teaching the inheritance view of polymorphism.
 
-The problem for me arose when people would use the word "polymorphism" together with an unfamiliar paradigm. The simplest example is probably *ad-hoc polymorphism*, which just means function overloading:
+The problem for me arose when people would use the word "polymorphism" together 
+with an unfamiliar paradigm. The simplest example is probably *ad-hoc polymorphism*, 
+which just means function overloading:
 
 ```C++
 // Function overloading
@@ -105,8 +120,8 @@ polymorphic? And why give it a fancy name like "ad-hoc polymorphism?" You're
 trying to confuse me. I will just call it "overloading" and give it no more
 thought.
 
-It turns out that overloading contains the essence of what polymorphism is: *a
-function that can accept different types of arguments*. Calling it "ad-hoc"
+It turns out that overloading contains the essence of what polymorphism is, because
+the `f()` parameter *represents different types of arguments*. Calling it "ad-hoc"
 unfortunately de-emphasized the meaning of the word "polymorphism" (at least, to
 me). In hindsight, I can see why "ad-hoc" might have been chosen, because
 overloading only makes it *look* like the same function when you call it,
@@ -122,9 +137,9 @@ the question, "Objects: Have we Made a Huge Mistake?"
 
 ## Changing Our Thinking About Polymorphism
 
-- It's about functions with different parameter types (Decouple from inheritance)
+- It's about one type representing multiple types (Decouple from inheritance)
 - What problem are we solving by creating a polymorphic function?
-- What mechanism are we using (ad hoc, parameterized, inheritance, sum types)?
+- What mechanism are we using (ad hoc, parameterized, inheritance, enum types, sum types)?
 - How are the different parameters distinguished within the function?
 - When is it helping vs simply adding complication?
 - Revisit inheritance polymorphism from a function perspective
