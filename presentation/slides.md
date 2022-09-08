@@ -1,7 +1,9 @@
 ---
 marp: true
+theme: default
+footer: 'Footer content'
 ---
-
+<!-- backgroundImage: "linear-gradient(to bottom, #67b8e3, #0288d1)" -->
 # How we got here
 ## Simula
 - A simulation needs a common interface for all simulation elements.
@@ -9,8 +11,8 @@ marp: true
 
 ## Smalltalk
 - Takes Simula concept and applies it to all elements
-  - BUT Smalltalk is inherently dynamic
-  - It's really about "message-oriented programming"
+  * BUT Smalltalk is inherently dynamic
+  * It's really about "message-oriented programming"
 ---
 # C++
   - Object-Based Encapsulation for data control
