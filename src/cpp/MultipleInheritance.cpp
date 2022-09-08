@@ -66,13 +66,3 @@ int main() {
     for(Base* subject: subjects)
       nourish(subject);
 }
-
-/*
-eating dog food
-woof
-eating pizza
-hello
-charging
-operational
-eating grass
-*/

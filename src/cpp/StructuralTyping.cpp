@@ -1,4 +1,4 @@
-// src/cpp/CompileTimePolymorphism.cpp
+// src/cpp/StructuralTyping.cpp
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;
@@ -26,11 +26,13 @@ class Slug {
     void eat() { cout << "eating grass"  << endl; }
 };
 
+// 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {
     subject.eat();
 }
 
+// sumTypeObj is a 'union type':
 void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
     if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr)
         dogPtr->bark();
