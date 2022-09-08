@@ -14,7 +14,7 @@ class Person {
     void eat() { cout << "eating pizza" << endl; }
     void greet() { cout << "hello"  << endl; }
 };
-
+//---
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
@@ -25,7 +25,7 @@ class Slug {
     public:
     void eat() { cout << "eating grass"  << endl; }
 };
-
+//---
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
@@ -37,7 +37,7 @@ class Dog2: public Dog, public Base {
     void eat() override { Dog::eat(); }
     void speak() override { bark(); }
 };
-
+//---
 class Person2: public Person, public Base {
     public:
     void eat() override { Person::eat(); }
@@ -55,7 +55,7 @@ class Slug2: public Slug, public Base {
     void eat() override { Slug::eat(); }
     void speak() override {}
 };
-
+//---
 void nourish(Base* base) {
     base->eat();
     base->speak();

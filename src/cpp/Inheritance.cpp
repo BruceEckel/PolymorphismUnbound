@@ -13,7 +13,7 @@ class Dog: public Base {
     void eat() override { cout << "eating dog food" << endl; }
     void speak() override { cout << "woof"  << endl; }
 };
-
+//---
 class Person: public Base {
     public:
     void eat() override { cout << "eating pizza" << endl; }
@@ -31,7 +31,7 @@ class Slug: public Base {
     void eat() override { cout << "eating grass"  << endl; }
     void speak() override {}
 };
-
+//---
 void nourish(Base* base) {
     base->eat();
     base->speak();

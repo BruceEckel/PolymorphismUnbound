@@ -14,7 +14,7 @@ class Person {
     void eat() { cout << "eating pizza" << endl; }
     void greet() { cout << "hello"  << endl; }
 };
-
+//---
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
@@ -31,7 +31,7 @@ template <class T>
 void nourish(T subject) {
     subject.eat();
 }
-
+//---
 // sumTypeObj is a 'union type':
 void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
     if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr)
