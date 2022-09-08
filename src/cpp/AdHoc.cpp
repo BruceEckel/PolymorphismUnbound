@@ -1,5 +1,5 @@
 // src/cpp/AdHoc.cpp
-// Tested with https://cpp.sh
+// All C++ examples tested with https://cpp.sh
 #include <string>
 #include <iostream>
 using namespace std;

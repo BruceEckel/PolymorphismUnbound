@@ -1,5 +1,5 @@
-// Inheritance.java
-package inheritancepolymorphism;
+// src/java/src/Inheritance.java
+package inheritance;
 import java.util.stream.*;
 
 abstract class Base {
@@ -50,7 +50,7 @@ class Slug extends Base {
   }
 }
 
-public class InheritancePolymorphism {
+public class Inheritance {
   static void nourish(Base subject) {
     subject.eat();
     subject.speak();
@@ -58,6 +58,6 @@ public class InheritancePolymorphism {
   public static void main(String... args) {
     Stream.of(
         new Dog(), new Person(), new Robot(), new Slug()
-    ).forEach(InheritancePolymorphism::nourish);
+    ).forEach(Inheritance::nourish);
   }
 }

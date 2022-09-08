@@ -6,17 +6,17 @@ class Dog {
 }
 
 class Person {
-    fun eat() = println("eating pizza")
+    fun scarf() = println("eating pizza")
     fun greet() = println("hello")
 }
 
 class Robot {
-    fun eat() = println("charging")
+    fun charge() = println("charging")
     fun initiate() = println("operational")
 }
 
 class Slug {
-    fun eat() = println("eating grass")
+    fun absorb() = println("eating grass")
 }
 
 inline fun <reified T> nourish(subject: T) {
@@ -26,24 +26,21 @@ inline fun <reified T> nourish(subject: T) {
             subject.bark()
         }
         is Person -> {
-            subject.eat()
+            subject.scarf()
             subject.greet()
         }
         is Robot -> {
-            subject.eat()
+            subject.charge()
             subject.initiate()
         }
         is Slug -> {
-            subject.eat()
+            subject.absorb()
         }
-    }
-    if(subject is Dog || subject is Person ||
-        subject is Robot || subject is Slug) {
-        // subject.eat() // Nope
     }
 }
 
 fun main() {
+    // Plays well with disjoint types:
     listOf(
         Dog(), Person(), Robot(), Slug()
     ).forEach { nourish(it) }

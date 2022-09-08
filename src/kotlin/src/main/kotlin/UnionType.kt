@@ -1,4 +1,4 @@
-package discriminatedunion
+//package uniontype
 
 sealed class SumType {
     abstract fun eat()

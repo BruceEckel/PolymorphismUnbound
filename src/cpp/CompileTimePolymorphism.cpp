@@ -1,5 +1,4 @@
-// src/cpp/StaticPolymorphism.cpp
-// Tested with https://cpp.sh
+// src/cpp/CompileTimePolymorphism.cpp
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;
@@ -53,7 +52,6 @@ int main() {
     speak(Slug());
     // speak(""); // no known conversion to 'variant<Dog, Person, Robot, Slug>'
 }
-
 /*
 eating dog food
 eating pizza

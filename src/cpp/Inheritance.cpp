@@ -1,5 +1,4 @@
 // src/cpp/Inheritance.cpp
-// Tested with https://cpp.sh
 #include <iostream>
 using namespace std;
 

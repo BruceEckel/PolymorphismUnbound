@@ -1,5 +1,4 @@
-// DisjointTypes.java
-// package parameterizedtypes;
+// src/java/src/DisjointTypes.java
 import java.util.stream.*;
 
 class Dog {
@@ -62,6 +61,6 @@ public class DisjointTypes {
 //      new Dog(), new Person(), new Robot(), new Slug()
 //    ).forEach(DisjointTypes::nourish);
     // It would have to figure out what overloaded version
-    // to call at runtime, a.k.a dynamic binding
+    // to call at runtime, a.k.a. dynamic binding
   }
 }

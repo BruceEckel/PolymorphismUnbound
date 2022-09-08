@@ -1,4 +1,4 @@
-package inheritancepolymorphism
+package inheritance
 
 abstract class Base {
     abstract fun eat()

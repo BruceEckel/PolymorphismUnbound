@@ -1,5 +1,6 @@
-package enumsumtype
-import enumsumtype.SumType.*
+// Doesn't work so well
+package enumtype
+import enumtype.SumType.*
 
 enum class SumType {
     Dog {
@@ -39,12 +40,13 @@ enum class SumType {
 fun nourish(subject: SumType) {
     subject.eat()
     subject.sleep()
-//    when (subject) {
-//        Dog -> subject.bark()
-//        Person -> subject.greet()
-//        Robot -> subject.initiate()
-//        else -> {}
-//    }
+    // No smart casting:
+    // when (subject) {
+    //     Dog -> subject.bark()
+    //     Person -> subject.greet()
+    //     Robot -> subject.initiate()
+    //     else -> {}
+    // }
 }
 
 fun main() {

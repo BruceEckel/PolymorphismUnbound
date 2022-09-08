@@ -28,6 +28,10 @@ footer: '**Bruce Eckel** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MindviewLLC.com'
   - Making new types by inheritance didn't really work out
 
 ---
+# Polymorphism
+_A type represents multiple types_
+
+---
 
 ```C++
 // src/cpp/AdHoc.cpp
@@ -112,6 +116,28 @@ eating grass
 */
 ```
 ---
+```C++
+// src/cpp/MultipleInheritance.cpp
+```
+---
+```C++
+// src/cpp/CompileTimePolymorphism.cpp
+```
+---
+# Java (_without reflection_)
+---
+```java
+// src/java/src/Inheritance.java
+```
+---
+```java
+// src/java/src/DisjointTypes.java
+```
+---
+```java
+// src/java/src/Generics.java
+```
+---
 # To Ponder
 
 * Why do you want to treat multiple types as the same type?
@@ -131,7 +157,7 @@ eating grass
 # Code Reuse with Inheritance
 
 * Maybe conflating these should have been left to Smalltalk
-  * Some newer languages (Rust, Go?) explicitly disallowing it
+  * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
 
 ---
