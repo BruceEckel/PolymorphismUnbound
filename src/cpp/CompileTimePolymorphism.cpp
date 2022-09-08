@@ -45,19 +45,9 @@ int main() {
     nourish(Person());
     nourish(Robot());
     nourish(Slug());
-    // nourish(""); // template specialization 'nourish<const char *>' requested
-    speak(Dog());
-    speak(Person());
-    speak(Robot());
-    speak(Slug());
-    // speak(""); // no known conversion to 'variant<Dog, Person, Robot, Slug>'
+
+    typedef variant<Dog, Person, Robot, Slug> Disjoint;
+    Disjoint subjects[] = { Dog(), Person(), Robot(), Slug() };
+    for(Disjoint subject: subjects)
+      speak(subject);
 }
-/*
-eating dog food
-eating pizza
-charging
-eating grass
-woof
-hello
-operational
-*/

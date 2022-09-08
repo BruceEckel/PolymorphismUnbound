@@ -167,3 +167,10 @@ eating grass
 * Polymorphism is heavily used in FP: map, fold, etc.
 * Forcing inheritance into every design seems like a bad idea
 * It's a helpful tool in some places
+---
+# I'll Get By With a Little Help...
+- James Ward
+- Bill Frasure
+- Jack Leow
+- Marshall Pierce
+- Bill Venners
