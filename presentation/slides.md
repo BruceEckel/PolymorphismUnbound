@@ -1,6 +1,7 @@
 ---
 marp: true
-theme:
+theme: gaia
+class: invert
 footer: '**Bruce Eckel** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MindviewLLC.com'
 ---
 
@@ -110,3 +111,33 @@ operational
 eating grass
 */
 ```
+---
+# To Ponder
+
+* Why do you want to treat multiple types as the same type?
+  * Separate things that change from things that stay the same
+  * Reduce code duplication
+  * Better code understanding & maintenance
+  * Don't do it without question
+
+---
+
+# What can you do with this aggregate type?
+
+  * If there's no intersection of either syntax or semantics, does it make sense?
+  * Erasure in Java allows no behavior, only preserves exact return type
+
+---
+# Code Reuse with Inheritance
+
+* Maybe conflating these should have been left to Smalltalk
+  * Some newer languages (Rust, Go?) explicitly disallowing it
+  * Code reuse means embedding an object rather than inheriting
+
+---
+# Was OO a Mistake?
+* No: Sometimes it's quite useful
+* Just not everywhere all the time
+* Polymorphism is heavily used in FP: map, fold, etc.
+* Forcing inheritance into every design seems like a bad idea
+* It's a helpful tool in some places
