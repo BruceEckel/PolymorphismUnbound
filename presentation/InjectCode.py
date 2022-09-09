@@ -1,6 +1,12 @@
 from pathlib import Path
 import re
-from pprint import pprint
+DEBUG = True
+if DEBUG:
+  def debug(msg: str):
+    print(msg)
+else:
+  def debug(msg: str):
+    pass
 """
 A listing begins with:
 ```languageID
@@ -23,13 +29,13 @@ if __name__ == '__main__':
     start_tag = group[1].strip()
     file_path = group[2].strip()
     body = group[3]
-    print(f"{n = }")
-    print(f"{language_tag = }")
-    print(f"{start_tag = }")
-    print(f"{file_path = }")
-    print(body)
-    print('-' * 80)
+    debug(f"{n = }")
+    debug(f"{language_tag = }")
+    debug(f"{start_tag = }")
+    debug(f"{file_path = }")
+    debug(body)
+    debug('-' * 40)
   slash_starts = markdown.count("//:")
   pound_starts = markdown.count("#:")
-  print(f"{slash_starts = }")
-  print(f"{pound_starts = }")
+  debug(f"{slash_starts = }")
+  debug(f"{pound_starts = }")

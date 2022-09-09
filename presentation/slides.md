@@ -33,95 +33,22 @@ _A type represents multiple types_
 
 ---
 
-```C++
+```c++
 //: src/cpp/AdHoc.cpp
-// Tested with https://cpp.sh
-#include <string>
-#include <iostream>
-using namespace std;
-
-void f(string s) {
-    cout << "f(string s): " << s << endl;
-}
-
-void f(float f) {
-    cout << "f(float f): " << f << endl;
-}
-
-int main() {
-    f("x");
-    f(1.0);
-}
+...
 ```
 ------
-```C++
+```c++
 //: src/cpp/Inheritance.cpp
-// Tested with https://cpp.sh
-#include <iostream>
-using namespace std;
-
-class Base {
-    public:
-    virtual void eat() = 0;  // Pure virtual function
-    virtual void speak() = 0;
-};
-
-class Dog: public Base {
-    public:
-    void eat() override { cout << "eating dog food" << endl; }
-    void speak() override { cout << "woof"  << endl; }
-};
-```
----
-```C++
-class Person: public Base {
-    public:
-    void eat() override { cout << "eating pizza" << endl; }
-    void speak() override { cout << "hello"  << endl; }
-};
-
-class Robot: public Base {
-    public:
-    void eat() override { cout << "charging" << endl; }
-    void speak() override { cout << "operational" << endl; }
-};
-
-class Slug: public Base {
-    public:
-    void eat() override { cout << "eating grass"  << endl; }
-    void speak() override {}
-};
-```
----
-```C++
-void nourish(Base* base) {
-    base->eat();
-    base->speak();
-}
-
-int main() {
-    Base* subjects[] = { new Dog(), new Person(), new Robot(), new Slug() };
-    for(Base* subject: subjects)
-      nourish(subject);
-}
-
-/*
-eating dog food
-woof
-eating pizza
-hello
-charging
-operational
-eating grass
-*/
+...
 ```
 ------
-```C++
+```c++
 //: src/cpp/MultipleInheritance.cpp
 ...
 ```
 ------
-```C++
+```c++
 //: src/cpp/CompileTimePolymorphism.cpp
 ...
 ```
@@ -204,7 +131,6 @@ eating grass
 * Just not everywhere all the time
 * Polymorphism is heavily used in FP: map, fold, etc.
 * Forcing inheritance into every design seems like a bad idea
-* It's a helpful tool in some places
 ---
 # I'll Get By With a Little Help...
 - James Ward
