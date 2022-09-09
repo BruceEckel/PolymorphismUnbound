@@ -1,25 +1,25 @@
-//: src/golang/structural/structural.go
+// : src/golang/structural/structural.go
 package main
 
 type Dog struct{}
 
-func (_ Dog) Consume()     { println("eating dog food") }
-func (_ Dog) Communicate() { println("woof") }
+func (dog Dog) Consume()     { println("eating dog food") }
+func (dog Dog) Communicate() { println("woof") }
 
 type Person struct{}
 
-func (_ Person) Consume()     { println("eating pizza") }
-func (_ Person) Communicate() { println("hello") }
+func (person Person) Consume()     { println("eating pizza") }
+func (person Person) Communicate() { println("hello") }
 
 type Robot struct{}
 
-func (_ Robot) Consume()     { println("charging") }
-func (_ Robot) Communicate() { println("operational") }
+func (robot Robot) Consume()     { println("charging") }
+func (robot Robot) Communicate() { println("operational") }
 
 type Slug struct{}
 
-func (_ Slug) Consume()     { println("eating grass") }
-func (_ Slug) Communicate() {}
+func (slug Slug) Consume()     { println("eating grass") }
+func (slug Slug) Communicate() {}
 
 type ConsumerCommunicator interface {
 	Consume()

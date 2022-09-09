@@ -1,24 +1,24 @@
-//: src/golang/generic/generic.go
+// : src/golang/generic/generic.go
 package main
 
 type Dog struct{}
 
-func (_ Dog) Eat()  { println("eating dog food") }
-func (_ Dog) Bark() { println("woof") }
+func (dog Dog) Eat()  { println("eating dog food") }
+func (dog Dog) Bark() { println("woof") }
 
 type Person struct{}
 
-func (_ Person) Eat()   { println("eating pizza") }
-func (_ Person) Greet() { println("hello") }
+func (person Person) Eat()   { println("eating pizza") }
+func (person Person) Greet() { println("hello") }
 
 type Robot struct{}
 
-func (_ Robot) Eat()      { println("charging") }
-func (_ Robot) Initiate() { println("operational") }
+func (robot Robot) Eat()      { println("charging") }
+func (robot Robot) Initiate() { println("operational") }
 
 type Slug struct{}
 
-func (_ Slug) Eat() { println("eating grass") }
+func (slug Slug) Eat() { println("eating grass") }
 
 type Eater interface {
 	Eat()
