@@ -118,24 +118,29 @@ eating grass
 ------
 ```C++
 //: src/cpp/MultipleInheritance.cpp
+...
 ```
 ------
 ```C++
 //: src/cpp/CompileTimePolymorphism.cpp
+...
 ```
 ------
 # Java (_without reflection_)
 ---
 ```java
 //: src/java/src/Inheritance.java
+...
 ```
 ------
 ```java
 //: src/java/src/DisjointTypes.java
+...
 ```
 ------
 ```java
 //: src/java/src/Generics.java
+...
 ```
 ------
 # To Ponder
