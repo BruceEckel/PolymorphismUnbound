@@ -1,6 +1,6 @@
-#: src/python/nourish_mi.py
+#: src/python/multiple_inheritance.py
 from base import Base
-from nourish import Dog, Person, Robot, Slug
+from disjoint_types import Dog, Person, Robot, Slug
 
 class Dog2(Dog, Base):
     def eat(self) -> None: super().eat()

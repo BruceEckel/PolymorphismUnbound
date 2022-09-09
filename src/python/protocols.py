@@ -1,37 +1,30 @@
 #: src/python/protocols.py
 from typing import Protocol
-from abc import abstractmethod
 
-class Handler(Protocol):
-    def download(self, path: str) -> None:
-        ...
-    def upload(self, data: str, path: str) -> None:
-        ...
+class Dog:
+    def eat(self) -> None: print("eating dog food")
+    def speak(self) -> None: print("woof")
 
-class FileHandler(Handler):
-    def download(self, path: str) -> None:
-        print("FileHandler download")
+class Person:
+    def eat(self) -> None: print("eating pizza")
+    def speak(self) -> None: print("hello")
 
-    def upload(self, data, path: str) -> None:
-        print("FileHandler upload")
+class Robot:
+    def eat(self) -> None: print("charging")
+    def speak(self) -> None: print("operational")
 
-class NewFileHandler(Handler):
-    def download(self, path: str) -> None:
-        print("NewFileHandler download")
+class Slug:
+    def eat(self) -> None: print("eating grass")
+    def speak(self) -> None: pass
 
-    def upload(self, data, path:str) -> None:
-        print("NewFileHandler upload")
+class Base(Protocol):
+    def eat(self) -> None: ...
+    def speak(self) -> None: ...
 
-# Tell the static analyzer that handler is a Handler protocol.
-# Further assignments to it must match the Handler protocol:
-# handler: Handler
-
-def new_handler(version:str) -> Handler:
-    match version:
-        case "old": return FileHandler()
-        case "new": return NewFileHandler()
+def nourish_inheritance(subject: Base):
+    subject.eat()
+    subject.speak()
 
 if __name__ == '__main__':
-    for handler in [new_handler("old"), new_handler("new")]:
-        handler.upload("", "")
-        handler.download("")
+    for subj in [Dog(), Person(), Robot(), Slug()]:
+        nourish_inheritance(subj)

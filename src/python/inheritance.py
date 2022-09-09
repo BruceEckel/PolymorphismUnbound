@@ -1,4 +1,4 @@
-#: src/python/nourish_inheritance.py
+#: src/python/inheritance.py
 from base import Base
 
 class Dog(Base):
@@ -17,10 +17,10 @@ class Slug(Base):
     def eat(self): print("eating grass")
     def speak(self): pass
 
-def nourish_inheritance(subject: Base):
+def inheritance(subject: Base):
     subject.eat()
     subject.speak()
 
 if __name__ == '__main__':
     for subject in [Dog(), Person(), Robot(), Slug()]:
-        nourish_inheritance(subject)
+        inheritance(subject)

@@ -1,4 +1,4 @@
-//: src/kotlin/src/main/kotlin/UnionType.kt
+//: src/kotlin/src/main/kotlin/AlgebraicDataType.kt
 
 sealed class SumType {
     abstract fun eat()

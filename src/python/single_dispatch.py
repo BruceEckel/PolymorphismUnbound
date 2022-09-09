@@ -1,20 +1,6 @@
 #: src/python/single_dispatch.py
 from functools import singledispatch
-
-class Dog:
-    def eat(self): print("eating dog food")
-    def bark(self): print("woof")
-
-class Person:
-    def eat(self): print("eating pizza")
-    def greet(self): print("hello")
-
-class Robot:
-    def eat(self): print("charging")
-    def initiate(self): print("operational")
-
-class Slug:
-    def eat(self): print("eating grass")
+from disjoint_types import Dog, Person, Robot, Slug
 
 @singledispatch
 def nourish(subject):
@@ -42,4 +28,3 @@ def _(subject: Slug):
 if __name__ == '__main__':
     for subj in [Dog(), Person(), Robot(), Slug(), ""]:
         nourish(subj)
-        nourish("")

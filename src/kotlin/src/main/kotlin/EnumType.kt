@@ -1,5 +1,5 @@
 //: src/kotlin/src/main/kotlin/EnumType.kt
-// Doesn't work so well
+// Doesn't work so well (Not used in presentation)
 package enumtype
 import enumtype.SumType.*
 

@@ -143,6 +143,38 @@ eating grass
 ...
 ```
 ------
+# Python
+---
+```python
+#: src/python/base.py
+...
+```
+------
+```python
+#: src/python/inheritance.py
+...
+```
+------
+```python
+#: src/python/disjoint_types.py
+...
+```
+------
+```python
+#: src/python/multiple_inheritance.py
+...
+```
+------
+```python
+#: src/python/protocols.py
+...
+```
+------
+```python
+#: src/python/single_dispatch.py
+...
+```
+------
 # To Ponder
 
 * Why do you want to treat multiple types as the same type?
@@ -164,6 +196,7 @@ eating grass
 * Maybe conflating these should have been left to Smalltalk
   * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
+  * Luciano Ramalho: use interface/implementation only for "frameworks"
 
 ---
 # Was OO a Mistake?
@@ -175,6 +208,7 @@ eating grass
 ---
 # I'll Get By With a Little Help...
 - James Ward
+- Luciano Ramalho
 - Bill Frasure
 - Jack Leow
 - Marshall Pierce

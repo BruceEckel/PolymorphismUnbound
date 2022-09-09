@@ -1,7 +1,7 @@
 //: src/kotlin/src/main/kotlin/Inheritance.kt
 package inheritance
 
-abstract class Base {
+interface Base {
     abstract fun eat()
     abstract fun speak()
 }
