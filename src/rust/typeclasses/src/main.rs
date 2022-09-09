@@ -1,3 +1,4 @@
+//: src/rust/typeclasses/src/main.rs
 struct Dog;
 impl Dog {
     fn bark(&self) {

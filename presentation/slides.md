@@ -34,7 +34,7 @@ _A type represents multiple types_
 ---
 
 ```C++
-// src/cpp/AdHoc.cpp
+//: src/cpp/AdHoc.cpp
 // Tested with https://cpp.sh
 #include <string>
 #include <iostream>
@@ -53,9 +53,9 @@ int main() {
     f(1.0);
 }
 ```
----
+------
 ```C++
-// src/cpp/Inheritance.cpp
+//: src/cpp/Inheritance.cpp
 // Tested with https://cpp.sh
 #include <iostream>
 using namespace std;
@@ -115,29 +115,29 @@ operational
 eating grass
 */
 ```
----
+------
 ```C++
-// src/cpp/MultipleInheritance.cpp
+//: src/cpp/MultipleInheritance.cpp
 ```
----
+------
 ```C++
-// src/cpp/CompileTimePolymorphism.cpp
+//: src/cpp/CompileTimePolymorphism.cpp
 ```
----
+------
 # Java (_without reflection_)
 ---
 ```java
-// src/java/src/Inheritance.java
+//: src/java/src/Inheritance.java
 ```
----
+------
 ```java
-// src/java/src/DisjointTypes.java
+//: src/java/src/DisjointTypes.java
 ```
----
+------
 ```java
-// src/java/src/Generics.java
+//: src/java/src/Generics.java
 ```
----
+------
 # To Ponder
 
 * Why do you want to treat multiple types as the same type?

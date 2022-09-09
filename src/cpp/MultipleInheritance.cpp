@@ -1,4 +1,4 @@
-// src/cpp/MultipleInheritance.cpp
+//: src/cpp/MultipleInheritance.cpp
 // Combining disjoint types using MI
 #include <iostream>
 using namespace std;

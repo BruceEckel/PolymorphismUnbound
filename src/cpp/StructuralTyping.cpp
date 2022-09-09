@@ -1,4 +1,4 @@
-// src/cpp/StructuralTyping.cpp
+//: src/cpp/StructuralTyping.cpp
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;

@@ -1,3 +1,4 @@
+//: src/rust/inheritance/src/main.rs
 trait Base {
   fn eat(&self);
   fn speak(&self);

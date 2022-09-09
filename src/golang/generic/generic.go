@@ -1,3 +1,4 @@
+//: src/golang/generic/generic.go
 package main
 
 type Dog struct{}

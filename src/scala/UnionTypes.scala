@@ -1,3 +1,4 @@
+//: src/scala/UnionTypes.scala
 // Union types aka sum types
 package uniontypes
 

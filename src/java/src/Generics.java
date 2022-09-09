@@ -1,4 +1,4 @@
-// src/java/src/Generics.java
+//: src/java/src/Generics.java
 package generics;
 
 class Holder<T> {

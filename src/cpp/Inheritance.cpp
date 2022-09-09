@@ -1,4 +1,4 @@
-// src/cpp/Inheritance.cpp
+//: src/cpp/Inheritance.cpp
 #include <iostream>
 using namespace std;
 

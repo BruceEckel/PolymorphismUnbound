@@ -1,3 +1,4 @@
+//: src/kotlin/src/main/kotlin/Inheritance.kt
 package inheritance
 
 abstract class Base {

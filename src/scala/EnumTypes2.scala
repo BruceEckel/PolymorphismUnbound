@@ -1,7 +1,7 @@
-// src/scala/EnumTypes2.scala
+//: src/scala/EnumTypes2.scala
 // Enumerated Data Types
 package enumtypes2
-import EnumType._
+import EnumType.*
 
 enum EnumType(eat: String, talk: String):
     case Dog extends EnumType("eating dog food", "woof")

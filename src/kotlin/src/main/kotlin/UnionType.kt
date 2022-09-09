@@ -1,4 +1,4 @@
-//package uniontype
+//: src/kotlin/src/main/kotlin/UnionType.kt
 
 sealed class SumType {
     abstract fun eat()

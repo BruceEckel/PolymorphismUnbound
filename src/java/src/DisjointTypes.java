@@ -1,4 +1,4 @@
-// src/java/src/DisjointTypes.java
+//: src/java/src/DisjointTypes.java
 import java.util.stream.*;
 
 class Dog {

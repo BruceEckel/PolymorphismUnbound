@@ -1,4 +1,4 @@
-// src/java/src/Inheritance.java
+//: src/java/src/Inheritance.java
 package inheritance;
 import java.util.stream.*;
 

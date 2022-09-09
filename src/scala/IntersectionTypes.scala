@@ -1,4 +1,5 @@
-package inheritance
+//: src/scala/IntersectionTypes.scala
+package intersectiontypes
 
 trait Consumer:
     def eat(): Unit

@@ -1,4 +1,5 @@
-package typeclass
+//: src/scala/TypeClasses.scala
+package typeclasses
 
 class Dog:
     def eat() = println("eating dog food")

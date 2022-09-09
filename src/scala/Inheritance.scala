@@ -1,3 +1,4 @@
+//: src/scala/Inheritance.scala
 package inheritance
 
 trait Base:

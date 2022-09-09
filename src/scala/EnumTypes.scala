@@ -1,7 +1,7 @@
-// src/scala/EnumTypes.scala
+//: src/scala/EnumTypes.scala
 // Enumerated Data Types
 package enumtypes
-import EnumType._
+import EnumType.*
 
 enum EnumType:
     case Dog, Person, Robot, Slug
