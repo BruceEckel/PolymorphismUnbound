@@ -1,4 +1,4 @@
-// : src/golang/structural/structural.go
+//: src/golang/structural/structural.go
 package main
 
 type Dog struct{}
