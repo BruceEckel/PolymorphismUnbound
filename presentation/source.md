@@ -9,7 +9,7 @@ footer: '**Bruce Eckel** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MindviewLLC.com'
 ## Simula
 - A simulation needs a common interface for all simulation elements.
   - So you can tell them all to update themselves.
-
+---
 ## Smalltalk
 - Takes Simula concept and applies it to all elements
   * BUT Smalltalk is inherently dynamic
@@ -20,16 +20,16 @@ footer: '**Bruce Eckel** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MindviewLLC.com'
   - BUT Objects are completely optional
   - Might as well add inheritance and dynamic binding
   - Everything statically typed for safety, very different from Smalltalk
-
+---
 # Java
   - Everything is an Object, like Smalltalk
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
   - Making new types by inheritance didn't really work out
-
 ---
 # Polymorphism
 _A type represents multiple types_
+
 ---
 
 |==> //: src/cpp/AdHoc.cpp
@@ -84,9 +84,9 @@ _A type represents multiple types_
 |==> //: src/golang/structural/structural.go
 |==> //: src/golang/generic/generics.go
 
-# To Ponder
+# Let's Ponder
 
-* Why do you want to treat multiple types as the same type?
+* Why do we want to treat multiple types as the same type?
   * Separate things that change from things that stay the same
   * Reduce code duplication
   * Better code understanding & maintenance
@@ -94,7 +94,7 @@ _A type represents multiple types_
 
 ---
 
-# What can you do with this aggregate type?
+# What can we do with this aggregate type?
 
   * If there's no intersection of either syntax or semantics, does it make sense?
   * Erasure in Java allows no behavior, only preserves exact return type
@@ -105,7 +105,7 @@ _A type represents multiple types_
 * Maybe conflating these should have been left to Smalltalk
   * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
-  * Luciano Ramalho: use interface/implementation only for "frameworks"
+  * Luciano Ramalho: implement interfaces only for "frameworks"
 
 ---
 # Was OO a Mistake?
