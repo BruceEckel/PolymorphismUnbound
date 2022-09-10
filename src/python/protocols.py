@@ -12,7 +12,7 @@ class Person:
 class Robot:
     def eat(self): print("charging")
     def speak(self): print("operational")
-# ---
+#---
 class Slug:
     def eat(self): print("eating grass")
     def speak(self): pass

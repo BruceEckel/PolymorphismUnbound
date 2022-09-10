@@ -16,9 +16,9 @@ class Robot:
 
 class Slug:
     def absorb() = println("eating grass")
-
+//---
 // 'x' is a union type:
-def poly(x: Dog | Person | Robot | Slug) = x match
+def nourish(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
         d.eat()
         d.bark()
@@ -34,4 +34,4 @@ def poly(x: Dog | Person | Robot | Slug) = x match
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())
-    list.foreach(poly(_))
+    list.foreach(nourish(_))

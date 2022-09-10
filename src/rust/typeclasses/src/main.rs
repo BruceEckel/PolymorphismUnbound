@@ -1,4 +1,5 @@
 //: src/rust/typeclasses/src/main.rs
+
 struct Dog;
 impl Dog {
     fn bark(&self) {
@@ -12,7 +13,7 @@ impl Person {
         println!("hello");
     }
 }
-
+//---
 pub trait Communicate {
     fn speak(&self);
 }
@@ -28,7 +29,7 @@ impl Communicate for Person {
         self.greet();
     }
 }
-
+//---
 pub fn poly<T: Communicate>(x: &T) {
     x.speak();
 }

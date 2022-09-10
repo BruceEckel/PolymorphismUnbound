@@ -4,7 +4,7 @@ theme: gaia
 class: invert
 footer: 'MindviewLLC.com'
 ---
-![bg](TitleImage.jpg)
+
 <style scoped>
 h1, h2, h3, h4, h5, h6 {
   color: black;
@@ -14,41 +14,74 @@ a {
   text-decoration: none;
 }
 </style>
+![bg](TitleImage.jpg)
+
 # Polymorphism<br/>Unbound
+
 ## Bruce Eckel
+
 ###### Github:<br/> BruceEckel/PolymorphismUnbound
+
 ---
+
 ## `cfront`, `virtual`, and dynamic binding
+
 ![bg right](tape.jpg)
 
 ---
-# How we got here
+
+# How did we get here?
+
 ## Simula
+
 - A simulation needs a common interface for all simulation elements.
-  - So you can tell them all to update themselves.
+- So you can tell them all to update themselves.
+
 ---
+
 ## Smalltalk
+
 - Takes Simula concept and applies it to all elements
 - Code Reuse via Inheritance
 * BUT Smalltalk is inherently dynamic
-* _Message-Oriented Programming_
+* _Message-Oriented Programming_ (like Actors)
+
 ---
+
 # C++
-  - Object-Based Encapsulation for data control
-  - BUT Objects are completely optional
-  - Might as well add inheritance and dynamic binding
-  - Everything statically typed for safety, very different from Smalltalk
+
+  - Encapsulation for data control
+  - Inheritance and dynamic binding
+  - Objects are completely optional
+  - Everything statically typed for safety
+
 ---
+
 # Java
+
   - No option: Everything is an Object, like Smalltalk
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
-  - Making new types by inheritance didn't really work out
+  - Reusing code through inheritance didn't really work out
   - Post-Java languages have learned from its mistakes
+
 ---
+<style scoped>
+h2 {
+  color: orange;
+}
+</style>
 # Polymorphism
+<br/><br/>
 ## _A type represents multiple types_
-- Usually appears in the form of a function parameter
+<br/><br/>
+Usually appears in the form of a function parameter
+
+---
+
+# C++
+
+![bg fit right](eckel-c-front-cover-only.jpg)
 
 ---
 
@@ -81,7 +114,7 @@ using namespace std;
 
 class Base {
     public:
-    virtual void eat() = 0;  // Pure virtual function
+    virtual void eat() = 0;  // Pure virtual == abstract
     virtual void speak() = 0;
 };
 
@@ -93,7 +126,6 @@ class Dog: public Base {
 ```
 ---
 ```cpp
-
 class Person: public Base {
     public:
     void eat() override { cout << "eating pizza" << endl; }
@@ -114,7 +146,6 @@ class Slug: public Base {
 ```
 ---
 ```cpp
-
 void nourish(Base* base) {
     base->eat();
     base->speak();
@@ -148,7 +179,6 @@ class Person {
 ```
 ---
 ```cpp
-
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
@@ -162,7 +192,6 @@ class Slug {
 ```
 ---
 ```cpp
-
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
@@ -177,7 +206,6 @@ class Dog2: public Dog, public Base {
 ```
 ---
 ```cpp
-
 class Person2: public Person, public Base {
     public:
     void eat() override { Person::eat(); }
@@ -198,7 +226,6 @@ class Slug2: public Slug, public Base {
 ```
 ---
 ```cpp
-
 void nourish(Base* base) {
     base->eat();
     base->speak();
@@ -232,7 +259,6 @@ class Person {
 ```
 ---
 ```cpp
-
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
@@ -252,7 +278,6 @@ void nourish(T subject) {
 ```
 ---
 ```cpp
-
 // sumTypeObj is a 'union type':
 void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
     if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr)
@@ -261,8 +286,11 @@ void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
         personPtr->greet();
     else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr)
         robotPtr->initiate();
+    // No exhaustiveness checking
 }
-
+```
+---
+```cpp
 int main() {
     nourish(Dog());
     nourish(Person());
@@ -278,7 +306,13 @@ int main() {
 ------
 
 
-# Java (_without reflection_)
+---
+
+# Java
+
+(_without reflection_)
+![bg fit right](TIJava4cover.jpg)
+
 ---
 
 ```java
@@ -304,7 +338,6 @@ class Dog extends Base {
 ```
 ---
 ```java
-
 class Person extends Base {
   @Override
   void eat() {
@@ -329,7 +362,6 @@ class Robot extends Base {
 ```
 ---
 ```java
-
 class Slug extends Base {
   @Override
   void eat() {
@@ -375,7 +407,9 @@ class Person {
     System.out.println("hello");
   }
 }
-
+```
+---
+```java
 class Robot {
   void eat() {
     System.out.println("charging");
@@ -393,7 +427,6 @@ class Slug {
 ```
 ---
 ```java
-
 public class DisjointTypes {
   static void nourish(Dog subject) {
     subject.eat();
@@ -407,6 +440,9 @@ public class DisjointTypes {
     subject.eat();
     subject.initiate();
   }
+```
+---
+```java
   static void nourish(Slug subject) {
     subject.eat();
   }
@@ -416,12 +452,7 @@ public class DisjointTypes {
     nourish(new Person());
     nourish(new Robot());
     nourish(new Slug());
-    // But you cannot do this:
-//    Stream.of(
-//      new Dog(), new Person(), new Robot(), new Slug()
-//    ).forEach(DisjointTypes::nourish);
-    // It would have to figure out what overloaded version
-    // to call at runtime, a.k.a. dynamic binding
+    // (Statically determined at compile time)
   }
 }
 ```
@@ -450,7 +481,6 @@ class Dog extends Base {
 ```
 ---
 ```java
-
 class Person extends Base {
   @Override
   void speak() {
@@ -476,6 +506,7 @@ public class Generics {
 
 
 # Python
+
 ---
 
 ```py
@@ -501,7 +532,9 @@ class Dog(Base):
 class Person(Base):
     def eat(self): print("eating pizza")
     def speak(self): print("hello")
-
+```
+---
+```py
 class Robot(Base):
     def eat(self): print("charging")
     def speak(self): print("operational")
@@ -510,13 +543,13 @@ class Slug(Base):
     def eat(self): print("eating grass")
     def speak(self): pass
 
-def inheritance(subject: Base):
+def nourish(subject: Base):
     subject.eat()
     subject.speak()
 
 if __name__ == '__main__':
     for subject in [Dog(), Person(), Robot(), Slug()]:
-        inheritance(subject)
+        nourish(subject)
 ```
 ------
 
@@ -536,26 +569,6 @@ class Robot:
 
 class Slug:
     def eat(self): print("eating grass")
-
-def nourish(subject):
-    subject.eat()  # Duck typing
-    if type(subject) is Dog: subject.bark()
-    if type(subject) is Person: subject.greet()
-    if type(subject) is Robot: subject.initiate()
-
-# Sumtype polymorphism:
-def nourish2(subject: Dog | Person | Robot | Slug):
-    subject.eat()
-    match subject:
-        case Dog(): subject.bark()
-        case Person(): subject.greet()
-        case Robot(): subject.initiate()
-
-if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
-        nourish(subject)
-        nourish2(subject)
-        # nourish2("")
 ```
 ------
 
@@ -579,14 +592,51 @@ class Robot2(Robot, Base):
 class Slug2(Slug, Base):
     def eat(self) -> None: super().eat()
     def speak(self) -> None: pass  # Required by ABC
-
-def nourish_mi(base: Base):
+```
+---
+```py
+def nourish(base: Base):
     base.eat()
     base.speak()
 
 if __name__ == '__main__':
     for subject in [Dog2(), Person2(), Robot2(), Slug2()]:
-        nourish_mi(subject)
+        nourish(subject)
+```
+------
+
+```py
+#: src/python/duck_typing.py
+from disjoint_types import Dog, Person, Robot, Slug
+
+def nourish(subject):
+    subject.eat()  # Duck typing
+    if type(subject) is Dog: subject.bark()
+    if type(subject) is Person: subject.greet()
+    if type(subject) is Robot: subject.initiate()
+
+if __name__ == '__main__':
+    for subject in [Dog(), Person(), Robot(), Slug()]:
+        nourish(subject)
+        # nourish("")  # Runtime error
+```
+------
+
+```py
+#: src/python/union_types.py
+from disjoint_types import Dog, Person, Robot, Slug
+
+def nourish(sumtype_obj: Dog | Person | Robot | Slug):
+    sumtype_obj.eat()
+    match sumtype_obj:  # No exhaustiveness checking
+        case Dog(): sumtype_obj.bark()
+        case Person(): sumtype_obj.greet()
+        case Robot(): sumtype_obj.initiate()
+
+if __name__ == '__main__':
+    for subject in [Dog(), Person(), Robot(), Slug()]:
+        nourish(subject)
+    # nourish("")  # Type-check error
 ```
 ------
 
@@ -595,32 +645,34 @@ if __name__ == '__main__':
 from typing import Protocol
 
 class Dog:
-    def eat(self) -> None: print("eating dog food")
-    def speak(self) -> None: print("woof")
+    def eat(self): print("eating dog food")
+    def speak(self): print("woof")
 
 class Person:
-    def eat(self) -> None: print("eating pizza")
-    def speak(self) -> None: print("hello")
+    def eat(self): print("eating pizza")
+    def speak(self): print("hello")
 
 class Robot:
-    def eat(self) -> None: print("charging")
-    def speak(self) -> None: print("operational")
-
+    def eat(self): print("charging")
+    def speak(self): print("operational")
+```
+---
+```py
 class Slug:
-    def eat(self) -> None: print("eating grass")
-    def speak(self) -> None: pass
+    def eat(self): print("eating grass")
+    def speak(self): pass
 
 class Base(Protocol):
-    def eat(self) -> None: ...
-    def speak(self) -> None: ...
+    def eat(self): ...
+    def speak(self): ...
 
-def nourish_inheritance(subject: Base):
+def nourish(subject: Base):
     subject.eat()
     subject.speak()
 
 if __name__ == '__main__':
-    for subj in [Dog(), Person(), Robot(), Slug()]:
-        nourish_inheritance(subj)
+    for subject in [Dog(), Person(), Robot(), Slug()]:
+        nourish(subject)
 ```
 ------
 
@@ -642,7 +694,9 @@ def _(subject: Dog):
 def _(subject: Person):
     subject.eat()
     subject.greet()
-
+```
+---
+```py
 @nourish.register
 def _(subject: Robot):
     subject.eat()
@@ -653,13 +707,18 @@ def _(subject: Slug):
     subject.eat()
 
 if __name__ == '__main__':
-    for subj in [Dog(), Person(), Robot(), Slug(), ""]:
-        nourish(subj)
+    for subject in [Dog(), Person(), Robot(), Slug(), ""]:
+        nourish(subject)
 ```
 ------
 
 
+---
+
 # Kotlin
+
+![bg fit right](AtomicKotlinCover.png)
+
 ---
 
 ```kt
@@ -701,7 +760,6 @@ class Person: Base {
 ```
 ---
 ```kt
-
 class Robot: Base {
     override fun eat() { println("charging") }
     override fun speak() { println("operational") }
@@ -750,7 +808,6 @@ class Slug {
 ```
 ---
 ```kt
-
 inline fun <reified T> nourish(subject: T) {
     when (subject) {
         is Dog -> {
@@ -772,7 +829,6 @@ inline fun <reified T> nourish(subject: T) {
 }
 
 fun main() {
-    // Plays well with disjoint types:
     listOf(
         Dog(), Person(), Robot(), Slug()
     ).forEach { nourish(it) }
@@ -802,7 +858,6 @@ sealed class ADT(val eats: String) {
 ```
 ---
 ```kt
-
 fun nourish(subject: ADT) {
     subject.eat()
     when (subject) {
@@ -821,7 +876,14 @@ fun main() = listOf(
 ------
 
 
-# Scala
+---
+
+![bg](Scala.jpg)
+
+---
+
+![bg fit](AtomicScala.jpg)
+
 ---
 
 ```scala
@@ -839,7 +901,9 @@ class Dog extends Base:
 class Person extends Base:
     def consume() = println("eating pizza")
     def communicate() = println("hello")
-
+```
+---
+```scala
 class Robot extends Base:
     def consume() = println("charging")
     def communicate() = println("operational")
@@ -848,12 +912,12 @@ class Slug extends Base:
     def consume() = println("eating grass")
     def communicate() = {}
 
-def poly(x: Base): Unit =
+def nourish(x: Base): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(poly(_))
+    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
 ```
 ------
 
@@ -876,12 +940,12 @@ enum EnumType:
         case Robot => println("operational")
         case Slug => ()
 
-def poly(x: EnumType): Unit =
+def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(poly(_))
+    List(Dog, Person, Robot, Slug).foreach(nourish(_))
 ```
 ------
 
@@ -899,12 +963,12 @@ enum EnumType(eat: String, talk: String):
     def consume() = println(eat)
     def communicate() = println(talk)
 
-def poly(x: EnumType): Unit =
+def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(poly(_))
+    List(Dog, Person, Robot, Slug).foreach(nourish(_))
 ```
 ------
 
@@ -927,9 +991,11 @@ class Robot:
 
 class Slug:
     def absorb() = println("eating grass")
-
+```
+---
+```scala
 // 'x' is a union type:
-def poly(x: Dog | Person | Robot | Slug) = x match
+def nourish(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
         d.eat()
         d.bark()
@@ -945,7 +1011,7 @@ def poly(x: Dog | Person | Robot | Slug) = x match
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())
-    list.foreach(poly(_))
+    list.foreach(nourish(_))
 ```
 ------
 
@@ -966,7 +1032,9 @@ class Dog extends Consumer, Communicator:
 class Person extends Consumer, Communicator:
     def eat() = println("eating pizza")
     def talk() = println("hello")
-
+```
+---
+```scala
 class Robot extends Consumer, Communicator:
     def eat() = println("charging")
     def talk() = println("operational")
@@ -976,12 +1044,12 @@ class Slug extends Consumer, Communicator:
     def talk() = {}
 
 // 'x' is an intersection type:
-def poly(x: Consumer & Communicator) =
+def nourish(x: Consumer & Communicator) =
     x.eat()
     x.talk()
 
 @main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(poly(_))
+    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
 ```
 ------
 
@@ -1003,7 +1071,9 @@ class Robot:
 
 class Slug:
     def eat() = println("eating grass")
-
+```
+---
+```scala
 trait Nourish[T]:
     extension (t: T)
         def consume(): Unit
@@ -1028,7 +1098,9 @@ given Nourish[Slug] with
     extension (t: Slug)
         def consume(): Unit = t.eat()
         def communicate() = {}
-
+```
+---
+```scala
 // The typeclass to handle List[T] where T has a Nourish typeclass
 given [T : Nourish]: Nourish[List[T]] with
     extension (l: List[T])
@@ -1049,29 +1121,17 @@ def poly2[T: Nourish](x: T): Unit =
     poly(Person())
     poly(Robot())
     poly(Slug())
-
-    // Sum Type for all the elements (otherwise it becomes List[Object]
-    val hlist = List[Dog | Person | Robot | Slug](Dog(), Person(), Robot(), Slug())
-
-    // hlist.map(poly) produces:
-    // no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method poly in package typeclass
-
-    // poly(hlist) produces:
-    // But no implicit values were found that match type
-    // typeclass.Nourish[typeclass.Dog | typeclass.Person | typeclass.Robot | typeclass.Slug
-
-    // works but isn't interesting
-    val list = List(Dog(), Dog())
-    poly(list)
 ```
 ------
 
 
 # Rust
+
 ---
 
 ```rs
 //: src/rust/inheritance/src/main.rs
+
 trait Base {
   fn eat(&self);
   fn speak(&self);
@@ -1091,7 +1151,9 @@ impl Base for Person {
   fn eat(&self) { println!("eating pizza"); }
   fn speak(&self) { println!("hello"); }
 }
-
+```
+---
+```rs
 impl Base for Robot {
   fn eat(&self) { println!("charging"); }
   fn speak(&self) { println!("operational"); }
@@ -1114,6 +1176,7 @@ fn main() {
 
 ```rs
 //: src/rust/typeclasses/src/main.rs
+
 struct Dog;
 impl Dog {
     fn bark(&self) {
@@ -1127,7 +1190,9 @@ impl Person {
         println!("hello");
     }
 }
-
+```
+---
+```rs
 pub trait Communicate {
     fn speak(&self);
 }
@@ -1143,7 +1208,9 @@ impl Communicate for Person {
         self.greet();
     }
 }
-
+```
+---
+```rs
 pub fn poly<T: Communicate>(x: &T) {
     x.speak();
 }
@@ -1157,6 +1224,7 @@ fn main() {
 
 
 # Go
+
 ---
 
 ```go
@@ -1182,7 +1250,9 @@ type Slug struct{}
 
 func (slug Slug) Consume()     { println("eating grass") }
 func (slug Slug) Communicate() {}
-
+```
+---
+```go
 type ConsumerCommunicator interface {
     Consume()
     Communicate()
@@ -1226,7 +1296,9 @@ func (robot Robot) Initiate() { println("operational") }
 type Slug struct{}
 
 func (slug Slug) Eat() { println("eating grass") }
-
+```
+---
+```go
 type Eater interface {
     Eat()
 }
@@ -1256,7 +1328,7 @@ func main() {
 ------
 
 
-# Let's Ponder
+# Takeaways
 
 * Why do we want to treat multiple types as the same type?
   * Separate things that change from things that stay the same
@@ -1266,12 +1338,13 @@ func main() {
 
 ---
 
-# What can we do with this aggregate type?
+# What can we do with the aggregate?
 
-  * If there's no intersection of either syntax or semantics, does it make sense?
-  * Erasure in Java allows no behavior, only preserves exact return type
+* If there's no intersection of either syntax or semantics, does it make sense?
+* Erasure in Java allows no behavior, only preserves exact return type
 
 ---
+
 # Code Reuse with Inheritance
 
 * Maybe conflating these should have been left to Smalltalk
@@ -1280,16 +1353,27 @@ func main() {
   * Luciano Ramalho: implement interfaces only for "frameworks"
 
 ---
+
 # Was OO a Mistake?
+
 * No: Sometimes it's quite useful
 * Just not everywhere all the time
-* Polymorphism is heavily used in FP: map, fold, etc.
+* Ad-hoc polymorphism is heavily used in FP: map, fold, etc.
 * Forcing inheritance into every design seems like a bad idea
+
 ---
+
 # I'll Get By With a Little Help...
+
 - James Ward
 - Luciano Ramalho
 - Bill Frasure
 - Jack Leow
 - Marshall Pierce
 - Bill Venners
+
+---
+
+# Questions
+
+![bg fit right](workwithcare.jpg)

@@ -16,9 +16,9 @@ enum EnumType:
         case Robot => println("operational")
         case Slug => ()
 
-def poly(x: EnumType): Unit =
+def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(poly(_))
+    List(Dog, Person, Robot, Slug).foreach(nourish(_))

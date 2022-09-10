@@ -14,7 +14,7 @@ class Dog extends Consumer, Communicator:
 class Person extends Consumer, Communicator:
     def eat() = println("eating pizza")
     def talk() = println("hello")
-
+//---
 class Robot extends Consumer, Communicator:
     def eat() = println("charging")
     def talk() = println("operational")
@@ -24,9 +24,9 @@ class Slug extends Consumer, Communicator:
     def talk() = {}
 
 // 'x' is an intersection type:
-def poly(x: Consumer & Communicator) =
+def nourish(x: Consumer & Communicator) =
     x.eat()
     x.talk()
 
 @main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(poly(_))
+    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))

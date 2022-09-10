@@ -40,8 +40,9 @@ void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
         personPtr->greet();
     else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr)
         robotPtr->initiate();
+    // No exhaustiveness checking
 }
-
+//---
 int main() {
     nourish(Dog());
     nourish(Person());

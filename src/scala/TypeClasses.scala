@@ -15,7 +15,7 @@ class Robot:
 
 class Slug:
     def eat() = println("eating grass")
-
+//---
 trait Nourish[T]:
     extension (t: T)
         def consume(): Unit
@@ -40,7 +40,7 @@ given Nourish[Slug] with
     extension (t: Slug)
         def consume(): Unit = t.eat()
         def communicate() = {}
-
+//---
 // The typeclass to handle List[T] where T has a Nourish typeclass
 given [T : Nourish]: Nourish[List[T]] with
     extension (l: List[T])
@@ -62,16 +62,3 @@ def poly2[T: Nourish](x: T): Unit =
     poly(Robot())
     poly(Slug())
 
-    // Sum Type for all the elements (otherwise it becomes List[Object]
-    val hlist = List[Dog | Person | Robot | Slug](Dog(), Person(), Robot(), Slug())
-
-    // hlist.map(poly) produces:
-    // no given instance of type typeclass.Speak[Object] was found for parameter x$2 of method poly in package typeclass
-
-    // poly(hlist) produces:
-    // But no implicit values were found that match type
-    // typeclass.Nourish[typeclass.Dog | typeclass.Person | typeclass.Robot | typeclass.Slug
-
-    // works but isn't interesting
-    val list = List(Dog(), Dog())
-    poly(list)

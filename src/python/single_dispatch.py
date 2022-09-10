@@ -15,7 +15,7 @@ def _(subject: Dog):
 def _(subject: Person):
     subject.eat()
     subject.greet()
-
+#---
 @nourish.register
 def _(subject: Robot):
     subject.eat()

@@ -3,13 +3,14 @@ from reporting import Error, Debug
 
 error = Error()
 debug = Debug()
+debug2 = Debug()
 
 def expand(path: Path, file_ext: str, comment_chars: str) -> str:
     if not path.exists():
         error(f"Cannot locate {path.resolve()}")
         return f"Cannot locate {path.resolve()}"
     code = path.read_text().replace('\t', '    ')
-    code2 = code.replace(comment_chars + "---", f"```\n---\n```{file_ext}\n")
+    code2 = code.replace(comment_chars + "---", f"```\n---\n```{file_ext}")
     code3 = f"```{file_ext}\n{code2.strip()}\n```\n------\n"
     return code3
 

@@ -12,7 +12,7 @@ class Dog extends Base:
 class Person extends Base:
     def consume() = println("eating pizza")
     def communicate() = println("hello")
-
+//---
 class Robot extends Base:
     def consume() = println("charging")
     def communicate() = println("operational")
@@ -21,9 +21,9 @@ class Slug extends Base:
     def consume() = println("eating grass")
     def communicate() = {}
 
-def poly(x: Base): Unit =
+def nourish(x: Base): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(poly(_))
+    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))

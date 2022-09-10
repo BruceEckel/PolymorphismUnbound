@@ -47,6 +47,7 @@ public class DisjointTypes {
     subject.eat();
     subject.initiate();
   }
+//---
   static void nourish(Slug subject) {
     subject.eat();
   }

@@ -20,7 +20,7 @@ type Slug struct{}
 
 func (slug Slug) Consume()     { println("eating grass") }
 func (slug Slug) Communicate() {}
-
+//---
 type ConsumerCommunicator interface {
 	Consume()
 	Communicate()

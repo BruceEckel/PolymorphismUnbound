@@ -19,7 +19,7 @@ func (robot Robot) Initiate() { println("operational") }
 type Slug struct{}
 
 func (slug Slug) Eat() { println("eating grass") }
-
+//---
 type Eater interface {
 	Eat()
 }

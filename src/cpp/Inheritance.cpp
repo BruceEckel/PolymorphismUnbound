@@ -4,7 +4,7 @@ using namespace std;
 
 class Base {
     public:
-    virtual void eat() = 0;  // Pure virtual function
+    virtual void eat() = 0;  // Pure virtual == abstract
     virtual void speak() = 0;
 };
 

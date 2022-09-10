@@ -1,4 +1,5 @@
 //: src/rust/inheritance/src/main.rs
+
 trait Base {
   fn eat(&self);
   fn speak(&self);
@@ -18,7 +19,7 @@ impl Base for Person {
   fn eat(&self) { println!("eating pizza"); }
   fn speak(&self) { println!("hello"); }
 }
-
+//---
 impl Base for Robot {
   fn eat(&self) { println!("charging"); }
   fn speak(&self) { println!("operational"); }

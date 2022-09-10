@@ -17,7 +17,7 @@ class Robot2(Robot, Base):
 class Slug2(Slug, Base):
     def eat(self) -> None: super().eat()
     def speak(self) -> None: pass  # Required by ABC
-
+#---
 def nourish(base: Base):
     base.eat()
     base.speak()

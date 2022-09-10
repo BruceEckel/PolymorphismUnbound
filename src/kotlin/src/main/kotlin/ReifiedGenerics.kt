@@ -41,7 +41,6 @@ inline fun <reified T> nourish(subject: T) {
 }
 
 fun main() {
-    // Plays well with disjoint types:
     listOf(
         Dog(), Person(), Robot(), Slug()
     ).forEach { nourish(it) }
