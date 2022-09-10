@@ -2,9 +2,22 @@
 marp: true
 theme: gaia
 class: invert
-footer: '**Bruce Eckel** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MindviewLLC.com'
+footer: 'MindviewLLC.com'
 ---
-
+![bg](TitleImage.jpg)
+<style scoped>
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+</style>
+# Polymorphism<br/>Unbound
+## Bruce Eckel
+###### Github:<br/> BruceEckel/PolymorphismUnbound
+---
 # How we got here
 ## Simula
 - A simulation needs a common interface for all simulation elements.
