@@ -39,7 +39,7 @@ a {
 
 ---
 
-## Smalltalk
+# Smalltalk
 
 - Takes Simula concept and applies it to all elements
 - Code Reuse via Inheritance
@@ -306,12 +306,11 @@ int main() {
 ------
 
 
----
-
 # Java
 
 (_without reflection_)
-![bg fit right](TIJava4cover.jpg)
+![bg fit left](TIJava4cover.jpg)
+![bg fit left](OnJava8Cover.jpg)
 
 ---
 
@@ -713,8 +712,6 @@ if __name__ == '__main__':
 ------
 
 
----
-
 # Kotlin
 
 ![bg fit right](AtomicKotlinCover.png)
@@ -876,12 +873,7 @@ fun main() = listOf(
 ------
 
 
----
-
 ![bg](Scala.jpg)
-
----
-
 ![bg fit](AtomicScala.jpg)
 
 ---
@@ -1331,9 +1323,9 @@ func main() {
 # Takeaways
 
 * Why do we want to treat multiple types as the same type?
-  * Separate things that change from things that stay the same
-  * Reduce code duplication
-  * Better code understanding & maintenance
+  * Separate things that change from things that stay the same?
+  * Reduce code duplication?
+  * Code understanding & maintenance?
   * Don't do it without question
 
 ---
@@ -1341,7 +1333,7 @@ func main() {
 # What can we do with the aggregate?
 
 * If there's no intersection of either syntax or semantics, does it make sense?
-* Erasure in Java allows no behavior, only preserves exact return type
+* Yes: erasure in Java allows no behavior, only preserves exact return type
 
 ---
 

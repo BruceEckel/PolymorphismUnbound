@@ -39,7 +39,7 @@ a {
 
 ---
 
-## Smalltalk
+# Smalltalk
 
 - Takes Simula concept and applies it to all elements
 - Code Reuse via Inheritance
@@ -90,8 +90,6 @@ Usually appears in the form of a function parameter
 |==> //: src/cpp/MultipleInheritance.cpp
 |==> //: src/cpp/StructuralTyping.cpp
 
----
-
 # Java
 
 (_without reflection_)
@@ -117,8 +115,6 @@ Usually appears in the form of a function parameter
 |==> #: src/python/protocols.py
 |==> #: src/python/single_dispatch.py
 
----
-
 # Kotlin
 
 ![bg fit right](AtomicKotlinCover.png)
@@ -129,8 +125,6 @@ Usually appears in the form of a function parameter
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
 |==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
-
----
 
 ![bg](Scala.jpg)
 ![bg fit](AtomicScala.jpg)
@@ -161,9 +155,9 @@ Usually appears in the form of a function parameter
 # Takeaways
 
 * Why do we want to treat multiple types as the same type?
-  * Separate things that change from things that stay the same
-  * Reduce code duplication
-  * Better code understanding & maintenance
+  * Separate things that change from things that stay the same?
+  * Reduce code duplication?
+  * Code understanding & maintenance?
   * Don't do it without question
 
 ---
@@ -171,7 +165,7 @@ Usually appears in the form of a function parameter
 # What can we do with the aggregate?
 
 * If there's no intersection of either syntax or semantics, does it make sense?
-* Erasure in Java allows no behavior, only preserves exact return type
+* Yes: erasure in Java allows no behavior, only preserves exact return type
 
 ---
 
