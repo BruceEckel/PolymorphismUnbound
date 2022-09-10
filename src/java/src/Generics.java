@@ -17,7 +17,7 @@ class Dog extends Base {
     System.out.println("woof");
   }
 }
-
+//---
 class Person extends Base {
   @Override
   void speak() {

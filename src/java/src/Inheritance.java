@@ -17,7 +17,7 @@ class Dog extends Base {
     System.out.println("woof");
   }
 }
-
+//---
 class Person extends Base {
   @Override
   void eat() {
@@ -39,7 +39,7 @@ class Robot extends Base {
     System.out.println("operational");
   }
 }
-
+//---
 class Slug extends Base {
   @Override
   void eat() {

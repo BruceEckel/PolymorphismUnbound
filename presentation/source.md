@@ -18,6 +18,10 @@ a {
 ## Bruce Eckel
 ###### Github:<br/> BruceEckel/PolymorphismUnbound
 ---
+## `cfront` and the `virtual` keyword
+![bg right](tape.jpg)
+
+---
 # How we got here
 ## Simula
 - A simulation needs a common interface for all simulation elements.
@@ -39,16 +43,18 @@ a {
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
   - Making new types by inheritance didn't really work out
+  - Post-Java languages have learned from its mistakes
 ---
 # Polymorphism
-_A type represents multiple types_
+## _A type represents multiple types_
+- Usually appears in the form of a function parameter
 
 ---
 
 |==> //: src/cpp/AdHoc.cpp
 |==> //: src/cpp/Inheritance.cpp
 |==> //: src/cpp/MultipleInheritance.cpp
-|==> //: src/cpp/CompileTimePolymorphism.cpp
+|==> //: src/cpp/StructuralTyping.cpp
 
 # Java (_without reflection_)
 ---

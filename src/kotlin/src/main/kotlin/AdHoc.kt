@@ -1,4 +1,5 @@
 //: src/kotlin/src/main/kotlin/AdHoc.kt
+
 fun f(s: String) {
     println("f(String): $s")
 }
