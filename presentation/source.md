@@ -18,19 +18,20 @@ a {
 ## Bruce Eckel
 ###### Github:<br/> BruceEckel/PolymorphismUnbound
 ---
-## `cfront` and the `virtual` keyword
+## `cfront`, `virtual`, and dynamic binding
 ![bg right](tape.jpg)
 
 ---
 # How we got here
 ## Simula
 - A simulation needs a common interface for all simulation elements.
-  - So you can tell them all to update themselves.
+- So you can tell them all to update themselves.
 ---
 ## Smalltalk
 - Takes Simula concept and applies it to all elements
-  * BUT Smalltalk is inherently dynamic
-  * _Message-Oriented Programming_
+- Code Reuse via Inheritance
+* BUT Smalltalk is inherently dynamic
+* _Message-Oriented Programming_
 ---
 # C++
   - Object-Based Encapsulation for data control
@@ -39,7 +40,7 @@ a {
   - Everything statically typed for safety, very different from Smalltalk
 ---
 # Java
-  - Everything is an Object, like Smalltalk
+  - No option: Everything is an Object, like Smalltalk
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
   - Making new types by inheritance didn't really work out
@@ -70,6 +71,8 @@ a {
 |==> #: src/python/inheritance.py
 |==> #: src/python/disjoint_types.py
 |==> #: src/python/multiple_inheritance.py
+|==> #: src/python/duck_typing.py
+|==> #: src/python/union_types.py
 |==> #: src/python/protocols.py
 |==> #: src/python/single_dispatch.py
 

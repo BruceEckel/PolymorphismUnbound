@@ -6,22 +6,22 @@ interface Base {
     abstract fun speak()
 }
 
-class Dog: Base() {
+class Dog: Base {
     override fun eat() { println("eating dog food") }
     override fun speak() { println("woof") }
 }
 
-class Person: Base()  {
+class Person: Base {
     override fun eat() { println("eating pizza") }
     override fun speak() { println("hello") }
 }
-
-class Robot: Base()  {
+//---
+class Robot: Base {
     override fun eat() { println("charging") }
     override fun speak() { println("operational") }
 }
 
-class Slug: Base()  {
+class Slug: Base {
     override fun eat() { println("eating grass") }
     override fun speak() { }
 }

@@ -18,7 +18,7 @@ class Person {
     System.out.println("hello");
   }
 }
-
+//---
 class Robot {
   void eat() {
     System.out.println("charging");
@@ -56,11 +56,6 @@ public class DisjointTypes {
     nourish(new Person());
     nourish(new Robot());
     nourish(new Slug());
-    // But you cannot do this:
-//    Stream.of(
-//      new Dog(), new Person(), new Robot(), new Slug()
-//    ).forEach(DisjointTypes::nourish);
-    // It would have to figure out what overloaded version
-    // to call at runtime, a.k.a. dynamic binding
+    // (Statically determined at compile time)
   }
 }

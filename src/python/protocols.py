@@ -2,29 +2,29 @@
 from typing import Protocol
 
 class Dog:
-    def eat(self) -> None: print("eating dog food")
-    def speak(self) -> None: print("woof")
+    def eat(self): print("eating dog food")
+    def speak(self): print("woof")
 
 class Person:
-    def eat(self) -> None: print("eating pizza")
-    def speak(self) -> None: print("hello")
+    def eat(self): print("eating pizza")
+    def speak(self): print("hello")
 
 class Robot:
-    def eat(self) -> None: print("charging")
-    def speak(self) -> None: print("operational")
-
+    def eat(self): print("charging")
+    def speak(self): print("operational")
+# ---
 class Slug:
-    def eat(self) -> None: print("eating grass")
-    def speak(self) -> None: pass
+    def eat(self): print("eating grass")
+    def speak(self): pass
 
 class Base(Protocol):
-    def eat(self) -> None: ...
-    def speak(self) -> None: ...
+    def eat(self): ...
+    def speak(self): ...
 
-def nourish_inheritance(subject: Base):
+def nourish(subject: Base):
     subject.eat()
     subject.speak()
 
 if __name__ == '__main__':
-    for subj in [Dog(), Person(), Robot(), Slug()]:
-        nourish_inheritance(subj)
+    for subject in [Dog(), Person(), Robot(), Slug()]:
+        nourish(subject)

@@ -26,5 +26,5 @@ def _(subject: Slug):
     subject.eat()
 
 if __name__ == '__main__':
-    for subj in [Dog(), Person(), Robot(), Slug(), ""]:
-        nourish(subj)
+    for subject in [Dog(), Person(), Robot(), Slug(), ""]:
+        nourish(subject)

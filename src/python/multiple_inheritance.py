@@ -18,10 +18,10 @@ class Slug2(Slug, Base):
     def eat(self) -> None: super().eat()
     def speak(self) -> None: pass  # Required by ABC
 
-def nourish_mi(base: Base):
+def nourish(base: Base):
     base.eat()
     base.speak()
 
 if __name__ == '__main__':
     for subject in [Dog2(), Person2(), Robot2(), Slug2()]:
-        nourish_mi(subject)
+        nourish(subject)

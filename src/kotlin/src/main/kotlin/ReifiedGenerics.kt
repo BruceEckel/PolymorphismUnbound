@@ -19,7 +19,7 @@ class Robot {
 class Slug {
     fun absorb() = println("eating grass")
 }
-
+//---
 inline fun <reified T> nourish(subject: T) {
     when (subject) {
         is Dog -> {

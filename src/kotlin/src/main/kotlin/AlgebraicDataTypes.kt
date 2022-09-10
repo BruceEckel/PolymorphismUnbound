@@ -1,38 +1,33 @@
 //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
+package algebraic
+import algebraic.ADT.*
 
-sealed class SumType {
-    abstract fun eat()
+sealed class ADT(val eats: String) {
+    fun eat() = println("eating $eats")
 
-    class Dog : SumType() {
-        override fun eat() { println("eating dog food") }
+    class Dog(food: String = "dog food") : ADT(food) {
         fun bark() { println("woof") }
     }
-    class Person : SumType() {
-        override fun eat() { println("eating pizza") }
+    class Person(food: String) : ADT(food) {
         fun greet() { println("hello") }
     }
-    class Robot : SumType() {
-        override fun eat() { println("charging") }
+    class Robot : ADT("electricity") {
         fun initiate() { println("operational") }
     }
-    class Slug : SumType() {
-        override fun eat() { println("eating grass") }
-    }
+    class Slug(food: String) : ADT(food)
 }
-
-fun nourish(subject: SumType) {
+//---
+fun nourish(subject: ADT) {
     subject.eat()
     when (subject) {
-        is SumType.Dog -> subject.bark()
-        is SumType.Person -> subject.greet()
-        is SumType.Robot -> subject.initiate()
-        else -> {}
+        is Dog -> subject.bark()
+        is Person -> subject.greet()
+        is Robot -> subject.initiate()
+        is Slug -> {}
     }
 }
 
-fun main() {
-    listOf(
-        SumType.Dog(), SumType.Person(),
-        SumType.Robot(), SumType.Slug()
-    ).forEach { nourish(it) }
-}
+fun main() = listOf(
+    Dog(), Person("pizza"),
+    Robot(), Slug("grass")
+).forEach { nourish(it) }
