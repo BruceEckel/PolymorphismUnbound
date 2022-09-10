@@ -95,8 +95,8 @@ Usually appears in the form of a function parameter
 # Java
 
 (_without reflection_)
-![bg fit right](TIJava4cover.jpg)
-![bg fit right](OnJava8Cover.jpg)
+![bg fit left](TIJava4cover.jpg)
+![bg fit left](OnJava8Cover.jpg)
 
 ---
 
@@ -133,9 +133,6 @@ Usually appears in the form of a function parameter
 ---
 
 ![bg](Scala.jpg)
-
----
-
 ![bg fit](AtomicScala.jpg)
 
 ---
