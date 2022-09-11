@@ -15,7 +15,7 @@ enum EnumType:
         case Person => println("hello")
         case Robot => println("operational")
         case Slug => ()
-
+//---
 def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()

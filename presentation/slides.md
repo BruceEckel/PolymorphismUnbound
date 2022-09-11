@@ -824,7 +824,9 @@ inline fun <reified T> nourish(subject: T) {
         }
     }
 }
-
+```
+---
+```kt
 fun main() {
     listOf(
         Dog(), Person(), Robot(), Slug()
@@ -931,7 +933,9 @@ enum EnumType:
         case Person => println("hello")
         case Robot => println("operational")
         case Slug => ()
-
+```
+---
+```scala
 def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()
@@ -954,7 +958,9 @@ enum EnumType(eat: String, talk: String):
     case Slug extends EnumType("eating grass", "")
     def consume() = println(eat)
     def communicate() = println(talk)
-
+```
+---
+```scala
 def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()
@@ -1011,32 +1017,32 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
 //: src/scala/IntersectionTypes.scala
 package intersectiontypes
 
-trait Consumer:
+trait Eater:
     def eat(): Unit
 
-trait Communicator:
+trait Talker:
     def talk(): Unit
 
-class Dog extends Consumer, Communicator:
+class Dog extends Eater, Talker:
     def eat() = println("eating dog food")
     def talk() = println("woof")
 
-class Person extends Consumer, Communicator:
+class Person extends Eater, Talker:
     def eat() = println("eating pizza")
     def talk() = println("hello")
 ```
 ---
 ```scala
-class Robot extends Consumer, Communicator:
+class Robot extends Eater, Talker:
     def eat() = println("charging")
     def talk() = println("operational")
 
-class Slug extends Consumer, Communicator:
+class Slug extends Eater, Talker:
     def eat() = println("eating grass")
     def talk() = {}
 
 // 'x' is an intersection type:
-def nourish(x: Consumer & Communicator) =
+def nourish(x: Eater & Talker) =
     x.eat()
     x.talk()
 
@@ -1080,7 +1086,9 @@ given Nourish[Dog] with
     extension (t: Dog)
         def consume(): Unit = t.eat()
         def communicate(): Unit = t.bark()
-
+```
+---
+```scala
 given Nourish[Robot] with
     extension (t: Robot)
         def consume(): Unit = t.eat()
@@ -1232,7 +1240,9 @@ type Person struct{}
 
 func (person Person) Consume()     { println("eating pizza") }
 func (person Person) Communicate() { println("hello") }
-
+```
+---
+```go
 type Robot struct{}
 
 func (robot Robot) Consume()     { println("charging") }
@@ -1279,7 +1289,9 @@ type Person struct{}
 
 func (person Person) Eat()   { println("eating pizza") }
 func (person Person) Greet() { println("hello") }
-
+```
+---
+```go
 type Robot struct{}
 
 func (robot Robot) Eat()      { println("charging") }
@@ -1309,7 +1321,9 @@ func Poly[T Dog | Person | Robot | Slug](subject T) {
         subjectTyped.Initiate()
     }
 }
-
+```
+---
+```go
 func main() {
     Poly(Dog{})
     Poly(Person{})

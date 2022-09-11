@@ -10,7 +10,7 @@ enum EnumType(eat: String, talk: String):
     case Slug extends EnumType("eating grass", "")
     def consume() = println(eat)
     def communicate() = println(talk)
-
+//---
 def nourish(x: EnumType): Unit =
     x.consume()
     x.communicate()

@@ -39,7 +39,7 @@ inline fun <reified T> nourish(subject: T) {
         }
     }
 }
-
+//---
 fun main() {
     listOf(
         Dog(), Person(), Robot(), Slug()

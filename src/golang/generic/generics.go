@@ -10,7 +10,7 @@ type Person struct{}
 
 func (person Person) Eat()   { println("eating pizza") }
 func (person Person) Greet() { println("hello") }
-
+//---
 type Robot struct{}
 
 func (robot Robot) Eat()      { println("charging") }
@@ -38,7 +38,7 @@ func Poly[T Dog | Person | Robot | Slug](subject T) {
 		subjectTyped.Initiate()
 	}
 }
-
+//---
 func main() {
 	Poly(Dog{})
 	Poly(Person{})

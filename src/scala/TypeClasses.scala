@@ -30,7 +30,7 @@ given Nourish[Dog] with
     extension (t: Dog)
         def consume(): Unit = t.eat()
         def communicate(): Unit = t.bark()
-
+//---
 given Nourish[Robot] with
     extension (t: Robot)
         def consume(): Unit = t.eat()

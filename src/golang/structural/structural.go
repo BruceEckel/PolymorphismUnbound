@@ -10,7 +10,7 @@ type Person struct{}
 
 func (person Person) Consume()     { println("eating pizza") }
 func (person Person) Communicate() { println("hello") }
-
+//---
 type Robot struct{}
 
 func (robot Robot) Consume()     { println("charging") }
