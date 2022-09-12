@@ -1,22 +1,8 @@
 //: src/scala/UnionTypes.scala
 // Union types aka sum types
 package uniontypes
+import disjointtypes.*
 
-class Dog:
-    def eat() = println("eating dog food")
-    def bark() = println("woof")
-
-class Person:
-    def scarf() = println("eating pizza")
-    def talk() = println("hello")
-
-class Robot:
-    def charge() = println("charging")
-    def communicate() = println("operational")
-
-class Slug:
-    def absorb() = println("eating grass")
-//---
 // 'x' is a union type:
 def nourish(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
