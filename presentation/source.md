@@ -134,6 +134,7 @@ Usually appears in the form of a function parameter
 |==> //: src/scala/Inheritance.scala
 |==> //: src/scala/EnumTypes.scala
 |==> //: src/scala/EnumTypes2.scala
+|==> //: src/scala/AlgebraicDataTypes.scala
 \==> //: src/scala/DisjointTypes.scala
 |==> //: src/scala/UnionTypes.scala
 |==> //: src/scala/TypeClasses.scala
