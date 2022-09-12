@@ -6,59 +6,59 @@ class Dog:
     def bark() = println("woof")
 
 class Person:
-    def eat() = println("eating pizza")
-    def greet() = println("hello")
+    def scarf() = println("eating pizza")
+    def talk() = println("hello")
 
 class Robot:
-    def eat() = println("charging")
-    def initiate() = println("operational")
+    def charge() = println("charging")
+    def communicate() = println("operational")
 
 class Slug:
-    def eat() = println("eating grass")
+    def absorb() = println("eating grass")
 //---
-trait Nourish[T]:
+trait Update[T]:
     extension (t: T)
         def consume(): Unit
         def communicate(): Unit
 
-given Nourish[Person] with
-    extension (t: Person)
-        def consume(): Unit = t.eat()
-        def communicate(): Unit = t.greet()
-
-given Nourish[Dog] with
+given Update[Dog] with
     extension (t: Dog)
         def consume(): Unit = t.eat()
         def communicate(): Unit = t.bark()
-//---
-given Nourish[Robot] with
-    extension (t: Robot)
-        def consume(): Unit = t.eat()
-        def communicate(): Unit = t.initiate()
 
-given Nourish[Slug] with
+given Update[Person] with
+    extension (t: Person)
+        def consume(): Unit = t.scarf()
+        def communicate(): Unit = t.talk()
+//---
+given Update[Robot] with
+    extension (t: Robot)
+        def consume(): Unit = t.charge()
+        def communicate(): Unit = t.communicate()
+
+given Update[Slug] with
     extension (t: Slug)
-        def consume(): Unit = t.eat()
+        def consume(): Unit = t.absorb()
         def communicate() = {}
 //---
 // The typeclass to handle List[T] where T has a Nourish typeclass
-given [T : Nourish]: Nourish[List[T]] with
+given [T : Update]: Update[List[T]] with
     extension (l: List[T])
         def consume(): Unit = l.foreach(_.consume())
         def communicate(): Unit = l.foreach(_.communicate())
 
-def poly[T](x: T)(using Nourish[T]): Unit =
+def nourish[T](x: T)(using Update[T]): Unit =
     x.consume()
     x.communicate()
 
 // Alternate syntax
-def poly2[T: Nourish](x: T): Unit =
+def nourish2[T: Update](x: T): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    poly(Dog())
-    poly(Person())
-    poly(Robot())
-    poly(Slug())
+    nourish(Dog())
+    nourish(Person())
+    nourish(Robot())
+    nourish(Slug())
 
