@@ -8,45 +8,37 @@ abstract class Base {
 }
 
 class Dog extends Base {
-  @Override
-  void eat() {
+  @Override void eat() {
     System.out.println("eating dog food");
   }
-  @Override
-  void speak() {
+  @Override void speak() {
     System.out.println("woof");
   }
 }
 //---
 class Person extends Base {
-  @Override
-  void eat() {
+  @Override void eat() {
     System.out.println("eating pizza");
   }
-  @Override
-  void speak() {
+  @Override void speak() {
     System.out.println("hello");
   }
 }
 
 class Robot extends Base {
-  @Override
-  void eat() {
+  @Override void eat() {
     System.out.println("charging");
   }
-  @Override
-  void speak() {
+  @Override void speak() {
     System.out.println("operational");
   }
 }
 //---
 class Slug extends Base {
-  @Override
-  void eat() {
+  @Override void eat() {
     System.out.println("eating grass");
   }
-  @Override
-  void speak() {
+  @Override void speak() {
   }
 }
 

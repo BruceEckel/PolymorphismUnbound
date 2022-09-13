@@ -35,6 +35,6 @@ public class Generics {
     baseHolder.set(new Person());
     // Person p = baseHolder.get();  // Nope
     Base b = baseHolder.get();
-    // Need variance...
+    // Need to add variance here...
   }
 }

@@ -1,5 +1,4 @@
 //: src/java/src/DisjointTypes.java
-import java.util.stream.*;
 
 class Dog {
   void eat() {
@@ -11,7 +10,7 @@ class Dog {
 }
 
 class Person {
-  void eat() {
+  void scarf() {
     System.out.println("eating pizza");
   }
   void greet() {
@@ -20,7 +19,7 @@ class Person {
 }
 //---
 class Robot {
-  void eat() {
+  void charge() {
     System.out.println("charging");
   }
   void initiate() {
@@ -29,7 +28,7 @@ class Robot {
 }
 
 class Slug {
-  void eat() {
+  void absorb() {
     System.out.println("eating grass");
   }
 }
@@ -40,16 +39,16 @@ public class DisjointTypes {
     subject.bark();
   }
   static void nourish(Person subject) {
-    subject.eat();
+    subject.scarf();
     subject.greet();
   }
   static void nourish(Robot subject) {
-    subject.eat();
+    subject.charge();
     subject.initiate();
   }
 //---
   static void nourish(Slug subject) {
-    subject.eat();
+    subject.absorb();
   }
   public static void main(String... args) {
     // Ad-hoc polymorphism (overloading):
