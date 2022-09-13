@@ -135,7 +135,7 @@ Usually appears in the form of a function parameter
 |==> //: src/scala/EnumTypes.scala
 |==> //: src/scala/EnumTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
-\==> //: src/scala/DisjointTypes.scala
+|==> //: src/scala/DisjointTypes.scala
 |==> //: src/scala/UnionTypes.scala
 |==> //: src/scala/TypeClasses.scala
 
@@ -183,8 +183,8 @@ Usually appears in the form of a function parameter
 
 * No: Sometimes it's quite useful
 * Just not everywhere all the time
+  * Forcing inheritance into every design seems like a bad idea
 * Ad-hoc polymorphism is heavily used in FP: map, fold, etc.
-* Forcing inheritance into every design seems like a bad idea
 
 ---
 

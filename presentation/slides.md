@@ -915,65 +915,36 @@ def nourish(x: Base): Unit =
 ```
 ------
 
+Cannot locate C:\Git\PolymorphismUnbound\src\scala\EnumTypes.scala
+Cannot locate C:\Git\PolymorphismUnbound\src\scala\EnumTypes2.scala
 ```scala
-//: src/scala/EnumTypes.scala
-// Enumerated Data Types
-package enumtypes
-import EnumType.*
+//: src/scala/AlgebraicDataTypes.scala
+package adts
+import ADT.*
 
-enum EnumType:
-    case Dog, Person, Robot, Slug
-    def consume() = this match
-        case Dog => println("eating dog food")
-        case Person => println("eating pizza")
-        case Robot => println("charging")
-        case Slug => println("eating grass")
-    def communicate() = this match
-        case Dog => println("woof")
-        case Person => println("hello")
-        case Robot => println("operational")
-        case Slug => ()
-```
----
-```scala
-def nourish(x: EnumType): Unit =
-    x.consume()
-    x.communicate()
-
-@main def main() =
-    List(Dog, Person, Robot, Slug).foreach(nourish(_))
-```
-------
-
-```scala
-//: src/scala/EnumTypes2.scala
-// Enumerated Data Types
-package enumtypes2
-import EnumType.*
-
-enum EnumType(eat: String, talk: String):
-    case Dog extends EnumType("eating dog food", "woof")
-    case Person extends EnumType("eating pizza", "hello")
-    case Robot extends EnumType("charging", "operational")
-    case Slug extends EnumType("eating grass", "")
+enum ADT(eat: String, talk: String):
+    case Dog(says: String) extends ADT("eating dog food", says)
+    case Person(says: String) extends ADT("eating pizza", says)
+    case Robot extends ADT("charging", "operational")
+    case Slug extends ADT("eating grass", "")
     def consume() = println(eat)
     def communicate() = println(talk)
 ```
 ---
 ```scala
-def nourish(x: EnumType): Unit =
+def nourish(x: ADT): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(nourish(_))
+    List(Dog("woof"), Person("hi!"), Robot, Slug).foreach(nourish(_))
 ```
 ------
 
 ```scala
-//: src/scala/UnionTypes.scala
-// Union types aka sum types
-package uniontypes
+//: src/scala/DisjointTypes.scala
+// Nothing in commont
+package disjointtypes
 
 class Dog:
     def eat() = println("eating dog food")
@@ -990,8 +961,14 @@ class Robot:
 class Slug:
     def absorb() = println("eating grass")
 ```
----
+------
+
 ```scala
+//: src/scala/UnionTypes.scala
+// Union types aka sum types
+package uniontypes
+import disjointtypes.*
+
 // 'x' is a union type:
 def nourish(x: Dog | Person | Robot | Slug) = x match
     case d: Dog =>
@@ -1014,113 +991,60 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
 ------
 
 ```scala
-//: src/scala/IntersectionTypes.scala
-package intersectiontypes
-
-trait Eater:
-    def eat(): Unit
-
-trait Talker:
-    def talk(): Unit
-
-class Dog extends Eater, Talker:
-    def eat() = println("eating dog food")
-    def talk() = println("woof")
-
-class Person extends Eater, Talker:
-    def eat() = println("eating pizza")
-    def talk() = println("hello")
-```
----
-```scala
-class Robot extends Eater, Talker:
-    def eat() = println("charging")
-    def talk() = println("operational")
-
-class Slug extends Eater, Talker:
-    def eat() = println("eating grass")
-    def talk() = {}
-
-// 'x' is an intersection type:
-def nourish(x: Eater & Talker) =
-    x.eat()
-    x.talk()
-
-@main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
-```
-------
-
-```scala
 //: src/scala/TypeClasses.scala
+// "Automating the adapter pattern"
 package typeclasses
+import disjointtypes.*
 
-class Dog:
-    def eat() = println("eating dog food")
-    def bark() = println("woof")
-
-class Person:
-    def eat() = println("eating pizza")
-    def greet() = println("hello")
-
-class Robot:
-    def eat() = println("charging")
-    def initiate() = println("operational")
-
-class Slug:
-    def eat() = println("eating grass")
-```
----
-```scala
-trait Nourish[T]:
+trait Update[T]:
     extension (t: T)
         def consume(): Unit
         def communicate(): Unit
 
-given Nourish[Person] with
-    extension (t: Person)
-        def consume(): Unit = t.eat()
-        def communicate(): Unit = t.greet()
-
-given Nourish[Dog] with
+given Update[Dog] with
     extension (t: Dog)
         def consume(): Unit = t.eat()
         def communicate(): Unit = t.bark()
+
+given Update[Person] with
+    extension (t: Person)
+        def consume(): Unit = t.scarf()
+        def communicate(): Unit = t.talk()
 ```
 ---
 ```scala
-given Nourish[Robot] with
+given Update[Robot] with
     extension (t: Robot)
-        def consume(): Unit = t.eat()
-        def communicate(): Unit = t.initiate()
+        def consume(): Unit = t.charge()
+        def communicate(): Unit = t.communicate()
 
-given Nourish[Slug] with
+given Update[Slug] with
     extension (t: Slug)
-        def consume(): Unit = t.eat()
+        def consume(): Unit = t.absorb()
         def communicate() = {}
 ```
 ---
 ```scala
 // The typeclass to handle List[T] where T has a Nourish typeclass
-given [T : Nourish]: Nourish[List[T]] with
+given [T : Update]: Update[List[T]] with
     extension (l: List[T])
         def consume(): Unit = l.foreach(_.consume())
         def communicate(): Unit = l.foreach(_.communicate())
 
-def poly[T](x: T)(using Nourish[T]): Unit =
+def nourish[T](x: T)(using Update[T]): Unit =
     x.consume()
     x.communicate()
 
 // Alternate syntax
-def poly2[T: Nourish](x: T): Unit =
+def nourish2[T: Update](x: T): Unit =
     x.consume()
     x.communicate()
 
 @main def main() =
-    poly(Dog())
-    poly(Person())
-    poly(Robot())
-    poly(Slug())
+    nourish(Dog())
+    nourish(Person())
+    nourish(Robot())
+    nourish(Slug())
 ```
 ------
 
@@ -1364,8 +1288,8 @@ func main() {
 
 * No: Sometimes it's quite useful
 * Just not everywhere all the time
+  * Forcing inheritance into every design seems like a bad idea
 * Ad-hoc polymorphism is heavily used in FP: map, fold, etc.
-* Forcing inheritance into every design seems like a bad idea
 
 ---
 

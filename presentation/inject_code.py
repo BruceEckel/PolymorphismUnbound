@@ -1,5 +1,6 @@
 from pathlib import Path
 from reporting import Error, Debug
+import sys
 
 error = Error()
 debug = Debug()
@@ -14,7 +15,7 @@ def expand(path: Path, file_ext: str, comment_chars: str) -> str:
     code3 = f"```{file_ext}\n{code2.strip()}\n```\n------\n"
     return code3
 
-def main():
+def main(source_file: str):
     result = []
     for line in Path("source.md").read_text().splitlines():
         if line.startswith("|==>"):
@@ -36,11 +37,16 @@ def main():
     Path("slides.md").write_text(new_markdown)
 
 if __name__ == '__main__':
-    main()
+    try:
+        arg = sys.argv[1]
+    except IndexError:
+        raise SystemExit(f"Usage: {sys.argv[0]} <source_file.md>")
+    main(sys.argv[1])
     error.report()
 
 
 # For expanded listings:
+# import re
 # complete_listing = re.compile("```(.*?)\n(//:|#:)(.*?)\n(.*?)\n```\n------", re.DOTALL)
 #
 # def old():

@@ -1,5 +1,4 @@
-//: src/scala/EnumTypes2.scala
-// Enumerated Data Types
+//: src/scala/EnumeratedDataTypes2.scala
 package enumtypes2
 import EnumType.*
 
