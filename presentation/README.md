@@ -25,5 +25,5 @@ then runs `marp` to produce `slides.html`. Finally it uses `start` to open
 `slides.html` in a browser window:
 
 ```ps1
-python .\inject_code.py; marp .\slides.md; start .\slides.html
+python .\inject_code.py source2.md; marp .\slides.md; start .\slides.html
 ```

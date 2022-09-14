@@ -28,18 +28,13 @@ given Update[Slug] with
         def consume(): Unit = t.absorb()
         def communicate() = {}
 //---
-// The typeclass to handle List[T] where T has a Nourish typeclass
+// The typeclass to handle List[T] where T has an Update typeclass
 given [T : Update]: Update[List[T]] with
     extension (l: List[T])
         def consume(): Unit = l.foreach(_.consume())
         def communicate(): Unit = l.foreach(_.communicate())
 
 def nourish[T](x: T)(using Update[T]): Unit =
-    x.consume()
-    x.communicate()
-
-// Alternate syntax
-def nourish2[T: Update](x: T): Unit =
     x.consume()
     x.communicate()
 

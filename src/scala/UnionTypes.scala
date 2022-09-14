@@ -16,7 +16,7 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
         r.communicate()
     case s: Slug =>
         s.absorb()
-
+//---
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())

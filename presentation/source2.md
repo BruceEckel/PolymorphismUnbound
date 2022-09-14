@@ -81,8 +81,8 @@ Usually appears in the form of a function parameter
 
 # Examples
 
-* We will look at different forms of polymorphism
-* Implemented in different languages:
+- Different forms of polymorphism
+- Implemented in different languages:
 
 ---
 
@@ -120,11 +120,12 @@ Usually appears in the form of a function parameter
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
 |==> //: src/cpp/AdHoc.cpp
 |==> //: src/java/src/DisjointTypes.java
+|==> #: src/python/disjoint_types.py
 |==> #: src/python/single_dispatch.py
 
----
+# Classic Inheritance/Liskov Substitution
 
-# Classic Inheritance & Liskov SP
+---
 
 |==> //: src/java/src/Inheritance.java
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
@@ -134,67 +135,64 @@ Usually appears in the form of a function parameter
 |==> #: src/python/inheritance.py
 |==> //: src/rust/inheritance/src/main.rs
 
+# Multiple Inheritance
 
 ---
-
-# Multiple Inheritance
 
 |==> //: src/cpp/MultipleInheritance.cpp
 |==> #: src/python/multiple_inheritance.py
 
----
-
 # Parametric Polymorphism
 
-|==> //: src/java/src/Generics.java
-|==> //: src/golang/generic/generics.go
-
 ---
+
+|==> //: src/java/src/Generics.java
+|==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
+|==> //: src/golang/generic/generics.go
 
 # Structural Typing aka Duck Typing
 
+---
+
 |==> #: src/python/duck_typing.py
 |==> //: src/cpp/StructuralTyping.cpp
----
 
 # Disjoint Types
 
-|==> #: src/python/disjoint_types.py
-|==> //: src/scala/DisjointTypes.scala
-
 ---
 
+|==> //: src/scala/DisjointTypes.scala
+
 # Union Types aka Sum Types
+
+---
 
 |==> #: src/python/union_types.py
 |==> //: src/scala/UnionTypes.scala
 |==> // src/java/src/PatternMatching.java
-|==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
-
----
 
 # Protocols
+
+---
 
 |==> #: src/python/protocols.py
 |==> //: src/golang/structural/structural.go
 
----
-
 # Algebraic Data Types (ADTs)
 
-|==> //: src/scala/EnumTypes.scala
-|==> //: src/scala/EnumTypes2.scala
+---
+
+|==> //: src/scala/EnumeratedDataTypes.scala
+|==> //: src/scala/EnumeratedDataTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
 
----
-
 # Type Classes
+
+---
 
 |==> //: src/scala/TypeClasses.scala
 |==> //: src/rust/typeclasses/src/main.rs
-
----
 
 # Takeaways
 

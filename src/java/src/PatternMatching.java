@@ -13,7 +13,7 @@ class Fish {
   void feed() {}
   void changeWater() {}
 }
-
+//---
 public class PatternMatching {
   static void careFor(Object p) {
     switch(p) { // Exhaustive except for Null

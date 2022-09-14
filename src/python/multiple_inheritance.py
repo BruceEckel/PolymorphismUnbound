@@ -3,20 +3,20 @@ from base import Base
 from disjoint_types import Dog, Person, Robot, Slug
 
 class Dog2(Dog, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.bark()
+    def eat(self): super().eat()
+    def speak(self): self.bark()
 
 class Person2(Person, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.greet()
+    def eat(self): super().eat()
+    def speak(self): self.greet()
 
 class Robot2(Robot, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.initiate()
+    def eat(self): super().eat()
+    def speak(self): self.initiate()
 
 class Slug2(Slug, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: pass  # Required by ABC
+    def eat(self): super().eat()
+    def speak(self): pass  # Required by ABC
 #---
 def nourish(base: Base):
     base.eat()

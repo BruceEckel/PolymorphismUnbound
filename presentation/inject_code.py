@@ -1,6 +1,7 @@
 from pathlib import Path
 from reporting import Error, Debug
 import sys
+import shutil
 
 error = Error()
 debug = Debug()
@@ -16,8 +17,10 @@ def expand(path: Path, file_ext: str, comment_chars: str) -> str:
     return code3
 
 def main(source_file: str):
+    if source_file == "slides.md":
+        raise SystemExit(f"Cannot use 'slides.md' as source file")
     result = []
-    for line in Path("source.md").read_text().splitlines():
+    for line in Path(source_file).read_text().splitlines():
         if line.startswith("|==>"):
             header = line.split("|==>")[1].strip()
             # debug(header)
