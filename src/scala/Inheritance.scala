@@ -2,8 +2,8 @@
 package inheritance
 
 trait Base:
-    def consume(): Unit
-    def communicate(): Unit
+    def eat(): Unit
+    def speak(): Unit
 
 class Dog extends Base:
     def consume() = println("eating dog food")
@@ -22,8 +22,8 @@ class Slug extends Base:
     def communicate() = {}
 
 def nourish(x: Base): Unit =
-    x.consume()
-    x.communicate()
+    x.eat()
+    x.speak()
 
 @main def main() =
     List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))

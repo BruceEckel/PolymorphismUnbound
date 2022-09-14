@@ -1,14 +1,13 @@
 //: src/rust/inheritance/src/main.rs
+struct Dog;
+struct Person;
+struct Robot;
+struct Slug;
 
 trait Base {
   fn eat(&self);
   fn speak(&self);
 }
-
-struct Dog;
-struct Person;
-struct Robot;
-struct Slug;
 
 impl Base for Dog {
   fn eat(&self) { println!("eating dog food"); }

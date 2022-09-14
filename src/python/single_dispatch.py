@@ -8,21 +8,25 @@ def nourish(subject):
 
 @nourish.register
 def _(subject: Dog):
+    print("Dog")
     subject.eat()
     subject.bark()
 
 @nourish.register
 def _(subject: Person):
+    print("Person")
     subject.eat()
     subject.greet()
 #---
 @nourish.register
 def _(subject: Robot):
+    print("Robot")
     subject.eat()
     subject.initiate()
 
 @nourish.register
 def _(subject: Slug):
+    print("Slug")
     subject.eat()
 
 if __name__ == '__main__':

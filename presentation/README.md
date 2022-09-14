@@ -24,6 +24,6 @@ The following PowerShell command runs `inject_code.py` to produce `slides.md`,
 then runs `marp` to produce `slides.html`. Finally it uses `start` to open
 `slides.html` in a browser window:
 
-```ps1
+```powershell
 python .\inject_code.py source2.md; marp .\slides.md; start .\slides.html
 ```

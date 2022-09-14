@@ -23,7 +23,7 @@ func (slug Slug) Eat() { println("eating grass") }
 type Eater interface {
 	Eat()
 }
-
+// T is a Union type:
 func Poly[T Dog | Person | Robot | Slug](subject T) {
 	switch subjectTyped := any(subject).(type) {
 	case Eater:

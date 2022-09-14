@@ -79,16 +79,12 @@ Usually appears in the form of a function parameter
 
 ---
 
-# C++
+# Examples
 
-![bg fit right](eckel-c-front-cover-only.jpg)
+- Different forms of polymorphism
+- Implemented in different languages:
 
 ---
-
-|==> //: src/cpp/AdHoc.cpp
-|==> //: src/cpp/Inheritance.cpp
-|==> //: src/cpp/MultipleInheritance.cpp
-|==> //: src/cpp/StructuralTyping.cpp
 
 # Java
 
@@ -98,22 +94,11 @@ Usually appears in the form of a function parameter
 
 ---
 
-|==> //: src/java/src/Inheritance.java
-|==> //: src/java/src/DisjointTypes.java
-|==> //: src/java/src/Generics.java
+# C++
 
-# Python
+![bg fit right](eckel-c-front-cover-only.jpg)
 
 ---
-
-|==> #: src/python/base.py
-|==> #: src/python/inheritance.py
-|==> #: src/python/disjoint_types.py
-|==> #: src/python/multiple_inheritance.py
-|==> #: src/python/duck_typing.py
-|==> #: src/python/union_types.py
-|==> #: src/python/protocols.py
-|==> #: src/python/single_dispatch.py
 
 # Kotlin
 
@@ -121,37 +106,88 @@ Usually appears in the form of a function parameter
 
 ---
 
-|==> //: src/kotlin/src/main/kotlin/AdHoc.kt
-|==> //: src/kotlin/src/main/kotlin/Inheritance.kt
-|==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
-|==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
-
 ![bg](Scala.jpg)
 ![bg fit](AtomicScala.jpg)
 
 ---
 
+# Python, Rust, Go
+
+---
+
+# Ad-Hoc Polymorphism (Overloading)
+
+|==> //: src/kotlin/src/main/kotlin/AdHoc.kt
+|==> //: src/cpp/AdHoc.cpp
+|==> //: src/java/src/DisjointTypes.java
+|==> #: src/python/disjoint_types.py
+|==> #: src/python/single_dispatch.py
+
+# Classic Inheritance following Liskov Substitution
+
+---
+
+|==> //: src/java/src/Inheritance.java
+|==> //: src/kotlin/src/main/kotlin/Inheritance.kt
 |==> //: src/scala/Inheritance.scala
+|==> //: src/cpp/Inheritance.cpp
+|==> #: src/python/base.py
+|==> #: src/python/inheritance.py
+|==> //: src/rust/inheritance/src/main.rs
+
+# Multiple Inheritance
+
+---
+
+|==> //: src/cpp/MultipleInheritance.cpp
+|==> #: src/python/multiple_inheritance.py
+
+# Parametric Polymorphism
+
+---
+
+|==> //: src/java/src/Generics.java
+|==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
+|==> //: src/golang/generic/generics.go
+
+# Structural Typing aka Duck Typing
+
+---
+
+|==> #: src/python/duck_typing.py
+|==> //: src/cpp/StructuralTyping.cpp
+
+# Union Types aka Sum Types
+
+---
+
+|==> #: src/python/union_types.py
+|==> //: src/scala/DisjointTypes.scala
+|==> //: src/scala/UnionTypes.scala
+|==> // src/java/src/PatternMatching.java
+
+# Protocols
+
+---
+
+|==> #: src/python/protocols.py
+|==> //: src/golang/structural/structural.go
+
+# Algebraic Data Types (ADTs)
+
+---
+
 |==> //: src/scala/EnumeratedDataTypes.scala
 |==> //: src/scala/EnumeratedDataTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
-|==> //: src/scala/DisjointTypes.scala
-|==> //: src/scala/UnionTypes.scala
+|==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
+
+# Type Classes
+
+---
+
 |==> //: src/scala/TypeClasses.scala
-
-# Rust
-
----
-
-|==> //: src/rust/inheritance/src/main.rs
 |==> //: src/rust/typeclasses/src/main.rs
-
-# Go
-
----
-
-|==> //: src/golang/structural/structural.go
-|==> //: src/golang/generic/generics.go
 
 # Takeaways
 

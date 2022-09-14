@@ -5,14 +5,14 @@
 using namespace std;
 
 void f(string s) {
-    cout << "f(string s): " << s << endl;
+    cout << "f(string): " << s << endl;
 }
 
 void f(float f) {
-    cout << "f(float f): " << f << endl;
+    cout << "f(float): " << f << endl;
 }
 
 int main() {
-    f("x");
-    f(1.0);
+    f("hi");
+    f(42.24);
 }

@@ -4,11 +4,11 @@ fun f(s: String) {
     println("f(String): $s")
 }
 
-fun f(i: Int) {
-    println("f(Int): $i")
+fun f(f: Float) {
+    println("f(Float): $f")
 }
 
 fun main() {
     f("hi")
-    f(12)
+    f(42.24f)
 }

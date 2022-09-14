@@ -81,8 +81,8 @@ Usually appears in the form of a function parameter
 
 # Examples
 
-* We will look at different forms of polymorphism
-* Implemented in different languages:
+- Different forms of polymorphism
+- Implemented in different languages:
 
 ---
 
@@ -662,20 +662,20 @@ from base import Base
 from disjoint_types import Dog, Person, Robot, Slug
 
 class Dog2(Dog, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.bark()
+    def eat(self): super().eat()
+    def speak(self): self.bark()
 
 class Person2(Person, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.greet()
+    def eat(self): super().eat()
+    def speak(self): self.greet()
 
 class Robot2(Robot, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: self.initiate()
+    def eat(self): super().eat()
+    def speak(self): self.initiate()
 
 class Slug2(Slug, Base):
-    def eat(self) -> None: super().eat()
-    def speak(self) -> None: pass  # Required by ABC
+    def eat(self): super().eat()
+    def speak(self): pass  # Required by ABC
 ```
 ---
 ```py
@@ -1009,7 +1009,9 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
         r.communicate()
     case s: Slug =>
         s.absorb()
-
+```
+---
+```scala
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())
@@ -1033,7 +1035,9 @@ class Fish {
   void feed() {}
   void changeWater() {}
 }
-
+```
+---
+```java
 public class PatternMatching {
   static void careFor(Object p) {
     switch(p) { // Exhaustive except for Null
@@ -1309,18 +1313,13 @@ given Update[Slug] with
 ```
 ---
 ```scala
-// The typeclass to handle List[T] where T has a Nourish typeclass
+// The typeclass to handle List[T] where T has an Update typeclass
 given [T : Update]: Update[List[T]] with
     extension (l: List[T])
         def consume(): Unit = l.foreach(_.consume())
         def communicate(): Unit = l.foreach(_.communicate())
 
 def nourish[T](x: T)(using Update[T]): Unit =
-    x.consume()
-    x.communicate()
-
-// Alternate syntax
-def nourish2[T: Update](x: T): Unit =
     x.consume()
     x.communicate()
 
