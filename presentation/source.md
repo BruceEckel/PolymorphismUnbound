@@ -141,6 +141,7 @@ Usually appears in the form of a function parameter
 
 ---
 
+|==> //: src/main/kotlin/MultipleInheritance.kt
 |==> //: src/cpp/MultipleInheritance.cpp
 |==> #: src/python/multiple_inheritance.py
 
@@ -151,6 +152,7 @@ Usually appears in the form of a function parameter
 |==> //: src/java/src/Generics.java
 |==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
 |==> //: src/golang/generic/generics.go
+Scala & Rust?
 
 # Structural Typing aka Duck Typing
 
@@ -183,6 +185,7 @@ Usually appears in the form of a function parameter
 |==> //: src/scala/EnumeratedDataTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
+Rust
 
 # Type Classes
 
