@@ -20,7 +20,6 @@ inline fun <reified T> nourish(subject: T) {
     }
 }
 
-fun main() =
-    listOf(
-        Dog(), Person(), Robot(), Slug()
-    ).forEach { nourish(it) }
+fun main() = listOf(
+    Dog(), Person(), Robot(), Slug()
+).forEach { nourish(it) }

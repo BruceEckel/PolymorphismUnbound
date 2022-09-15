@@ -1,4 +1,4 @@
-//: src/main/kotlin/MultipleInheritance.kt
+//: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 // You can also do this in Java
 
 interface Base {

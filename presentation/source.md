@@ -59,7 +59,7 @@ a {
 
 # Java
 
-  - No option: Everything is an Object, like Smalltalk
+  - Not optional: Everything is an Object, like Smalltalk
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
   - Reusing code through inheritance didn't really work out
@@ -89,6 +89,7 @@ Usually appears in the form of a function parameter
 # Java
 
 (_without reflection_)
+www.OnJava8.com
 ![bg fit left](TIJava4cover.jpg)
 ![bg fit left](OnJava8Cover.jpg)
 
@@ -102,10 +103,17 @@ Usually appears in the form of a function parameter
 
 # Kotlin
 
+www.AtomicKotlin.com
 ![bg fit right](AtomicKotlinCover.png)
 
 ---
 
+<style scoped>
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}
+</style>
+### www.AtomicScala.com
 ![bg](Scala.jpg)
 ![bg fit](AtomicScala.jpg)
 
@@ -141,7 +149,7 @@ Usually appears in the form of a function parameter
 
 ---
 
-|==> //: src/main/kotlin/MultipleInheritance.kt
+|==> //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 |==> //: src/cpp/MultipleInheritance.cpp
 |==> #: src/python/multiple_inheritance.py
 

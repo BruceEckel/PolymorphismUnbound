@@ -59,7 +59,7 @@ a {
 
 # Java
 
-  - No option: Everything is an Object, like Smalltalk
+  - Not optional: Everything is an Object, like Smalltalk
   - BUT static typing makes it quite different
   - The concept of dynamic messages is lost, not really like Smalltalk
   - Reusing code through inheritance didn't really work out
@@ -89,6 +89,7 @@ Usually appears in the form of a function parameter
 # Java
 
 (_without reflection_)
+www.OnJava8.com
 ![bg fit left](TIJava4cover.jpg)
 ![bg fit left](OnJava8Cover.jpg)
 
@@ -102,10 +103,17 @@ Usually appears in the form of a function parameter
 
 # Kotlin
 
+www.AtomicKotlin.com
 ![bg fit right](AtomicKotlinCover.png)
 
 ---
 
+<style scoped>
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+}
+</style>
+### www.AtomicScala.com
 ![bg](Scala.jpg)
 ![bg fit](AtomicScala.jpg)
 
@@ -116,6 +124,8 @@ Usually appears in the form of a function parameter
 ---
 
 # Ad-Hoc Polymorphism (Overloading)
+
+---
 
 ```kt
 //: src/kotlin/src/main/kotlin/AdHoc.kt
@@ -161,7 +171,7 @@ int main() {
 //: src/java/src/DisjointTypes.java
 
 class Dog {
-  void eat() {
+  void gulp() {
     System.out.println("eating dog food");
   }
   void bark() {
@@ -199,7 +209,7 @@ class Slug {
 ```java
 public class DisjointTypes {
   static void nourish(Dog subject) {
-    subject.eat();
+    subject.gulp();
     subject.bark();
   }
   static void nourish(Person subject) {
@@ -295,49 +305,53 @@ if __name__ == '__main__':
 ```java
 //: src/java/src/Inheritance.java
 package inheritance;
-import java.util.stream.*;
+import java.util.List;
 
-abstract class Base {
-  abstract void eat();
-  abstract void speak();
+interface Base {
+  void eat();
+  void speak();
 }
 
-class Dog extends Base {
-  @Override void eat() {
-    System.out.println("eating dog food");
-  }
-  @Override void speak() {
-    System.out.println("woof");
-  }
+class Dog implements Base {
+  @Override
+  public void eat() { System.out.println("eating dog food"); }
+  @Override
+  public void speak() { System.out.println("woof"); }
 }
 ```
 ---
 ```java
-class Person extends Base {
-  @Override void eat() {
+class Person implements Base {
+  @Override
+  public void eat() {
     System.out.println("eating pizza");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
     System.out.println("hello");
   }
 }
 
-class Robot extends Base {
-  @Override void eat() {
+class Robot implements Base {
+  @Override
+  public void eat() {
     System.out.println("charging");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
     System.out.println("operational");
   }
 }
 ```
 ---
 ```java
-class Slug extends Base {
-  @Override void eat() {
+class Slug implements Base {
+  @Override
+  public void eat() {
     System.out.println("eating grass");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
   }
 }
 
@@ -347,7 +361,7 @@ public class Inheritance {
     subject.speak();
   }
   public static void main(String... args) {
-    Stream.of(
+    List.of(
         new Dog(), new Person(), new Robot(), new Slug()
     ).forEach(Inheritance::nourish);
   }
@@ -579,6 +593,49 @@ fn main() {
 
 ---
 
+```kt
+//: src/kotlin/src/main/kotlin/MultipleInheritance.kt
+// You can also do this in Java
+
+interface Base {
+    fun eat()
+    fun speak() {}
+}
+
+class Dog2 : Dog(), Base {
+    override fun eat() = super.gulp()
+    override fun speak() = super.bark()
+}
+```
+---
+```kt
+class Person2 : Person(), Base {
+    override fun eat() = super.scarf()
+    override fun speak() = super.greet()
+}
+
+class Robot2 : Robot(), Base {
+    override fun eat() = super.charge()
+    override fun speak() = super.initiate()
+}
+```
+---
+```kt
+class Slug2 : Slug(), Base {
+    override fun eat() = super.absorb()
+}
+
+fun nourish(subject: Base) {
+    subject.eat()
+    subject.speak()
+}
+
+fun main() = listOf(
+    Dog2(), Person2(), Robot2(), Slug2()
+).forEach { nourish(it) }
+```
+------
+
 ```cpp
 //: src/cpp/MultipleInheritance.cpp
 // Combining disjoint types using MI
@@ -707,22 +764,22 @@ class Holder<T> {
   T get() { return value; }
 }
 
-abstract class Base {
-  abstract void speak();
+interface Base {
+  void speak();
 }
 
-class Dog extends Base {
+class Dog implements Base {
   @Override
-  void speak() {
+  public void speak() {
     System.out.println("woof");
   }
 }
 ```
 ---
 ```java
-class Person extends Base {
+class Person implements Base {
   @Override
-  void speak() {
+  public void speak() {
     System.out.println("hello");
   }
 }
@@ -745,33 +802,11 @@ public class Generics {
 
 ```kt
 //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
-package reifiedgenerics
 
-class Dog {
-    fun eat() = println("eating dog food")
-    fun bark() = println("woof")
-}
-
-class Person {
-    fun scarf() = println("eating pizza")
-    fun greet() = println("hello")
-}
-
-class Robot {
-    fun charge() = println("charging")
-    fun initiate() = println("operational")
-}
-
-class Slug {
-    fun absorb() = println("eating grass")
-}
-```
----
-```kt
 inline fun <reified T> nourish(subject: T) {
     when (subject) {
         is Dog -> {
-            subject.eat()
+            subject.gulp()
             subject.bark()
         }
         is Person -> {
@@ -787,14 +822,11 @@ inline fun <reified T> nourish(subject: T) {
         }
     }
 }
-```
----
-```kt
-fun main() {
+
+fun main() =
     listOf(
         Dog(), Person(), Robot(), Slug()
     ).forEach { nourish(it) }
-}
 ```
 ------
 
@@ -855,6 +887,7 @@ func main() {
 ```
 ------
 
+Scala & Rust?
 
 # Structural Typing aka Duck Typing
 
@@ -1271,6 +1304,7 @@ fun main() = listOf(
 ```
 ------
 
+Rust
 
 # Type Classes
 

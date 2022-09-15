@@ -1,7 +1,6 @@
+import sys
 from pathlib import Path
 from reporting import Error, Debug
-import sys
-import shutil
 
 error = Error()
 debug = Debug()

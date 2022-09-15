@@ -5,33 +5,19 @@ import enumtype.SumType.*
 
 enum class SumType {
     Dog {
-        override fun eat() {
-            println("${this.name} eating dog food")
-        }
-        fun bark() {
-            println("woof")
-        }
+        override fun eat() = println("${this.name} eating dog food")
+        fun bark() = println("woof")
     },
     Person {
-        override fun eat() {
-            println("${this.name} eating pizza")
-        }
-        fun greet() {
-            println("hello")
-        }
+        override fun eat() = println("${this.name} eating pizza")
+        fun greet() = println("hello")
     },
     Robot {
-        override fun eat() {
-            println("${this.name} charging")
-        }
-        fun initiate() {
-            println("operational")
-        }
+        override fun eat() = println("${this.name} charging")
+        fun initiate() = println("operational")
     },
     Slug {
-        override fun eat() {
-            println("${this.name} eating grass")
-        }
+        override fun eat() = println("${this.name} eating grass")
     };
 
     abstract fun eat(): Unit
@@ -50,8 +36,6 @@ fun nourish(subject: SumType) {
     // }
 }
 
-fun main() {
-    listOf(
-        Dog, Person, Robot, Slug,
-    ).forEach { nourish(it) }
-}
+fun main() = listOf(
+    Dog, Person, Robot, Slug,
+).forEach { nourish(it) }
