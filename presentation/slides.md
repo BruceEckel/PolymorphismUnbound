@@ -124,13 +124,13 @@ fun f(s: String) {
     println("f(String): $s")
 }
 
-fun f(i: Int) {
-    println("f(Int): $i")
+fun f(f: Float) {
+    println("f(Float): $f")
 }
 
 fun main() {
     f("hi")
-    f(12)
+    f(42.24f)
 }
 ```
 ------
@@ -143,16 +143,16 @@ fun main() {
 using namespace std;
 
 void f(string s) {
-    cout << "f(string s): " << s << endl;
+    cout << "f(string): " << s << endl;
 }
 
 void f(float f) {
-    cout << "f(float f): " << f << endl;
+    cout << "f(float): " << f << endl;
 }
 
 int main() {
-    f("x");
-    f(1.0);
+    f("hi");
+    f(42.24);
 }
 ```
 ------
@@ -258,11 +258,13 @@ def nourish(subject):
 
 @nourish.register
 def _(subject: Dog):
+    print("Dog")
     subject.eat()
     subject.bark()
 
 @nourish.register
 def _(subject: Person):
+    print("Person")
     subject.eat()
     subject.greet()
 ```
@@ -270,11 +272,13 @@ def _(subject: Person):
 ```py
 @nourish.register
 def _(subject: Robot):
+    print("Robot")
     subject.eat()
     subject.initiate()
 
 @nourish.register
 def _(subject: Slug):
+    print("Slug")
     subject.eat()
 
 if __name__ == '__main__':
@@ -284,7 +288,7 @@ if __name__ == '__main__':
 ------
 
 
-# Classic Inheritance/Liskov Substitution
+# Classic Inheritance following Liskov Substitution
 
 ---
 
@@ -400,8 +404,8 @@ fun main() {
 package inheritance
 
 trait Base:
-    def consume(): Unit
-    def communicate(): Unit
+    def eat(): Unit
+    def speak(): Unit
 
 class Dog extends Base:
     def consume() = println("eating dog food")
@@ -422,8 +426,8 @@ class Slug extends Base:
     def communicate() = {}
 
 def nourish(x: Base): Unit =
-    x.consume()
-    x.communicate()
+    x.eat()
+    x.speak()
 
 @main def main() =
     List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
@@ -528,16 +532,15 @@ if __name__ == '__main__':
 
 ```rs
 //: src/rust/inheritance/src/main.rs
+struct Dog;
+struct Person;
+struct Robot;
+struct Slug;
 
 trait Base {
   fn eat(&self);
   fn speak(&self);
 }
-
-struct Dog;
-struct Person;
-struct Robot;
-struct Slug;
 
 impl Base for Dog {
   fn eat(&self) { println!("eating dog food"); }
@@ -825,7 +828,7 @@ func (slug Slug) Eat() { println("eating grass") }
 type Eater interface {
     Eat()
 }
-
+// T is a Union type:
 func Poly[T Dog | Person | Robot | Slug](subject T) {
     switch subjectTyped := any(subject).(type) {
     case Eater:
@@ -941,9 +944,27 @@ int main() {
 ------
 
 
-# Disjoint Types
+# Union Types aka Sum Types
 
 ---
+
+```py
+#: src/python/union_types.py
+from disjoint_types import Dog, Person, Robot, Slug
+
+def nourish(sumtype_obj: Dog | Person | Robot | Slug):
+    sumtype_obj.eat()
+    match sumtype_obj:  # No exhaustiveness checking
+        case Dog(): sumtype_obj.bark()
+        case Person(): sumtype_obj.greet()
+        case Robot(): sumtype_obj.initiate()
+
+if __name__ == '__main__':
+    for subject in [Dog(), Person(), Robot(), Slug()]:
+        nourish(subject)
+    # nourish("")  # Type-check error
+```
+------
 
 ```scala
 //: src/scala/DisjointTypes.scala
@@ -964,29 +985,6 @@ class Robot:
 
 class Slug:
     def absorb() = println("eating grass")
-```
-------
-
-
-# Union Types aka Sum Types
-
----
-
-```py
-#: src/python/union_types.py
-from disjoint_types import Dog, Person, Robot, Slug
-
-def nourish(sumtype_obj: Dog | Person | Robot | Slug):
-    sumtype_obj.eat()
-    match sumtype_obj:  # No exhaustiveness checking
-        case Dog(): sumtype_obj.bark()
-        case Person(): sumtype_obj.greet()
-        case Robot(): sumtype_obj.initiate()
-
-if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
-        nourish(subject)
-    # nourish("")  # Type-check error
 ```
 ------
 

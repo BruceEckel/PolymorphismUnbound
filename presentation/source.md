@@ -117,6 +117,8 @@ Usually appears in the form of a function parameter
 
 # Ad-Hoc Polymorphism (Overloading)
 
+---
+
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
 |==> //: src/cpp/AdHoc.cpp
 |==> //: src/java/src/DisjointTypes.java

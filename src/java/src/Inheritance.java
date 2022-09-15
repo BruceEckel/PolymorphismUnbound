@@ -2,43 +2,47 @@
 package inheritance;
 import java.util.stream.*;
 
-abstract class Base {
-  abstract void eat();
-  abstract void speak();
+interface Base {
+  void eat();
+  void speak();
 }
 
-class Dog extends Base {
-  @Override void eat() {
-    System.out.println("eating dog food");
-  }
-  @Override void speak() {
-    System.out.println("woof");
-  }
+class Dog implements Base {
+  @Override
+  public void eat() { System.out.println("eating dog food"); }
+  @Override
+  public void speak() { System.out.println("woof"); }
 }
 //---
-class Person extends Base {
-  @Override void eat() {
+class Person implements Base {
+  @Override
+  public void eat() {
     System.out.println("eating pizza");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
     System.out.println("hello");
   }
 }
 
-class Robot extends Base {
-  @Override void eat() {
+class Robot implements Base {
+  @Override
+  public void eat() {
     System.out.println("charging");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
     System.out.println("operational");
   }
 }
 //---
-class Slug extends Base {
-  @Override void eat() {
+class Slug implements Base {
+  @Override
+  public void eat() {
     System.out.println("eating grass");
   }
-  @Override void speak() {
+  @Override
+  public void speak() {
   }
 }
 

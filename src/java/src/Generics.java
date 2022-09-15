@@ -7,20 +7,20 @@ class Holder<T> {
   T get() { return value; }
 }
 
-abstract class Base {
-  abstract void speak();
+interface Base {
+  void speak();
 }
 
-class Dog extends Base {
+class Dog implements Base {
   @Override
-  void speak() {
+  public void speak() {
     System.out.println("woof");
   }
 }
 //---
-class Person extends Base {
+class Person implements Base {
   @Override
-  void speak() {
+  public void speak() {
     System.out.println("hello");
   }
 }
