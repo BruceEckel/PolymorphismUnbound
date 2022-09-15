@@ -130,16 +130,19 @@ h1, h2, h3, h4, h5, h6 {
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
 |==> //: src/cpp/AdHoc.cpp
 |==> //: src/java/src/DisjointTypes.java
-|==> #: src/python/disjoint_types.py
-|==> #: src/python/single_dispatch.py
+
+- Python added overloading
+- Example in Github repo: `src/python/single_dispatch.py`
+
+---
 
 # Classic Inheritance following Liskov Substitution
 
 ---
 
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
-|==> //: src/java/src/Inheritance.java
 |==> //: src/scala/Inheritance.scala
+|==> //: src/java/src/Inheritance.java
 |==> //: src/cpp/Inheritance.cpp
 |==> #: src/python/base.py
 |==> #: src/python/inheritance.py
@@ -149,8 +152,12 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
+|==> //: src/kotlin/src/main/kotlin/DisjointTypes.kt
 |==> //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
+|==> //: src/kotlin/src/main/kotlin/Composition.kt
+|==> //: src/kotlin/src/main/kotlin/Delegation.kt
 |==> //: src/cpp/MultipleInheritance.cpp
+|==> #: src/python/disjoint_types.py
 |==> #: src/python/multiple_inheritance.py
 
 # Parametric Polymorphism

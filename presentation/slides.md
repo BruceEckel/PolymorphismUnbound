@@ -234,69 +234,57 @@ public class DisjointTypes {
 ```
 ------
 
-```py
-#: src/python/disjoint_types.py
-class Dog:
-    def eat(self): print("eating dog food")
-    def bark(self): print("woof")
 
-class Person:
-    def eat(self): print("eating pizza")
-    def greet(self): print("hello")
+- Python added overloading
+- Example in Github repo: `src/python/single_dispatch.py`
 
-class Robot:
-    def eat(self): print("charging")
-    def initiate(self): print("operational")
-
-class Slug:
-    def eat(self): print("eating grass")
-```
-------
-
-```py
-#: src/python/single_dispatch.py
-from functools import singledispatch
-from disjoint_types import Dog, Person, Robot, Slug
-
-@singledispatch
-def nourish(subject):
-    print("default nourish")
-
-@nourish.register
-def _(subject: Dog):
-    print("Dog")
-    subject.eat()
-    subject.bark()
-
-@nourish.register
-def _(subject: Person):
-    print("Person")
-    subject.eat()
-    subject.greet()
-```
 ---
-```py
-@nourish.register
-def _(subject: Robot):
-    print("Robot")
-    subject.eat()
-    subject.initiate()
-
-@nourish.register
-def _(subject: Slug):
-    print("Slug")
-    subject.eat()
-
-if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug(), ""]:
-        nourish(subject)
-```
-------
-
 
 # Classic Inheritance following Liskov Substitution
 
 ---
+
+```kt
+//: src/kotlin/src/main/kotlin/Inheritance.kt
+package inheritance
+
+interface Base {
+    fun eat()
+    fun speak()
+}
+
+class Dog: Base {
+    override fun eat() = println("eating dog food")
+    override fun speak() = println("woof")
+}
+
+class Person: Base {
+    override fun eat() = println("eating pizza")
+    override fun speak() = println("hello")
+}
+```
+---
+```kt
+class Robot: Base {
+    override fun eat() = println("charging")
+    override fun speak() = println("operational")
+}
+
+class Slug: Base {
+    override fun eat() = println("eating grass")
+    override fun speak() = Unit
+}
+
+fun nourish(subject: Base) {
+    subject.eat()
+    subject.speak()
+}
+
+fun main() = listOf(
+    Dog(), Person(), Robot(), Slug()
+).forEach { nourish(it) }
+```
+------
 
 ```java
 //: src/java/src/Inheritance.java
@@ -362,48 +350,6 @@ public class Inheritance {
     ).forEach(Inheritance::nourish);
   }
 }
-```
-------
-
-```kt
-//: src/kotlin/src/main/kotlin/Inheritance.kt
-package inheritance
-
-interface Base {
-    fun eat()
-    fun speak()
-}
-
-class Dog: Base {
-    override fun eat() = println("eating dog food")
-    override fun speak() = println("woof")
-}
-
-class Person: Base {
-    override fun eat() = println("eating pizza")
-    override fun speak() = println("hello")
-}
-```
----
-```kt
-class Robot: Base {
-    override fun eat() = println("charging")
-    override fun speak() = println("operational")
-}
-
-class Slug: Base {
-    override fun eat() = println("eating grass")
-    override fun speak() = Unit
-}
-
-fun nourish(subject: Base) {
-    subject.eat()
-    subject.speak()
-}
-
-fun main() = listOf(
-    Dog(), Person(), Robot(), Slug()
-).forEach { nourish(it) }
 ```
 ------
 
@@ -707,6 +653,25 @@ int main() {
     for(Base* subject: subjects)
       nourish(subject);
 }
+```
+------
+
+```py
+#: src/python/disjoint_types.py
+class Dog:
+    def eat(self): print("eating dog food")
+    def bark(self): print("woof")
+
+class Person:
+    def eat(self): print("eating pizza")
+    def greet(self): print("hello")
+
+class Robot:
+    def eat(self): print("charging")
+    def initiate(self): print("operational")
+
+class Slug:
+    def eat(self): print("eating grass")
 ```
 ------
 

@@ -5,25 +5,25 @@ using namespace std;
 
 class Dog {
     public:
-    void eat() { cout << "eating dog food" << endl; }
+    void gulp() { cout << "eating dog food" << endl; }
     void bark() { cout << "woof"  << endl; }
 };
 
 class Person {
     public:
-    void eat() { cout << "eating pizza" << endl; }
+    void scarf() { cout << "eating pizza" << endl; }
     void greet() { cout << "hello"  << endl; }
 };
 //---
 class Robot {
     public:
-    void eat() { cout << "charging" << endl; }
+    void charge() { cout << "charging" << endl; }
     void initiate() { cout << "operational" << endl; }
 };
 
 class Slug {
     public:
-    void eat() { cout << "eating grass"  << endl; }
+    void absorb() { cout << "eating grass"  << endl; }
 };
 //---
 class Base {
@@ -32,27 +32,27 @@ class Base {
     virtual void speak() = 0;
 };
 
-class Dog2: public Dog, public Base {
+class Dog2: public Base, private Dog {
     public:
-    void eat() override { Dog::eat(); }
+    void eat() override { gulp(); }
     void speak() override { bark(); }
 };
 //---
-class Person2: public Person, public Base {
+class Person2: public Base, private Person {
     public:
-    void eat() override { Person::eat(); }
+    void eat() override { scarf(); }
     void speak() override { greet(); }
 };
 
-class Robot2: public Robot, public Base {
+class Robot2: public Base, private Robot {
     public:
-    void eat() override { Robot::eat(); }
+    void eat() override { charge(); }
     void speak() override { initiate(); }
 };
 
-class Slug2: public Slug, public Base {
+class Slug2: public Base, private Slug {
     public:
-    void eat() override { Slug::eat(); }
+    void eat() override { absorb(); }
     void speak() override {}
 };
 //---

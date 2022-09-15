@@ -1,3 +1,4 @@
+//: src/kotlin/src/main/kotlin/DisjointTypes.kt
 open class Dog {
     fun gulp() = println("eating dog food")
     fun bark() = println("woof")
