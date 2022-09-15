@@ -130,13 +130,9 @@ h1, h2, h3, h4, h5, h6 {
 ```kt
 //: src/kotlin/src/main/kotlin/AdHoc.kt
 
-fun f(s: String) {
-    println("f(String): $s")
-}
+fun f(s: String) = println("f(String): $s")
 
-fun f(f: Float) {
-    println("f(Float): $f")
-}
+fun f(f: Float) = println("f(Float): $f")
 
 fun main() {
     f("hi")
@@ -374,30 +370,30 @@ public class Inheritance {
 package inheritance
 
 interface Base {
-    abstract fun eat()
-    abstract fun speak()
+    fun eat()
+    fun speak()
 }
 
 class Dog: Base {
-    override fun eat() { println("eating dog food") }
-    override fun speak() { println("woof") }
+    override fun eat() = println("eating dog food")
+    override fun speak() = println("woof")
 }
 
 class Person: Base {
-    override fun eat() { println("eating pizza") }
-    override fun speak() { println("hello") }
+    override fun eat() = println("eating pizza")
+    override fun speak() = println("hello")
 }
 ```
 ---
 ```kt
 class Robot: Base {
-    override fun eat() { println("charging") }
-    override fun speak() { println("operational") }
+    override fun eat() = println("charging")
+    override fun speak() = println("operational")
 }
 
 class Slug: Base {
-    override fun eat() { println("eating grass") }
-    override fun speak() { }
+    override fun eat() = println("eating grass")
+    override fun speak() = Unit
 }
 
 fun nourish(subject: Base) {
@@ -405,11 +401,9 @@ fun nourish(subject: Base) {
     subject.speak()
 }
 
-fun main() {
-    listOf(
-        Dog(), Person(), Robot(), Slug()
-    ).forEach { nourish(it) }
-}
+fun main() = listOf(
+    Dog(), Person(), Robot(), Slug()
+).forEach { nourish(it) }
 ```
 ------
 
@@ -823,10 +817,9 @@ inline fun <reified T> nourish(subject: T) {
     }
 }
 
-fun main() =
-    listOf(
-        Dog(), Person(), Robot(), Slug()
-    ).forEach { nourish(it) }
+fun main() = listOf(
+    Dog(), Person(), Robot(), Slug()
+).forEach { nourish(it) }
 ```
 ------
 

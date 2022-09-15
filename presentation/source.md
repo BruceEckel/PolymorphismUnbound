@@ -137,8 +137,8 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-|==> //: src/java/src/Inheritance.java
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
+|==> //: src/java/src/Inheritance.java
 |==> //: src/scala/Inheritance.scala
 |==> //: src/cpp/Inheritance.cpp
 |==> #: src/python/base.py
