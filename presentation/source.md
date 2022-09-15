@@ -205,8 +205,6 @@ Scala & Rust?
 |==> //: src/scala/AlgebraicDataTypes.scala
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
 
----
-
 # Type Classes
 
 ---

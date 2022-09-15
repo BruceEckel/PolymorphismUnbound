@@ -3,39 +3,39 @@ package main
 
 type Dog struct{}
 
-func (dog Dog) Consume()     { println("eating dog food") }
-func (dog Dog) Communicate() { println("woof") }
+func (dog Dog) Eat()     { println("eating dog food") }
+func (dog Dog) Speak() { println("woof") }
 
 type Person struct{}
 
-func (person Person) Consume()     { println("eating pizza") }
-func (person Person) Communicate() { println("hello") }
+func (person Person) Eat()     { println("eating pizza") }
+func (person Person) Speak() { println("hello") }
 //---
 type Robot struct{}
 
-func (robot Robot) Consume()     { println("charging") }
-func (robot Robot) Communicate() { println("operational") }
+func (robot Robot) Eat()     { println("charging") }
+func (robot Robot) Speak() { println("operational") }
 
 type Slug struct{}
 
-func (slug Slug) Consume()     { println("eating grass") }
-func (slug Slug) Communicate() {}
+func (slug Slug) Eat()     { println("eating grass") }
+func (slug Slug) Speak() {}
 //---
-type ConsumerCommunicator interface {
-	Consume()
-	Communicate()
+type EaterSpeaker interface {
+	Eat()
+	Speak()
 }
 
-func Poly(x ConsumerCommunicator) {
-	x.Consume()
-	x.Communicate()
+func Nourish(x EaterSpeaker) {
+	x.Eat()
+	x.Speak()
 }
 
 func main() {
-	subjects := []ConsumerCommunicator{
+	subjects := []EaterSpeaker{
 		Dog{}, Person{}, Robot{}, Slug{},
 	}
 	for _, subject := range subjects {
-		Poly(subject)
+		Nourish(subject)
 	}
 }

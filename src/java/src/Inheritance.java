@@ -16,34 +16,23 @@ class Dog implements Base {
 //---
 class Person implements Base {
   @Override
-  public void eat() {
-    System.out.println("eating pizza");
-  }
+  public void eat() { System.out.println("eating pizza"); }
   @Override
-  public void speak() {
-    System.out.println("hello");
-  }
+  public void speak() { System.out.println("hello"); }
 }
 
 class Robot implements Base {
   @Override
-  public void eat() {
-    System.out.println("charging");
-  }
+  public void eat() { System.out.println("charging"); }
   @Override
-  public void speak() {
-    System.out.println("operational");
-  }
+  public void speak() { System.out.println("operational"); }
 }
 //---
 class Slug implements Base {
   @Override
-  public void eat() {
-    System.out.println("eating grass");
-  }
+  public void eat() { System.out.println("eating grass"); }
   @Override
-  public void speak() {
-  }
+  public void speak() {}
 }
 
 public class Inheritance {

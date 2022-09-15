@@ -341,36 +341,25 @@ class Dog implements Base {
 ```java
 class Person implements Base {
   @Override
-  public void eat() {
-    System.out.println("eating pizza");
-  }
+  public void eat() { System.out.println("eating pizza"); }
   @Override
-  public void speak() {
-    System.out.println("hello");
-  }
+  public void speak() { System.out.println("hello"); }
 }
 
 class Robot implements Base {
   @Override
-  public void eat() {
-    System.out.println("charging");
-  }
+  public void eat() { System.out.println("charging"); }
   @Override
-  public void speak() {
-    System.out.println("operational");
-  }
+  public void speak() { System.out.println("operational"); }
 }
 ```
 ---
 ```java
 class Slug implements Base {
   @Override
-  public void eat() {
-    System.out.println("eating grass");
-  }
+  public void eat() { System.out.println("eating grass"); }
   @Override
-  public void speak() {
-  }
+  public void speak() {}
 }
 
 public class Inheritance {
@@ -568,21 +557,19 @@ class Dog2 : Base, Dog() {
     override fun eat() = gulp()
     override fun speak() = bark()
 }
-```
----
-```kt
+
 class Person2 : Base, Person() {
     override fun eat() = scarf()
     override fun speak() = greet()
 }
-
+```
+---
+```kt
 class Robot2 : Base, Robot() {
     override fun eat() = charge()
     override fun speak() = initiate()
 }
-```
----
-```kt
+
 class Slug2 : Base, Slug() {
     override fun eat() = absorb()
 }
@@ -907,7 +894,7 @@ func Poly[T Dog | Person | Robot | Slug](subject T) {
         subjectTyped.Greet()
     case Robot:
         subjectTyped.Initiate()
-    }
+    }  // Not exhaustive
 }
 ```
 ---
@@ -1086,7 +1073,7 @@ class Fish {
 ---
 ```java
 public class PatternMatching {
-  static void careFor(Object p) {
+  static void careFor(Object p) {  // No union types
     switch(p) { // Exhaustive except for Null
       case Hedgehog d -> {
         d.groom();
@@ -1212,44 +1199,44 @@ package main
 
 type Dog struct{}
 
-func (dog Dog) Consume()     { println("eating dog food") }
-func (dog Dog) Communicate() { println("woof") }
+func (dog Dog) Eat()     { println("eating dog food") }
+func (dog Dog) Speak() { println("woof") }
 
 type Person struct{}
 
-func (person Person) Consume()     { println("eating pizza") }
-func (person Person) Communicate() { println("hello") }
+func (person Person) Eat()     { println("eating pizza") }
+func (person Person) Speak() { println("hello") }
 ```
 ---
 ```go
 type Robot struct{}
 
-func (robot Robot) Consume()     { println("charging") }
-func (robot Robot) Communicate() { println("operational") }
+func (robot Robot) Eat()     { println("charging") }
+func (robot Robot) Speak() { println("operational") }
 
 type Slug struct{}
 
-func (slug Slug) Consume()     { println("eating grass") }
-func (slug Slug) Communicate() {}
+func (slug Slug) Eat()     { println("eating grass") }
+func (slug Slug) Speak() {}
 ```
 ---
 ```go
-type ConsumerCommunicator interface {
-    Consume()
-    Communicate()
+type EaterSpeaker interface {
+    Eat()
+    Speak()
 }
 
-func Poly(x ConsumerCommunicator) {
-    x.Consume()
-    x.Communicate()
+func Nourish(x EaterSpeaker) {
+    x.Eat()
+    x.Speak()
 }
 
 func main() {
-    subjects := []ConsumerCommunicator{
+    subjects := []EaterSpeaker{
         Dog{}, Person{}, Robot{}, Slug{},
     }
     for _, subject := range subjects {
-        Poly(subject)
+        Nourish(subject)
     }
 }
 ```
@@ -1268,12 +1255,12 @@ import EnumType.*
 
 enum EnumType:
     case Dog, Person, Robot, Slug
-    def consume() = this match
+    def eat() = this match
         case Dog => println("eating dog food")
         case Person => println("eating pizza")
         case Robot => println("charging")
         case Slug => println("eating grass")
-    def communicate() = this match
+    def speak() = this match
         case Dog => println("woof")
         case Person => println("hello")
         case Robot => println("operational")
@@ -1282,8 +1269,8 @@ enum EnumType:
 ---
 ```scala
 def nourish(x: EnumType): Unit =
-    x.consume()
-    x.communicate()
+    x.eat()
+    x.speak()
 
 @main def main() =
     List(Dog, Person, Robot, Slug).foreach(nourish(_))
@@ -1295,19 +1282,19 @@ def nourish(x: EnumType): Unit =
 package enumtypes2
 import EnumType.*
 
-enum EnumType(eat: String, talk: String):
+enum EnumType(food: String, talk: String):
     case Dog extends EnumType("eating dog food", "woof")
     case Person extends EnumType("eating pizza", "hello")
     case Robot extends EnumType("charging", "operational")
     case Slug extends EnumType("eating grass", "")
-    def consume() = println(eat)
-    def communicate() = println(talk)
+    def eat() = println(food)
+    def speak() = println(talk)
 ```
 ---
 ```scala
 def nourish(x: EnumType): Unit =
-    x.consume()
-    x.communicate()
+    x.eat()
+    x.speak()
 
 @main def main() =
     List(Dog, Person, Robot, Slug).foreach(nourish(_))
@@ -1319,19 +1306,19 @@ def nourish(x: EnumType): Unit =
 package adts
 import ADT.*
 
-enum ADT(eat: String, talk: String):
+enum ADT(food: String, talk: String):
     case Dog(says: String) extends ADT("eating dog food", says)
     case Person(says: String) extends ADT("eating pizza", says)
     case Robot extends ADT("charging", "operational")
     case Slug extends ADT("eating grass", "")
-    def consume() = println(eat)
-    def communicate() = println(talk)
+    def eat() = println(food)
+    def speak() = println(talk)
 ```
 ---
 ```scala
 def nourish(x: ADT): Unit =
-    x.consume()
-    x.communicate()
+    x.eat()
+    x.speak()
 
 @main def main() =
     List(Dog("woof"), Person("hi!"), Robot, Slug).foreach(nourish(_))
@@ -1377,9 +1364,6 @@ fun main() = listOf(
 ```
 ------
 
-Rust
-
----
 
 # Type Classes
 
@@ -1391,44 +1375,38 @@ Rust
 package typeclasses
 import disjointtypes.*
 
-trait Update[T]:
+trait EaterSpeaker[T]:
     extension (t: T)
-        def consume(): Unit
-        def communicate(): Unit
+        def eat(): Unit
+        def speak(): Unit
 
-given Update[Dog] with
+given EaterSpeaker[Dog] with
     extension (t: Dog)
-        def consume(): Unit = t.eat()
-        def communicate(): Unit = t.bark()
-
-given Update[Person] with
+        def eat(): Unit = t.eat()
+        def speak(): Unit = t.bark()
+```
+---
+```scala
+given EaterSpeaker[Person] with
     extension (t: Person)
-        def consume(): Unit = t.scarf()
-        def communicate(): Unit = t.talk()
-```
----
-```scala
-given Update[Robot] with
+        def eat(): Unit = t.scarf()
+        def speak(): Unit = t.talk()
+
+given EaterSpeaker[Robot] with
     extension (t: Robot)
-        def consume(): Unit = t.charge()
-        def communicate(): Unit = t.communicate()
+        def eat(): Unit = t.charge()
+        def speak(): Unit = t.communicate()
 
-given Update[Slug] with
+given EaterSpeaker[Slug] with
     extension (t: Slug)
-        def consume(): Unit = t.absorb()
-        def communicate() = {}
+        def eat(): Unit = t.absorb()
+        def speak() = {}
 ```
 ---
 ```scala
-// The typeclass to handle List[T] where T has an Update typeclass
-given [T : Update]: Update[List[T]] with
-    extension (l: List[T])
-        def consume(): Unit = l.foreach(_.consume())
-        def communicate(): Unit = l.foreach(_.communicate())
-
-def nourish[T](x: T)(using Update[T]): Unit =
-    x.consume()
-    x.communicate()
+def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
+    x.eat()
+    x.speak()
 
 @main def main() =
     nourish(Dog())
@@ -1475,13 +1453,13 @@ impl Communicate for Person {
 ```
 ---
 ```rs
-pub fn poly<T: Communicate>(x: &T) {
+pub fn talk<T: Communicate>(x: &T) {
     x.speak();
 }
 
 fn main() {
-    poly(&Dog {});
-    poly(&Person {});
+    talk(&Dog {});
+    talk(&Person {});
 }
 ```
 ------

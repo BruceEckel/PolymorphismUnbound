@@ -36,7 +36,7 @@ func Poly[T Dog | Person | Robot | Slug](subject T) {
 		subjectTyped.Greet()
 	case Robot:
 		subjectTyped.Initiate()
-	}
+	}  // Not exhaustive
 }
 //---
 func main() {

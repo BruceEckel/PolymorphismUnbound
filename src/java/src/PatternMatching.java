@@ -15,7 +15,7 @@ class Fish {
 }
 //---
 public class PatternMatching {
-  static void careFor(Object p) {
+  static void careFor(Object p) {  // No union types
     switch(p) { // Exhaustive except for Null
       case Hedgehog d -> {
         d.groom();
