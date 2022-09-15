@@ -1,5 +1,6 @@
 //: src/java/src/MultipleInheritance.java
-import java.util.stream.Stream;
+// Not included in slide presentation
+import java.util.List;
 
 interface Base {
   void eat();
@@ -8,7 +9,7 @@ interface Base {
 
 class Dog2 extends Dog implements Base {
   @Override
-  public void eat() { super.eat(); }
+  public void eat() { super.gulp(); }
   @Override
   public void speak() { super.bark(); }
 }
@@ -48,7 +49,7 @@ public class MultipleInheritance {
     subject.speak();
   }
   public static void main(String... args) {
-    Stream.of(
+    List.of(
         new Dog2(), new Person2(), new Robot2(), new Slug2()
     ).forEach(MultipleInheritance::nourish);
   }

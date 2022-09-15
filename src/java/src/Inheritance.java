@@ -1,6 +1,6 @@
 //: src/java/src/Inheritance.java
 package inheritance;
-import java.util.stream.*;
+import java.util.List;
 
 interface Base {
   void eat();
@@ -52,7 +52,7 @@ public class Inheritance {
     subject.speak();
   }
   public static void main(String... args) {
-    Stream.of(
+    List.of(
         new Dog(), new Person(), new Robot(), new Slug()
     ).forEach(Inheritance::nourish);
   }

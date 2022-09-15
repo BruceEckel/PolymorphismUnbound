@@ -1,7 +1,7 @@
 //: src/java/src/DisjointTypes.java
 
 class Dog {
-  void eat() {
+  void gulp() {
     System.out.println("eating dog food");
   }
   void bark() {
@@ -35,7 +35,7 @@ class Slug {
 //---
 public class DisjointTypes {
   static void nourish(Dog subject) {
-    subject.eat();
+    subject.gulp();
     subject.bark();
   }
   static void nourish(Person subject) {
