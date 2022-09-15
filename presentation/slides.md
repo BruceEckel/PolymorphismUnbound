@@ -165,7 +165,6 @@ int main() {
 
 ```java
 //: src/java/src/DisjointTypes.java
-
 class Dog {
   void gulp() {
     System.out.println("eating dog food");
@@ -286,6 +285,41 @@ fun main() = listOf(
 ```
 ------
 
+```scala
+//: src/scala/Inheritance.scala
+package inheritance
+
+trait Base:
+    def eat(): Unit
+    def speak(): Unit
+
+class Dog extends Base:
+    def eat() = println("eating dog food")
+    def speak() = println("woof")
+
+class Person extends Base:
+    def eat() = println("eating pizza")
+    def speak() = println("hello")
+```
+---
+```scala
+class Robot extends Base:
+    def eat() = println("charging")
+    def speak() = println("operational")
+
+class Slug extends Base:
+    def eat() = println("eating grass")
+    def speak() = {}
+
+def nourish(x: Base): Unit =
+    x.eat()
+    x.speak()
+
+@main def main() =
+    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
+```
+------
+
 ```java
 //: src/java/src/Inheritance.java
 package inheritance;
@@ -350,41 +384,6 @@ public class Inheritance {
     ).forEach(Inheritance::nourish);
   }
 }
-```
-------
-
-```scala
-//: src/scala/Inheritance.scala
-package inheritance
-
-trait Base:
-    def eat(): Unit
-    def speak(): Unit
-
-class Dog extends Base:
-    def consume() = println("eating dog food")
-    def communicate() = println("woof")
-
-class Person extends Base:
-    def consume() = println("eating pizza")
-    def communicate() = println("hello")
-```
----
-```scala
-class Robot extends Base:
-    def consume() = println("charging")
-    def communicate() = println("operational")
-
-class Slug extends Base:
-    def consume() = println("eating grass")
-    def communicate() = {}
-
-def nourish(x: Base): Unit =
-    x.eat()
-    x.speak()
-
-@main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
 ```
 ------
 
@@ -534,35 +533,58 @@ fn main() {
 ---
 
 ```kt
+//: src/kotlin/src/main/kotlin/DisjointTypes.kt
+open class Dog {
+    fun gulp() = println("eating dog food")
+    fun bark() = println("woof")
+}
+
+open class Person {
+    fun scarf() = println("eating pizza")
+    fun greet() = println("hello")
+}
+
+open class Robot {
+    fun charge() = println("charging")
+    fun initiate() = println("operational")
+}
+
+open class Slug {
+    fun absorb() = println("eating grass")
+}
+```
+------
+
+```kt
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
-// You can also do this in Java
+// Can also do this in Java
 
 interface Base {
     fun eat()
     fun speak() {}
 }
 
-class Dog2 : Dog(), Base {
-    override fun eat() = super.gulp()
-    override fun speak() = super.bark()
+class Dog2 : Base, Dog() {
+    override fun eat() = gulp()
+    override fun speak() = bark()
 }
 ```
 ---
 ```kt
-class Person2 : Person(), Base {
-    override fun eat() = super.scarf()
-    override fun speak() = super.greet()
+class Person2 : Base, Person() {
+    override fun eat() = scarf()
+    override fun speak() = greet()
 }
 
-class Robot2 : Robot(), Base {
-    override fun eat() = super.charge()
-    override fun speak() = super.initiate()
+class Robot2 : Base, Robot() {
+    override fun eat() = charge()
+    override fun speak() = initiate()
 }
 ```
 ---
 ```kt
-class Slug2 : Slug(), Base {
-    override fun eat() = super.absorb()
+class Slug2 : Base, Slug() {
+    override fun eat() = absorb()
 }
 
 fun nourish(subject: Base) {
@@ -576,6 +598,60 @@ fun main() = listOf(
 ```
 ------
 
+```kt
+//: src/kotlin/src/main/kotlin/Composition.kt
+// Can use this approach in most languages
+
+class Dog3 : Base {
+    private val dog = Dog()
+    override fun eat() = dog.gulp()
+    override fun speak() = dog.bark()
+}
+
+class Person3 : Base {
+    private val person = Person()
+    override fun eat() = person.scarf()
+    override fun speak() = person.greet()
+}
+```
+---
+```kt
+class Robot3 : Base {
+    private val robot = Robot()
+    override fun eat() = robot.charge()
+    override fun speak() = robot.initiate()
+}
+
+class Slug3 : Base {
+    private val slug = Slug()
+    override fun eat() = slug.absorb()
+}
+
+fun main() = listOf(
+    Dog3(), Person3(), Robot3(), Slug3()
+).forEach { nourish(it) }
+```
+------
+
+```kt
+//: src/kotlin/src/main/kotlin/Delegation.kt
+
+class Delegate(b: Base) : Base by b {
+    fun consume() = eat()
+    fun report() = speak()
+}
+
+fun nourish2(d: Delegate) {
+    d.consume()
+    d.report()
+}
+
+fun main() = listOf(
+    Delegate(Dog3()), Delegate(Person3()), Delegate(Robot3()), Delegate(Slug3())
+).forEach { nourish2(it) }
+```
+------
+
 ```cpp
 //: src/cpp/MultipleInheritance.cpp
 // Combining disjoint types using MI
@@ -584,13 +660,13 @@ using namespace std;
 
 class Dog {
     public:
-    void eat() { cout << "eating dog food" << endl; }
+    void gulp() { cout << "eating dog food" << endl; }
     void bark() { cout << "woof"  << endl; }
 };
 
 class Person {
     public:
-    void eat() { cout << "eating pizza" << endl; }
+    void scarf() { cout << "eating pizza" << endl; }
     void greet() { cout << "hello"  << endl; }
 };
 ```
@@ -598,13 +674,13 @@ class Person {
 ```cpp
 class Robot {
     public:
-    void eat() { cout << "charging" << endl; }
+    void charge() { cout << "charging" << endl; }
     void initiate() { cout << "operational" << endl; }
 };
 
 class Slug {
     public:
-    void eat() { cout << "eating grass"  << endl; }
+    void absorb() { cout << "eating grass"  << endl; }
 };
 ```
 ---
@@ -615,29 +691,29 @@ class Base {
     virtual void speak() = 0;
 };
 
-class Dog2: public Dog, public Base {
+class Dog2: public Base, private Dog {
     public:
-    void eat() override { Dog::eat(); }
+    void eat() override { gulp(); }
     void speak() override { bark(); }
 };
 ```
 ---
 ```cpp
-class Person2: public Person, public Base {
+class Person2: public Base, private Person {
     public:
-    void eat() override { Person::eat(); }
+    void eat() override { scarf(); }
     void speak() override { greet(); }
 };
 
-class Robot2: public Robot, public Base {
+class Robot2: public Base, private Robot {
     public:
-    void eat() override { Robot::eat(); }
+    void eat() override { charge(); }
     void speak() override { initiate(); }
 };
 
-class Slug2: public Slug, public Base {
+class Slug2: public Base, private Slug {
     public:
-    void eat() override { Slug::eat(); }
+    void eat() override { absorb(); }
     void speak() override {}
 };
 ```
@@ -680,7 +756,7 @@ class Slug:
 from base import Base
 from disjoint_types import Dog, Person, Robot, Slug
 
-class Dog2(Dog, Base):
+class Dog2(Dog, Base): # Order of base classes is important
     def eat(self): super().eat()
     def speak(self): self.bark()
 
@@ -748,12 +824,12 @@ public class Generics {
     var dogHolder = new Holder<Dog>();
     dogHolder.set(new Dog());
     Dog d = dogHolder.get();
+    // dogHolder.set(new Person());  // Nope
     var baseHolder = new Holder<Base>();
     baseHolder.set(new Dog());
     baseHolder.set(new Person());
     // Person p = baseHolder.get();  // Nope
     Base b = baseHolder.get();
-    // Need to add variance here...
   }
 }
 ```
@@ -845,7 +921,10 @@ func main() {
 ```
 ------
 
+
 Scala & Rust?
+
+---
 
 # Structural Typing aka Duck Typing
 
@@ -877,13 +956,11 @@ using namespace std;
 class Dog {
     public:
     void eat() { cout << "eating dog food" << endl; }
-    void bark() { cout << "woof"  << endl; }
 };
 
 class Person {
     public:
     void eat() { cout << "eating pizza" << endl; }
-    void greet() { cout << "hello"  << endl; }
 };
 ```
 ---
@@ -891,45 +968,26 @@ class Person {
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
-    void initiate() { cout << "operational" << endl; }
 };
 
 class Slug {
     public:
     void eat() { cout << "eating grass"  << endl; }
 };
-
+```
+---
+```cpp
 // 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {
     subject.eat();
 }
-```
----
-```cpp
-// sumTypeObj is a 'union type':
-void speak(variant<Dog, Person, Robot, Slug> sumTypeObj) {
-    if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr)
-        dogPtr->bark();
-    else if(auto personPtr(get_if<Person>(&sumTypeObj)); personPtr)
-        personPtr->greet();
-    else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr)
-        robotPtr->initiate();
-    // No exhaustiveness checking
-}
-```
----
-```cpp
+
 int main() {
     nourish(Dog());
     nourish(Person());
     nourish(Robot());
     nourish(Slug());
-
-    typedef variant<Dog, Person, Robot, Slug> Disjoint;
-    Disjoint subjects[] = { Dog(), Person(), Robot(), Slug() };
-    for(Disjoint subject: subjects)
-      speak(subject);
 }
 ```
 ------
@@ -959,7 +1017,7 @@ if __name__ == '__main__':
 
 ```scala
 //: src/scala/DisjointTypes.scala
-// Nothing in commont
+// Nothing in common
 package disjointtypes
 
 class Dog:
@@ -1046,6 +1104,63 @@ public class PatternMatching {
     List.of(new Hedgehog(), new Fish())
         .forEach(PatternMatching::careFor);
   }
+}
+```
+------
+
+```cpp
+//: src/cpp/UnionTypes.cpp
+#include <variant>  // C++ 17
+#include <iostream>
+using namespace std;
+
+class Dog {
+    public:
+    void gulp() { cout << "eating dog food" << endl; }
+    void bark() { cout << "woof"  << endl; }
+};
+
+class Person {
+    public:
+    void scarf() { cout << "eating pizza" << endl; }
+    void greet() { cout << "hello"  << endl; }
+};
+
+class Robot {
+    public:
+    void charge() { cout << "charging" << endl; }
+    void initiate() { cout << "operational" << endl; }
+};
+
+class Slug {
+    public:
+    void absorb() { cout << "eating grass"  << endl; }
+};
+```
+---
+```cpp
+// sumTypeObj is a 'union type':
+void nourish(variant<Dog, Person, Robot, Slug> sumTypeObj) {
+    if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr) {
+        dogPtr->gulp();
+        dogPtr->bark();
+    }
+    else if(auto personPtr(get_if<Person>(&sumTypeObj)); personPtr) {
+        personPtr->scarf();
+        personPtr->greet();
+    }
+    else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr) {
+        robotPtr->charge();
+        robotPtr->initiate();
+    }
+    // No exhaustiveness checking
+}
+
+int main() {
+    typedef variant<Dog, Person, Robot, Slug> Disjoint;
+    Disjoint subjects[] = { Dog(), Person(), Robot(), Slug() };
+    for(Disjoint subject: subjects)
+      nourish(subject);
 }
 ```
 ------
@@ -1263,6 +1378,8 @@ fun main() = listOf(
 ------
 
 Rust
+
+---
 
 # Type Classes
 

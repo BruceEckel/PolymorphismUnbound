@@ -6,23 +6,23 @@ interface Base {
     fun speak() {}
 }
 
-class Dog2 : Dog(), Base {
-    override fun eat() = super.gulp()
-    override fun speak() = super.bark()
+class Dog2 : Base, Dog() {
+    override fun eat() = gulp()
+    override fun speak() = bark()
 }
 //---
-class Person2 : Person(), Base {
-    override fun eat() = super.scarf()
-    override fun speak() = super.greet()
+class Person2 : Base, Person() {
+    override fun eat() = scarf()
+    override fun speak() = greet()
 }
 
-class Robot2 : Robot(), Base {
-    override fun eat() = super.charge()
-    override fun speak() = super.initiate()
+class Robot2 : Base, Robot() {
+    override fun eat() = charge()
+    override fun speak() = initiate()
 }
 //---
-class Slug2 : Slug(), Base {
-    override fun eat() = super.absorb()
+class Slug2 : Base, Slug() {
+    override fun eat() = absorb()
 }
 
 fun nourish(subject: Base) {

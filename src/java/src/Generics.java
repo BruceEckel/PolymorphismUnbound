@@ -30,11 +30,11 @@ public class Generics {
     var dogHolder = new Holder<Dog>();
     dogHolder.set(new Dog());
     Dog d = dogHolder.get();
+    // dogHolder.set(new Person());  // Nope
     var baseHolder = new Holder<Base>();
     baseHolder.set(new Dog());
     baseHolder.set(new Person());
     // Person p = baseHolder.get();  // Nope
     Base b = baseHolder.get();
-    // Need to add variance here...
   }
 }

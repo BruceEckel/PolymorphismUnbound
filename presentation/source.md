@@ -167,7 +167,10 @@ h1, h2, h3, h4, h5, h6 {
 |==> //: src/java/src/Generics.java
 |==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
 |==> //: src/golang/generic/generics.go
+
 Scala & Rust?
+
+---
 
 # Structural Typing aka Duck Typing
 
@@ -184,6 +187,7 @@ Scala & Rust?
 |==> //: src/scala/DisjointTypes.scala
 |==> //: src/scala/UnionTypes.scala
 |==> // src/java/src/PatternMatching.java
+|==> //: src/cpp/UnionTypes.cpp
 
 # Protocols
 
@@ -200,7 +204,8 @@ Scala & Rust?
 |==> //: src/scala/EnumeratedDataTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
-Rust
+
+---
 
 # Type Classes
 

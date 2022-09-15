@@ -2,7 +2,7 @@
 from base import Base
 from disjoint_types import Dog, Person, Robot, Slug
 
-class Dog2(Dog, Base):
+class Dog2(Dog, Base): # Order of base classes is important
     def eat(self): super().eat()
     def speak(self): self.bark()
 

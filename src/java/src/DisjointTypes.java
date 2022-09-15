@@ -1,5 +1,4 @@
 //: src/java/src/DisjointTypes.java
-
 class Dog {
   void gulp() {
     System.out.println("eating dog food");

@@ -1,5 +1,5 @@
 //: src/scala/DisjointTypes.scala
-// Nothing in commont
+// Nothing in common
 package disjointtypes
 
 class Dog:

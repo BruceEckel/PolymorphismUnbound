@@ -30,11 +30,11 @@ impl Communicate for Person {
     }
 }
 //---
-pub fn poly<T: Communicate>(x: &T) {
+pub fn talk<T: Communicate>(x: &T) {
     x.speak();
 }
 
 fn main() {
-    poly(&Dog {});
-    poly(&Person {});
+    talk(&Dog {});
+    talk(&Person {});
 }
