@@ -3,16 +3,16 @@ from pathlib import Path
 from reporting import Error, Debug
 
 error = Error()
-debug = Debug()
-debug2 = Debug()
+trace = Debug()
 
 def expand(path: Path, file_ext: str, comment_chars: str) -> str:
+    listing_type = ""  # Or file_ext for syntax highlighting
     if not path.exists():
         error(f"Cannot locate {path.resolve()}")
         return f"Cannot locate {path.resolve()}"
     code = path.read_text().replace('\t', '    ')
-    code2 = code.replace(comment_chars + "---", f"```\n---\n```{file_ext}")
-    code3 = f"```{file_ext}\n{code2.strip()}\n```\n------\n"
+    code2 = code.replace(comment_chars + "---", f"```\n---\n```{listing_type}")
+    code3 = f"```{listing_type}\n{code2.strip()}\n```\n------\n"
     return code3
 
 def main(source_file: str):
@@ -22,20 +22,20 @@ def main(source_file: str):
     for line in Path(source_file).read_text().splitlines():
         if line.startswith("|==>"):
             header = line.split("|==>")[1].strip()
-            # debug(header)
+            # trace(header)
             start_tag, file_location = header.split()
             comment_chars = start_tag.split(':')[0]
-            debug(comment_chars)
+            trace(comment_chars)
             file_path = Path("..") / file_location
             file_ext = file_path.suffix[1:]
-            debug(file_path)
-            debug(file_path.exists())
-            debug(file_ext)
+            trace(file_path)
+            trace(file_path.exists())
+            trace(file_ext)
             result.append(expand(file_path, file_ext, comment_chars))
         else:
             result.append(line)
     new_markdown = "\n".join(result)
-    debug(new_markdown)
+    trace(new_markdown)
     Path("slides.md").write_text(new_markdown)
 
 if __name__ == '__main__':
@@ -59,13 +59,13 @@ if __name__ == '__main__':
 #     start_tag = group[1].strip()
 #     file_path = group[2].strip()
 #     body = group[3]
-#     debug(f"{n = }")
-#     debug(f"{language_tag = }")
-#     debug(f"{start_tag = }")
-#     debug(f"{file_path = }")
-#     debug(body)
-#     debug('-' * 40)
+#     trace(f"{n = }")
+#     trace(f"{language_tag = }")
+#     trace(f"{start_tag = }")
+#     trace(f"{file_path = }")
+#     trace(body)
+#     trace('-' * 40)
 #   slash_starts = markdown.count("//:")
 #   pound_starts = markdown.count("#:")
-#   debug(f"{slash_starts = }")
-#   debug(f"{pound_starts = }")
+#   trace(f"{slash_starts = }")
+#   trace(f"{pound_starts = }")
