@@ -3,49 +3,30 @@
 #include <iostream>
 using namespace std;
 
-class Dog {
-    public:
-    void gulp() { cout << "eating dog food" << endl; }
-    void bark() { cout << "woof"  << endl; }
-};
-
 class Person {
     public:
-    void scarf() { cout << "eating pizza" << endl; }
-    void greet() { cout << "hello"  << endl; }
+    void eat() { cout << "eating pizza" << endl; }
 };
 
 class Robot {
     public:
     void charge() { cout << "charging" << endl; }
-    void initiate() { cout << "operational" << endl; }
 };
 
-class Slug {
-    public:
-    void absorb() { cout << "eating grass"  << endl; }
-};
-//---
-// sumTypeObj is a 'union type':
-void nourish(variant<Dog, Person, Robot, Slug> sumTypeObj) {
-    if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr) {
-        dogPtr->gulp();
-        dogPtr->bark();
+typedef variant<Person, Robot> unionType;
+
+void nourish(unionType combined) {
+    if(auto personPtr(get_if<Person>(&combined)); personPtr) {
+        personPtr->eat();
     }
-    else if(auto personPtr(get_if<Person>(&sumTypeObj)); personPtr) {
-        personPtr->scarf();
-        personPtr->greet();
-    }
-    else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr) {
+    else if(auto robotPtr(get_if<Robot>(&combined)); robotPtr) {
         robotPtr->charge();
-        robotPtr->initiate();
     }
-    // No exhaustiveness checking
+    // No exhaustiveness checking (comment out the 'else if' clause)
 }
 
 int main() {
-    typedef variant<Dog, Person, Robot, Slug> Disjoint;
-    Disjoint subjects[] = { Dog(), Person(), Robot(), Slug() };
-    for(Disjoint subject: subjects)
+    unionType subjects[] = { Person(), Robot() };
+    for(unionType subject: subjects)
       nourish(subject);
 }

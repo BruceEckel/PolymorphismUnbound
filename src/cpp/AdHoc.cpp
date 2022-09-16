@@ -4,15 +4,21 @@
 #include <iostream>
 using namespace std;
 
-void f(string s) {
-    cout << "f(string): " << s << endl;
-}
+class Person {
+    public:
+    void eat() { cout << "eating pizza" << endl; }
+};
 
-void f(float f) {
-    cout << "f(float): " << f << endl;
-}
+class Robot {
+    public:
+    void charge() { cout << "charging" << endl; }
+};
+
+void nourish(Person p) { p.eat(); }
+
+void nourish(Robot r) { r.charge(); }
 
 int main() {
-    f("hi");
-    f(42.24);
+    nourish(Person());
+    nourish(Robot());
 }
