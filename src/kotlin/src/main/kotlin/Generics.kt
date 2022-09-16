@@ -1,29 +1,26 @@
 //: src/kotlin/src/main/kotlin/Generics.kt
 
-fun <T> nourish(subject: T) : T =
+fun <T> nourish(subject: T) : T {
     when (subject) {
         is Dog -> {
             subject.gulp()
             subject.bark()
-            subject
         }
         is Person -> {
             subject.scarf()
             subject.greet()
-            subject
         }
         is Robot -> {
             subject.charge()
             subject.initiate()
-            subject
         }
         is Slug -> {
             subject.absorb()
-            subject
         }
-        else -> subject
     }
-
+    return subject
+}
+//---
 fun main() {
     listOf(
         Dog(), Person(), Robot(), Slug()

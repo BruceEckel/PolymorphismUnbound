@@ -822,9 +822,9 @@ public class Generics {
 ------
 
 ```kt
-//: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
+//: src/kotlin/src/main/kotlin/Generics.kt
 
-inline fun <reified T> nourish(subject: T) {
+fun <T> nourish(subject: T) : T {
     when (subject) {
         is Dog -> {
             subject.gulp()
@@ -842,11 +842,18 @@ inline fun <reified T> nourish(subject: T) {
             subject.absorb()
         }
     }
+    return subject
 }
-
-fun main() = listOf(
-    Dog(), Person(), Robot(), Slug()
-).forEach { nourish(it) }
+```
+---
+```kt
+fun main() {
+    listOf(
+        Dog(), Person(), Robot(), Slug()
+    ).map { nourish(it) }.forEach{ println(it) }
+    val d: Dog = nourish(Dog())
+    println(d)
+}
 ```
 ------
 
