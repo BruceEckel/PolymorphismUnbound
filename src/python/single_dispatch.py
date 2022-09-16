@@ -1,35 +1,22 @@
 #: src/python/single_dispatch.py
 # (Not included in presentation)
 from functools import singledispatch
-from disjoint_types import Dog, Person, Robot, Slug
+from disjoint_types import Person, Robot
 
 @singledispatch
 def nourish(subject):
     print("default nourish")
 
 @nourish.register
-def _(subject: Dog):
-    print("Dog")
-    subject.eat()
-    subject.bark()
-
-@nourish.register
 def _(subject: Person):
     print("Person")
-    subject.eat()
-    subject.greet()
-#---
+    subject.consume()
+
 @nourish.register
 def _(subject: Robot):
     print("Robot")
-    subject.eat()
-    subject.initiate()
-
-@nourish.register
-def _(subject: Slug):
-    print("Slug")
-    subject.eat()
+    subject.charge()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug(), ""]:
+    for subject in [Person(), Robot(), ""]:
         nourish(subject)

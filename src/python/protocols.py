@@ -1,10 +1,6 @@
 #: src/python/protocols.py
 from typing import Protocol
 
-class Dog:
-    def eat(self): print("eating dog food")
-    def speak(self): print("woof")
-
 class Person:
     def eat(self): print("eating pizza")
     def speak(self): print("hello")
@@ -12,10 +8,6 @@ class Person:
 class Robot:
     def eat(self): print("charging")
     def speak(self): print("operational")
-#---
-class Slug:
-    def eat(self): print("eating grass")
-    def speak(self): pass
 
 class Base(Protocol):
     def eat(self): ...
@@ -26,5 +18,5 @@ def nourish(subject: Base):
     subject.speak()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)

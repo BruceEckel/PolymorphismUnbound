@@ -1,13 +1,10 @@
 #: src/python/duck_typing.py
-from disjoint_types import Dog, Person, Robot, Slug
+from inheritance import Person, Robot
 
-def nourish(subject):
+def nourish(subject: object):
     subject.eat()  # Duck typing
-    if type(subject) is Dog: subject.bark()
-    if type(subject) is Person: subject.greet()
-    if type(subject) is Robot: subject.initiate()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)
         # nourish("")  # Runtime error
