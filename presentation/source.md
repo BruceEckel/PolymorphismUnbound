@@ -131,8 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 |==> //: src/cpp/AdHoc.cpp
 |==> //: src/java/src/DisjointTypes.java
 
-- Python added overloading
-- Example in Github repo: `src/python/single_dispatch.py`
+- Python overloading: `src/python/single_dispatch.py`
 
 ---
 
@@ -165,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 ---
 
 |==> //: src/java/src/Generics.java
-|==> //: src/kotlin/src/main/kotlin/ReifiedGenerics.kt
+|==> //: src/kotlin/src/main/kotlin/Generics.kt
 |==> //: src/golang/generic/generics.go
 
 Scala & Rust?

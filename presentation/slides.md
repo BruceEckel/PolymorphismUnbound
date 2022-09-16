@@ -215,12 +215,12 @@ public class DisjointTypes {
     subject.charge();
     subject.initiate();
   }
-```
----
-```java
   static void nourish(Slug subject) {
     subject.absorb();
   }
+  ```
+---
+```java
   public static void main(String... args) {
     // Ad-hoc polymorphism (overloading):
     nourish(new Dog());
@@ -234,8 +234,7 @@ public class DisjointTypes {
 ------
 
 
-- Python added overloading
-- Example in Github repo: `src/python/single_dispatch.py`
+- Python overloading: `src/python/single_dispatch.py`
 
 ---
 
@@ -1289,9 +1288,7 @@ enum EnumType(food: String, talk: String):
     case Slug extends EnumType("eating grass", "")
     def eat() = println(food)
     def speak() = println(talk)
-```
----
-```scala
+
 def nourish(x: EnumType): Unit =
     x.eat()
     x.speak()
@@ -1313,9 +1310,7 @@ enum ADT(food: String, talk: String):
     case Slug extends ADT("eating grass", "")
     def eat() = println(food)
     def speak() = println(talk)
-```
----
-```scala
+
 def nourish(x: ADT): Unit =
     x.eat()
     x.speak()

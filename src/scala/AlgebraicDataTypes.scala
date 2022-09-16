@@ -9,7 +9,7 @@ enum ADT(food: String, talk: String):
     case Slug extends ADT("eating grass", "")
     def eat() = println(food)
     def speak() = println(talk)
-//---
+
 def nourish(x: ADT): Unit =
     x.eat()
     x.speak()

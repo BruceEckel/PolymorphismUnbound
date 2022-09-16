@@ -45,10 +45,10 @@ public class DisjointTypes {
     subject.charge();
     subject.initiate();
   }
-//---
   static void nourish(Slug subject) {
     subject.absorb();
   }
+  //---
   public static void main(String... args) {
     // Ad-hoc polymorphism (overloading):
     nourish(new Dog());
