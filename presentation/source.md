@@ -248,9 +248,9 @@ Scala & Rust?
 
 # I'll Get By With a Little Help...
 
+- Bill Frasure
 - James Ward
 - Luciano Ramalho
-- Bill Frasure
 - Jack Leow
 - Marshall Pierce
 - Bill Venners
@@ -258,5 +258,7 @@ Scala & Rust?
 ---
 
 # Questions
+
+... In the hall
 
 ![bg fit right](workwithcare.jpg)
