@@ -1,15 +1,12 @@
 //: src/kotlin/src/main/kotlin/Delegation.kt
+package delegation
+import inheritance.*
 
 class Delegate(b: Base) : Base by b {
     fun consume() = eat()
-    fun report() = speak()
 }
 
-fun nourish2(d: Delegate) {
-    d.consume()
-    d.report()
-}
+fun nourish(d: Delegate) = d.consume()
 
-fun main() = listOf(
-    Delegate(Dog3()), Delegate(Person3()), Delegate(Robot3()), Delegate(Slug3())
-).forEach { nourish2(it) }
+fun main() = listOf(Delegate(Person()), Delegate(Robot()))
+    .forEach { nourish(it) }

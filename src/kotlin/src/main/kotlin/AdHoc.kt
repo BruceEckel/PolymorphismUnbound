@@ -1,10 +1,11 @@
 //: src/kotlin/src/main/kotlin/AdHoc.kt
+import disjoint.*
 
-fun f(s: String) = println("f(String): $s")
+fun nourish(p: Person) = p.consume()
 
-fun f(f: Float) = println("f(Float): $f")
+fun nourish(r: Robot) = r.charge()
 
 fun main() {
-    f("hi")
-    f(42.24f)
+    nourish(Person())
+    nourish(Robot())
 }

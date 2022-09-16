@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/AdHoc.kt
 
 fun f(s: String) = println("f(String): $s")
@@ -141,7 +141,7 @@ fun main() {
 ```
 ------
 
-```cpp
+```
 //: src/cpp/AdHoc.cpp
 // All C++ examples tested with https://cpp.sh
 #include <string>
@@ -163,7 +163,7 @@ int main() {
 ```
 ------
 
-```java
+```
 //: src/java/src/DisjointTypes.java
 class Dog {
   void gulp() {
@@ -184,7 +184,7 @@ class Person {
 }
 ```
 ---
-```java
+```
 class Robot {
   void charge() {
     System.out.println("charging");
@@ -201,7 +201,7 @@ class Slug {
 }
 ```
 ---
-```java
+```
 public class DisjointTypes {
   static void nourish(Dog subject) {
     subject.gulp();
@@ -220,7 +220,7 @@ public class DisjointTypes {
   }
   ```
 ---
-```java
+```
   public static void main(String... args) {
     // Ad-hoc polymorphism (overloading):
     nourish(new Dog());
@@ -242,7 +242,7 @@ public class DisjointTypes {
 
 ---
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/Inheritance.kt
 package inheritance
 
@@ -262,7 +262,7 @@ class Person: Base {
 }
 ```
 ---
-```kt
+```
 class Robot: Base {
     override fun eat() = println("charging")
     override fun speak() = println("operational")
@@ -284,7 +284,7 @@ fun main() = listOf(
 ```
 ------
 
-```scala
+```
 //: src/scala/Inheritance.scala
 package inheritance
 
@@ -301,7 +301,7 @@ class Person extends Base:
     def speak() = println("hello")
 ```
 ---
-```scala
+```
 class Robot extends Base:
     def eat() = println("charging")
     def speak() = println("operational")
@@ -319,7 +319,7 @@ def nourish(x: Base): Unit =
 ```
 ------
 
-```java
+```
 //: src/java/src/Inheritance.java
 package inheritance;
 import java.util.List;
@@ -337,7 +337,7 @@ class Dog implements Base {
 }
 ```
 ---
-```java
+```
 class Person implements Base {
   @Override
   public void eat() { System.out.println("eating pizza"); }
@@ -353,7 +353,7 @@ class Robot implements Base {
 }
 ```
 ---
-```java
+```
 class Slug implements Base {
   @Override
   public void eat() { System.out.println("eating grass"); }
@@ -375,7 +375,7 @@ public class Inheritance {
 ```
 ------
 
-```cpp
+```
 //: src/cpp/Inheritance.cpp
 #include <iostream>
 using namespace std;
@@ -393,7 +393,7 @@ class Dog: public Base {
 };
 ```
 ---
-```cpp
+```
 class Person: public Base {
     public:
     void eat() override { cout << "eating pizza" << endl; }
@@ -413,7 +413,7 @@ class Slug: public Base {
 };
 ```
 ---
-```cpp
+```
 void nourish(Base* base) {
     base->eat();
     base->speak();
@@ -427,7 +427,7 @@ int main() {
 ```
 ------
 
-```py
+```
 #: src/python/base.py
 from abc import ABC, abstractmethod
 
@@ -439,7 +439,7 @@ class Base(ABC):
 ```
 ------
 
-```py
+```
 #: src/python/inheritance.py
 from base import Base
 
@@ -452,7 +452,7 @@ class Person(Base):
     def speak(self): print("hello")
 ```
 ---
-```py
+```
 class Robot(Base):
     def eat(self): print("charging")
     def speak(self): print("operational")
@@ -471,7 +471,7 @@ if __name__ == '__main__':
 ```
 ------
 
-```rs
+```
 //: src/rust/inheritance/src/main.rs
 struct Dog;
 struct Person;
@@ -494,7 +494,7 @@ impl Base for Person {
 }
 ```
 ---
-```rs
+```
 impl Base for Robot {
   fn eat(&self) { println!("charging"); }
   fn speak(&self) { println!("operational"); }
@@ -520,7 +520,7 @@ fn main() {
 
 ---
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/DisjointTypes.kt
 open class Dog {
     fun gulp() = println("eating dog food")
@@ -543,7 +543,7 @@ open class Slug {
 ```
 ------
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 // Can also do this in Java
 
@@ -563,7 +563,7 @@ class Person2 : Base, Person() {
 }
 ```
 ---
-```kt
+```
 class Robot2 : Base, Robot() {
     override fun eat() = charge()
     override fun speak() = initiate()
@@ -584,7 +584,7 @@ fun main() = listOf(
 ```
 ------
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/Composition.kt
 // Can use this approach in most languages
 
@@ -601,7 +601,7 @@ class Person3 : Base {
 }
 ```
 ---
-```kt
+```
 class Robot3 : Base {
     private val robot = Robot()
     override fun eat() = robot.charge()
@@ -619,7 +619,7 @@ fun main() = listOf(
 ```
 ------
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/Delegation.kt
 
 class Delegate(b: Base) : Base by b {
@@ -638,7 +638,7 @@ fun main() = listOf(
 ```
 ------
 
-```cpp
+```
 //: src/cpp/MultipleInheritance.cpp
 // Combining disjoint types using MI
 #include <iostream>
@@ -657,7 +657,7 @@ class Person {
 };
 ```
 ---
-```cpp
+```
 class Robot {
     public:
     void charge() { cout << "charging" << endl; }
@@ -670,7 +670,7 @@ class Slug {
 };
 ```
 ---
-```cpp
+```
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
@@ -684,7 +684,7 @@ class Dog2: public Base, private Dog {
 };
 ```
 ---
-```cpp
+```
 class Person2: public Base, private Person {
     public:
     void eat() override { scarf(); }
@@ -704,7 +704,7 @@ class Slug2: public Base, private Slug {
 };
 ```
 ---
-```cpp
+```
 void nourish(Base* base) {
     base->eat();
     base->speak();
@@ -718,7 +718,7 @@ int main() {
 ```
 ------
 
-```py
+```
 #: src/python/disjoint_types.py
 class Dog:
     def eat(self): print("eating dog food")
@@ -737,7 +737,7 @@ class Slug:
 ```
 ------
 
-```py
+```
 #: src/python/multiple_inheritance.py
 from base import Base
 from disjoint_types import Dog, Person, Robot, Slug
@@ -759,7 +759,7 @@ class Slug2(Slug, Base):
     def speak(self): pass  # Required by ABC
 ```
 ---
-```py
+```
 def nourish(base: Base):
     base.eat()
     base.speak()
@@ -775,7 +775,7 @@ if __name__ == '__main__':
 
 ---
 
-```java
+```
 //: src/java/src/Generics.java
 package generics;
 
@@ -797,7 +797,7 @@ class Dog implements Base {
 }
 ```
 ---
-```java
+```
 class Person implements Base {
   @Override
   public void speak() {
@@ -821,7 +821,7 @@ public class Generics {
 ```
 ------
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/Generics.kt
 
 fun <T> nourish(subject: T) : T {
@@ -846,7 +846,7 @@ fun <T> nourish(subject: T) : T {
 }
 ```
 ---
-```kt
+```
 fun main() {
     listOf(
         Dog(), Person(), Robot(), Slug()
@@ -857,7 +857,7 @@ fun main() {
 ```
 ------
 
-```go
+```
 //: src/golang/generic/generics.go
 package main
 
@@ -872,7 +872,7 @@ func (person Person) Eat()   { println("eating pizza") }
 func (person Person) Greet() { println("hello") }
 ```
 ---
-```go
+```
 type Robot struct{}
 
 func (robot Robot) Eat()      { println("charging") }
@@ -883,7 +883,7 @@ type Slug struct{}
 func (slug Slug) Eat() { println("eating grass") }
 ```
 ---
-```go
+```
 type Eater interface {
     Eat()
 }
@@ -904,7 +904,7 @@ func Poly[T Dog | Person | Robot | Slug](subject T) {
 }
 ```
 ---
-```go
+```
 func main() {
     Poly(Dog{})
     Poly(Person{})
@@ -923,7 +923,7 @@ Scala & Rust?
 
 ---
 
-```py
+```
 #: src/python/duck_typing.py
 from disjoint_types import Dog, Person, Robot, Slug
 
@@ -940,7 +940,7 @@ if __name__ == '__main__':
 ```
 ------
 
-```cpp
+```
 //: src/cpp/StructuralTyping.cpp
 #include <variant>  // C++ 17
 #include <iostream>
@@ -957,7 +957,7 @@ class Person {
 };
 ```
 ---
-```cpp
+```
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
@@ -969,7 +969,7 @@ class Slug {
 };
 ```
 ---
-```cpp
+```
 // 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {
@@ -990,7 +990,7 @@ int main() {
 
 ---
 
-```py
+```
 #: src/python/union_types.py
 from disjoint_types import Dog, Person, Robot, Slug
 
@@ -1008,7 +1008,7 @@ if __name__ == '__main__':
 ```
 ------
 
-```scala
+```
 //: src/scala/DisjointTypes.scala
 // Nothing in common
 package disjointtypes
@@ -1030,7 +1030,7 @@ class Slug:
 ```
 ------
 
-```scala
+```
 //: src/scala/UnionTypes.scala
 // Union types aka sum types
 package uniontypes
@@ -1051,7 +1051,7 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
         s.absorb()
 ```
 ---
-```scala
+```
 @main def main() =
     val list: List[Dog | Person | Robot | Slug] =
         List(Dog(), Person(), Robot(), Slug())
@@ -1059,7 +1059,7 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
 ```
 ------
 
-```java
+```
 // src/java/src/PatternMatching.java
 // {NewFeature} Preview in JDK 17
 // Compile with javac flags:
@@ -1077,7 +1077,7 @@ class Fish {
 }
 ```
 ---
-```java
+```
 public class PatternMatching {
   static void careFor(Object p) {  // No union types
     switch(p) { // Exhaustive except for Null
@@ -1101,7 +1101,7 @@ public class PatternMatching {
 ```
 ------
 
-```cpp
+```
 //: src/cpp/UnionTypes.cpp
 #include <variant>  // C++ 17
 #include <iostream>
@@ -1131,7 +1131,7 @@ class Slug {
 };
 ```
 ---
-```cpp
+```
 // sumTypeObj is a 'union type':
 void nourish(variant<Dog, Person, Robot, Slug> sumTypeObj) {
     if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr) {
@@ -1163,7 +1163,7 @@ int main() {
 
 ---
 
-```py
+```
 #: src/python/protocols.py
 from typing import Protocol
 
@@ -1180,7 +1180,7 @@ class Robot:
     def speak(self): print("operational")
 ```
 ---
-```py
+```
 class Slug:
     def eat(self): print("eating grass")
     def speak(self): pass
@@ -1199,7 +1199,7 @@ if __name__ == '__main__':
 ```
 ------
 
-```go
+```
 //: src/golang/structural/structural.go
 package main
 
@@ -1214,7 +1214,7 @@ func (person Person) Eat()     { println("eating pizza") }
 func (person Person) Speak() { println("hello") }
 ```
 ---
-```go
+```
 type Robot struct{}
 
 func (robot Robot) Eat()     { println("charging") }
@@ -1226,7 +1226,7 @@ func (slug Slug) Eat()     { println("eating grass") }
 func (slug Slug) Speak() {}
 ```
 ---
-```go
+```
 type EaterSpeaker interface {
     Eat()
     Speak()
@@ -1253,7 +1253,7 @@ func main() {
 
 ---
 
-```scala
+```
 //: src/scala/EnumeratedDataTypes.scala
 // Enumerated Data Types
 package enumtypes
@@ -1273,7 +1273,7 @@ enum EnumType:
         case Slug => ()
 ```
 ---
-```scala
+```
 def nourish(x: EnumType): Unit =
     x.eat()
     x.speak()
@@ -1283,7 +1283,7 @@ def nourish(x: EnumType): Unit =
 ```
 ------
 
-```scala
+```
 //: src/scala/EnumeratedDataTypes2.scala
 package enumtypes2
 import EnumType.*
@@ -1305,7 +1305,7 @@ def nourish(x: EnumType): Unit =
 ```
 ------
 
-```scala
+```
 //: src/scala/AlgebraicDataTypes.scala
 package adts
 import ADT.*
@@ -1327,7 +1327,7 @@ def nourish(x: ADT): Unit =
 ```
 ------
 
-```kt
+```
 //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
 package algebraic
 import algebraic.ADT.*
@@ -1348,7 +1348,7 @@ sealed class ADT(val eats: String) {
 }
 ```
 ---
-```kt
+```
 fun nourish(subject: ADT) {
     subject.eat()
     when (subject) {
@@ -1371,7 +1371,7 @@ fun main() = listOf(
 
 ---
 
-```scala
+```
 //: src/scala/TypeClasses.scala
 // "Automating the adapter pattern"
 package typeclasses
@@ -1388,7 +1388,7 @@ given EaterSpeaker[Dog] with
         def speak(): Unit = t.bark()
 ```
 ---
-```scala
+```
 given EaterSpeaker[Person] with
     extension (t: Person)
         def eat(): Unit = t.scarf()
@@ -1405,7 +1405,7 @@ given EaterSpeaker[Slug] with
         def speak() = {}
 ```
 ---
-```scala
+```
 def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
     x.eat()
     x.speak()
@@ -1418,7 +1418,7 @@ def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
 ```
 ------
 
-```rs
+```
 //: src/rust/typeclasses/src/main.rs
 
 struct Dog;
@@ -1436,7 +1436,7 @@ impl Person {
 }
 ```
 ---
-```rs
+```
 pub trait Communicate {
     fn speak(&self);
 }
@@ -1454,7 +1454,7 @@ impl Communicate for Person {
 }
 ```
 ---
-```rs
+```
 pub fn talk<T: Communicate>(x: &T) {
     x.speak();
 }
@@ -1504,9 +1504,9 @@ fn main() {
 
 # I'll Get By With a Little Help...
 
+- Bill Frasure
 - James Ward
 - Luciano Ramalho
-- Bill Frasure
 - Jack Leow
 - Marshall Pierce
 - Bill Venners
@@ -1514,5 +1514,7 @@ fn main() {
 ---
 
 # Questions
+
+... In the hall
 
 ![bg fit right](workwithcare.jpg)

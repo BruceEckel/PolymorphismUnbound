@@ -1,30 +1,28 @@
 //: src/kotlin/src/main/kotlin/Generics.kt
+package generics
+import disjoint.*
 
 fun <T> nourish(subject: T) : T {
     when (subject) {
-        is Dog -> {
-            subject.gulp()
-            subject.bark()
-        }
-        is Person -> {
-            subject.scarf()
-            subject.greet()
-        }
-        is Robot -> {
-            subject.charge()
-            subject.initiate()
-        }
-        is Slug -> {
-            subject.absorb()
-        }
+        is Person -> subject.consume()
+        is Robot -> subject.charge()
     }
     return subject
 }
-//---
+
+fun nourish2(subject: Any) : Any {
+    when (subject) {
+        is Person -> subject.consume()
+        is Robot -> subject.charge()
+    }
+    return subject
+}
+
 fun main() {
-    listOf(
-        Dog(), Person(), Robot(), Slug()
-    ).map { nourish(it) }.forEach{ println(it) }
-    val d: Dog = nourish(Dog())
-    println(d)
+    listOf(Person(), Robot())
+        .map { nourish(it) }.forEach{ println(it) }
+    val r: Robot = nourish(Robot())
+    println(r)
+    // val p: Person = nourish2(Person()) // Nope
+    val o: Any = nourish2(Person())
 }
