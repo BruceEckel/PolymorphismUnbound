@@ -127,10 +127,11 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
+|==> //: src/kotlin/src/main/kotlin/DisjointTypes.kt
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
-|==> //: src/cpp/AdHoc.cpp
-|==> //: src/java/src/DisjointTypes.java
 
+- Java overloading: `src/java/src/AdHoc.java`
+- C++ overloading: `src/cpp/AdHoc.cpp`
 - Python overloading: `src/python/single_dispatch.py`
 
 ---
@@ -140,12 +141,13 @@ h1, h2, h3, h4, h5, h6 {
 ---
 
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
-|==> //: src/scala/Inheritance.scala
-|==> //: src/java/src/Inheritance.java
-|==> //: src/cpp/Inheritance.cpp
-|==> #: src/python/base.py
-|==> #: src/python/inheritance.py
-|==> //: src/rust/inheritance/src/main.rs
+
+  - `src/scala/Inheritance.scala`
+  - `src/java/src/Inheritance.java`
+  - `src/cpp/Inheritance.cpp`
+  - `src/python/base.py`
+  - `src/python/inheritance.py`
+  - `src/rust/inheritance/src/main.rs`
 
 # Multiple Inheritance
 
