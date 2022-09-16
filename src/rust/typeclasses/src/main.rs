@@ -1,40 +1,36 @@
 //: src/rust/typeclasses/src/main.rs
-
-struct Dog;
-impl Dog {
-    fn bark(&self) {
-        println!("woof");
-    }
-}
-
 struct Person;
+struct Robot;
+
 impl Person {
-    fn greet(&self) {
-        println!("hello");
+  fn consume(&self) { println!("eating pizza"); }
+}
+
+impl Robot {
+  fn charge(&self) { println!("charging"); }
+}
+//---
+pub trait Eater {
+    fn eat(&self);
+}
+
+impl Eater for Person {
+    fn eat(&self) {
+        self.consume();
+    }
+}
+
+impl Eater for Robot {
+    fn eat(&self) {
+        self.charge();
     }
 }
 //---
-pub trait Communicate {
-    fn speak(&self);
-}
-
-impl Communicate for Dog {
-    fn speak(&self) {
-        self.bark();
-    }
-}
-
-impl Communicate for Person {
-    fn speak(&self) {
-        self.greet();
-    }
-}
-//---
-pub fn talk<T: Communicate>(x: &T) {
-    x.speak();
+pub fn nourish<T: Eater>(x: &T) {
+    x.eat();
 }
 
 fn main() {
-    talk(&Dog {});
-    talk(&Person {});
+    nourish(&Person {});
+    nourish(&Robot {});
 }

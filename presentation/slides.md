@@ -129,14 +129,15 @@ h1, h2, h3, h4, h5, h6 {
 
 ```
 //: src/kotlin/src/main/kotlin/AdHoc.kt
+import disjoint.*
 
-fun f(s: String) = println("f(String): $s")
+fun nourish(p: Person) = p.consume()
 
-fun f(f: Float) = println("f(Float): $f")
+fun nourish(r: Robot) = r.charge()
 
 fun main() {
-    f("hi")
-    f(42.24f)
+    nourish(Person())
+    nourish(Robot())
 }
 ```
 ------
@@ -148,91 +149,28 @@ fun main() {
 #include <iostream>
 using namespace std;
 
-void f(string s) {
-    cout << "f(string): " << s << endl;
-}
+class Person {
+    public:
+    void eat() { cout << "eating pizza" << endl; }
+};
 
-void f(float f) {
-    cout << "f(float): " << f << endl;
-}
+class Robot {
+    public:
+    void charge() { cout << "charging" << endl; }
+};
+
+void nourish(Person p) { p.eat(); }
+
+void nourish(Robot r) { r.charge(); }
 
 int main() {
-    f("hi");
-    f(42.24);
+    nourish(Person());
+    nourish(Robot());
 }
 ```
 ------
 
-```
-//: src/java/src/DisjointTypes.java
-class Dog {
-  void gulp() {
-    System.out.println("eating dog food");
-  }
-  void bark() {
-    System.out.println("woof");
-  }
-}
-
-class Person {
-  void scarf() {
-    System.out.println("eating pizza");
-  }
-  void greet() {
-    System.out.println("hello");
-  }
-}
-```
----
-```
-class Robot {
-  void charge() {
-    System.out.println("charging");
-  }
-  void initiate() {
-    System.out.println("operational");
-  }
-}
-
-class Slug {
-  void absorb() {
-    System.out.println("eating grass");
-  }
-}
-```
----
-```
-public class DisjointTypes {
-  static void nourish(Dog subject) {
-    subject.gulp();
-    subject.bark();
-  }
-  static void nourish(Person subject) {
-    subject.scarf();
-    subject.greet();
-  }
-  static void nourish(Robot subject) {
-    subject.charge();
-    subject.initiate();
-  }
-  static void nourish(Slug subject) {
-    subject.absorb();
-  }
-  ```
----
-```
-  public static void main(String... args) {
-    // Ad-hoc polymorphism (overloading):
-    nourish(new Dog());
-    nourish(new Person());
-    nourish(new Robot());
-    nourish(new Slug());
-    // (Statically determined at compile time)
-  }
-}
-```
-------
-
+Cannot locate C:\Git\PolymorphismUnbound\src\java\src\DisjointTypes.java
 
 - Python overloading: `src/python/single_dispatch.py`
 
@@ -248,39 +186,19 @@ package inheritance
 
 interface Base {
     fun eat()
-    fun speak()
-}
-
-class Dog: Base {
-    override fun eat() = println("eating dog food")
-    override fun speak() = println("woof")
 }
 
 class Person: Base {
     override fun eat() = println("eating pizza")
-    override fun speak() = println("hello")
 }
-```
----
-```
+
 class Robot: Base {
     override fun eat() = println("charging")
-    override fun speak() = println("operational")
 }
 
-class Slug: Base {
-    override fun eat() = println("eating grass")
-    override fun speak() = Unit
-}
+fun nourish(subject: Base) = subject.eat()
 
-fun nourish(subject: Base) {
-    subject.eat()
-    subject.speak()
-}
-
-fun main() = listOf(
-    Dog(), Person(), Robot(), Slug()
-).forEach { nourish(it) }
+fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
 ```
 ------
 
@@ -326,50 +244,24 @@ import java.util.List;
 
 interface Base {
   void eat();
-  void speak();
 }
 
-class Dog implements Base {
-  @Override
-  public void eat() { System.out.println("eating dog food"); }
-  @Override
-  public void speak() { System.out.println("woof"); }
-}
-```
----
-```
 class Person implements Base {
   @Override
   public void eat() { System.out.println("eating pizza"); }
-  @Override
-  public void speak() { System.out.println("hello"); }
 }
 
 class Robot implements Base {
   @Override
   public void eat() { System.out.println("charging"); }
-  @Override
-  public void speak() { System.out.println("operational"); }
-}
-```
----
-```
-class Slug implements Base {
-  @Override
-  public void eat() { System.out.println("eating grass"); }
-  @Override
-  public void speak() {}
 }
 
 public class Inheritance {
   static void nourish(Base subject) {
     subject.eat();
-    subject.speak();
   }
   public static void main(String... args) {
-    List.of(
-        new Dog(), new Person(), new Robot(), new Slug()
-    ).forEach(Inheritance::nourish);
+    List.of(new Person(), new Robot()).forEach(Inheritance::nourish);
   }
 }
 ```
@@ -383,44 +275,24 @@ using namespace std;
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual == abstract
-    virtual void speak() = 0;
 };
 
-class Dog: public Base {
-    public:
-    void eat() override { cout << "eating dog food" << endl; }
-    void speak() override { cout << "woof"  << endl; }
-};
-```
----
-```
 class Person: public Base {
     public:
     void eat() override { cout << "eating pizza" << endl; }
-    void speak() override { cout << "hello"  << endl; }
 };
 
 class Robot: public Base {
     public:
     void eat() override { cout << "charging" << endl; }
-    void speak() override { cout << "operational" << endl; }
 };
 
-class Slug: public Base {
-    public:
-    void eat() override { cout << "eating grass"  << endl; }
-    void speak() override {}
-};
-```
----
-```
 void nourish(Base* base) {
     base->eat();
-    base->speak();
 }
 
 int main() {
-    Base* subjects[] = { new Dog(), new Person(), new Robot(), new Slug() };
+    Base* subjects[] = { new Person(), new Robot() };
     for(Base* subject: subjects)
       nourish(subject);
 }
@@ -434,8 +306,6 @@ from abc import ABC, abstractmethod
 class Base(ABC):
     @abstractmethod
     def eat(self) -> None: ...
-    @abstractmethod
-    def speak(self) -> None: ...
 ```
 ------
 
@@ -443,73 +313,42 @@ class Base(ABC):
 #: src/python/inheritance.py
 from base import Base
 
-class Dog(Base):
-    def eat(self): print("eating dog food")
-    def speak(self): print("woof")
-
 class Person(Base):
     def eat(self): print("eating pizza")
-    def speak(self): print("hello")
-```
----
-```
+
 class Robot(Base):
     def eat(self): print("charging")
-    def speak(self): print("operational")
-
-class Slug(Base):
-    def eat(self): print("eating grass")
-    def speak(self): pass
 
 def nourish(subject: Base):
     subject.eat()
-    subject.speak()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)
 ```
 ------
 
 ```
 //: src/rust/inheritance/src/main.rs
-struct Dog;
 struct Person;
 struct Robot;
-struct Slug;
 
 trait Base {
   fn eat(&self);
-  fn speak(&self);
-}
-
-impl Base for Dog {
-  fn eat(&self) { println!("eating dog food"); }
-  fn speak(&self) { println!("woof"); }
 }
 
 impl Base for Person {
   fn eat(&self) { println!("eating pizza"); }
-  fn speak(&self) { println!("hello"); }
-}
-```
----
-```
-impl Base for Robot {
-  fn eat(&self) { println!("charging"); }
-  fn speak(&self) { println!("operational"); }
 }
 
-impl Base for Slug {
-  fn eat(&self) { println!("eating grass"); }
-  fn speak(&self) {}
+impl Base for Robot {
+  fn eat(&self) { println!("charging"); }
 }
 
 fn main() {
-  let v: Vec<&dyn Base> = vec![&Dog{}, &Person{}, &Robot{}, &Slug{}];
+  let v: Vec<&dyn Base> = vec![&Person{}, &Robot{}];
   for d in v.iter() {
     d.eat();
-    d.speak();
   }
 }
 ```
@@ -520,121 +359,62 @@ fn main() {
 
 ---
 
-```
-//: src/kotlin/src/main/kotlin/DisjointTypes.kt
-open class Dog {
-    fun gulp() = println("eating dog food")
-    fun bark() = println("woof")
-}
-
-open class Person {
-    fun scarf() = println("eating pizza")
-    fun greet() = println("hello")
-}
-
-open class Robot {
-    fun charge() = println("charging")
-    fun initiate() = println("operational")
-}
-
-open class Slug {
-    fun absorb() = println("eating grass")
-}
-```
-------
-
+Cannot locate C:\Git\PolymorphismUnbound\src\kotlin\src\main\kotlin\DisjointTypes.kt
 ```
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 // Can also do this in Java
+import disjoint.*
 
 interface Base {
     fun eat()
-    fun speak() {}
-}
-
-class Dog2 : Base, Dog() {
-    override fun eat() = gulp()
-    override fun speak() = bark()
 }
 
 class Person2 : Base, Person() {
-    override fun eat() = scarf()
-    override fun speak() = greet()
+    override fun eat() = consume()
 }
-```
----
-```
+
 class Robot2 : Base, Robot() {
     override fun eat() = charge()
-    override fun speak() = initiate()
 }
 
-class Slug2 : Base, Slug() {
-    override fun eat() = absorb()
-}
+fun nourish(subject: Base) = subject.eat()
 
-fun nourish(subject: Base) {
-    subject.eat()
-    subject.speak()
-}
-
-fun main() = listOf(
-    Dog2(), Person2(), Robot2(), Slug2()
-).forEach { nourish(it) }
+fun main() = listOf(Person2(), Robot2()).forEach { nourish(it) }
 ```
 ------
 
 ```
 //: src/kotlin/src/main/kotlin/Composition.kt
 // Can use this approach in most languages
-
-class Dog3 : Base {
-    private val dog = Dog()
-    override fun eat() = dog.gulp()
-    override fun speak() = dog.bark()
-}
+import disjoint.*
 
 class Person3 : Base {
     private val person = Person()
-    override fun eat() = person.scarf()
-    override fun speak() = person.greet()
+    override fun eat() = person.consume()
 }
-```
----
-```
+
 class Robot3 : Base {
     private val robot = Robot()
     override fun eat() = robot.charge()
-    override fun speak() = robot.initiate()
 }
 
-class Slug3 : Base {
-    private val slug = Slug()
-    override fun eat() = slug.absorb()
-}
-
-fun main() = listOf(
-    Dog3(), Person3(), Robot3(), Slug3()
-).forEach { nourish(it) }
+fun main() = listOf(Person3(), Robot3()).forEach { nourish(it) }
 ```
 ------
 
 ```
 //: src/kotlin/src/main/kotlin/Delegation.kt
+package delegation
+import inheritance.*
 
 class Delegate(b: Base) : Base by b {
     fun consume() = eat()
-    fun report() = speak()
 }
 
-fun nourish2(d: Delegate) {
-    d.consume()
-    d.report()
-}
+fun nourish(d: Delegate) = d.consume()
 
-fun main() = listOf(
-    Delegate(Dog3()), Delegate(Person3()), Delegate(Robot3()), Delegate(Slug3())
-).forEach { nourish2(it) }
+fun main() = listOf(Delegate(Person()), Delegate(Robot()))
+    .forEach { nourish(it) }
 ```
 ------
 
@@ -644,74 +424,37 @@ fun main() = listOf(
 #include <iostream>
 using namespace std;
 
-class Dog {
-    public:
-    void gulp() { cout << "eating dog food" << endl; }
-    void bark() { cout << "woof"  << endl; }
-};
-
 class Person {
     public:
     void scarf() { cout << "eating pizza" << endl; }
-    void greet() { cout << "hello"  << endl; }
 };
-```
----
-```
+
 class Robot {
     public:
     void charge() { cout << "charging" << endl; }
-    void initiate() { cout << "operational" << endl; }
 };
 
-class Slug {
-    public:
-    void absorb() { cout << "eating grass"  << endl; }
-};
-```
----
-```
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
-    virtual void speak() = 0;
 };
 
-class Dog2: public Base, private Dog {
-    public:
-    void eat() override { gulp(); }
-    void speak() override { bark(); }
-};
-```
----
-```
 class Person2: public Base, private Person {
     public:
     void eat() override { scarf(); }
-    void speak() override { greet(); }
 };
 
 class Robot2: public Base, private Robot {
     public:
     void eat() override { charge(); }
-    void speak() override { initiate(); }
 };
 
-class Slug2: public Base, private Slug {
-    public:
-    void eat() override { absorb(); }
-    void speak() override {}
-};
-```
----
-```
 void nourish(Base* base) {
     base->eat();
-    base->speak();
 }
 
 int main() {
-    Base* subjects[] = { new Dog2(), new Person2(), new Robot2(), new Slug2() };
+    Base* subjects[] = { new Person2(), new Robot2() };
     for(Base* subject: subjects)
       nourish(subject);
 }
@@ -720,52 +463,31 @@ int main() {
 
 ```
 #: src/python/disjoint_types.py
-class Dog:
-    def eat(self): print("eating dog food")
-    def bark(self): print("woof")
 
 class Person:
-    def eat(self): print("eating pizza")
-    def greet(self): print("hello")
+    def consume(self): print("eating pizza")
 
 class Robot:
-    def eat(self): print("charging")
-    def initiate(self): print("operational")
-
-class Slug:
-    def eat(self): print("eating grass")
+    def charge(self): print("charging")
 ```
 ------
 
 ```
 #: src/python/multiple_inheritance.py
 from base import Base
-from disjoint_types import Dog, Person, Robot, Slug
-
-class Dog2(Dog, Base): # Order of base classes is important
-    def eat(self): super().eat()
-    def speak(self): self.bark()
+from disjoint_types import Person, Robot
 
 class Person2(Person, Base):
-    def eat(self): super().eat()
-    def speak(self): self.greet()
+    def eat(self): super().consume()
 
 class Robot2(Robot, Base):
-    def eat(self): super().eat()
-    def speak(self): self.initiate()
+    def eat(self): super().charge()
 
-class Slug2(Slug, Base):
-    def eat(self): super().eat()
-    def speak(self): pass  # Required by ABC
-```
----
-```
 def nourish(base: Base):
     base.eat()
-    base.speak()
 
 if __name__ == '__main__':
-    for subject in [Dog2(), Person2(), Robot2(), Slug2()]:
+    for subject in [Person2(), Robot2()]:
         nourish(subject)
 ```
 ------
@@ -776,46 +498,37 @@ if __name__ == '__main__':
 ---
 
 ```
-//: src/java/src/Generics.java
-package generics;
-
-class Holder<T> {
-  private T value = null;
-  void set(T x) { value = x;}
-  T get() { return value; }
-}
-
-interface Base {
-  void speak();
-}
-
-class Dog implements Base {
-  @Override
-  public void speak() {
-    System.out.println("woof");
-  }
-}
-```
----
-```
-class Person implements Base {
-  @Override
-  public void speak() {
-    System.out.println("hello");
-  }
-}
+//: src/kotlin/src/main/kotlin/Generics.java
+// {NewFeature} Preview in JDK 17
+// Compile with javac flags:
+//   --enable-preview --source 17
+import java.util.List;
 
 public class Generics {
+  static <T> T nourish(T x) {
+    // x.consume(); // Nope
+    switch(x) {
+      case Person p -> p.consume();
+      case Robot r -> r.charge();
+      default -> throw new IllegalStateException("Unexpected: " + x);
+    }
+    return x;
+  }
+  static Object nourish2(Object x) {
+    switch(x) {
+      case Person p -> p.consume();
+      case Robot r -> r.charge();
+      default -> throw new IllegalStateException("Unexpected: " + x);
+    }
+    return x;
+  }
+  ```
+---
+```
   public static void main(String... args) {
-    var dogHolder = new Holder<Dog>();
-    dogHolder.set(new Dog());
-    Dog d = dogHolder.get();
-    // dogHolder.set(new Person());  // Nope
-    var baseHolder = new Holder<Base>();
-    baseHolder.set(new Dog());
-    baseHolder.set(new Person());
-    // Person p = baseHolder.get();  // Nope
-    Base b = baseHolder.get();
+    List.of(new Person(), new Robot()).forEach(Generics::nourish);
+    Person p = nourish(new Person());
+    Object p2 = nourish2(new Person());
   }
 }
 ```
@@ -823,36 +536,32 @@ public class Generics {
 
 ```
 //: src/kotlin/src/main/kotlin/Generics.kt
+package generics
+import disjoint.*
 
 fun <T> nourish(subject: T) : T {
     when (subject) {
-        is Dog -> {
-            subject.gulp()
-            subject.bark()
-        }
-        is Person -> {
-            subject.scarf()
-            subject.greet()
-        }
-        is Robot -> {
-            subject.charge()
-            subject.initiate()
-        }
-        is Slug -> {
-            subject.absorb()
-        }
+        is Person -> subject.consume()
+        is Robot -> subject.charge()
     }
     return subject
 }
-```
----
-```
+
+fun nourish2(subject: Any) : Any {
+    when (subject) {
+        is Person -> subject.consume()
+        is Robot -> subject.charge()
+    }
+    return subject
+}
+
 fun main() {
-    listOf(
-        Dog(), Person(), Robot(), Slug()
-    ).map { nourish(it) }.forEach{ println(it) }
-    val d: Dog = nourish(Dog())
-    println(d)
+    listOf(Person(), Robot())
+        .map { nourish(it) }.forEach{ println(it) }
+    val r: Robot = nourish(Robot())
+    println(r)
+    // val p: Person = nourish2(Person()) // Nope
+    val o: Any = nourish2(Person())
 }
 ```
 ------
@@ -925,16 +634,13 @@ Scala & Rust?
 
 ```
 #: src/python/duck_typing.py
-from disjoint_types import Dog, Person, Robot, Slug
+from inheritance import Person, Robot
 
-def nourish(subject):
+def nourish(subject: object):
     subject.eat()  # Duck typing
-    if type(subject) is Dog: subject.bark()
-    if type(subject) is Person: subject.greet()
-    if type(subject) is Robot: subject.initiate()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)
         # nourish("")  # Runtime error
 ```
@@ -946,30 +652,16 @@ if __name__ == '__main__':
 #include <iostream>
 using namespace std;
 
-class Dog {
-    public:
-    void eat() { cout << "eating dog food" << endl; }
-};
-
 class Person {
     public:
     void eat() { cout << "eating pizza" << endl; }
 };
-```
----
-```
+
 class Robot {
     public:
     void eat() { cout << "charging" << endl; }
 };
 
-class Slug {
-    public:
-    void eat() { cout << "eating grass"  << endl; }
-};
-```
----
-```
 // 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {
@@ -977,10 +669,8 @@ void nourish(T subject) {
 }
 
 int main() {
-    nourish(Dog());
     nourish(Person());
     nourish(Robot());
-    nourish(Slug());
 }
 ```
 ------
@@ -992,17 +682,15 @@ int main() {
 
 ```
 #: src/python/union_types.py
-from disjoint_types import Dog, Person, Robot, Slug
+from disjoint_types import Person, Robot
 
-def nourish(sumtype_obj: Dog | Person | Robot | Slug):
-    sumtype_obj.eat()
-    match sumtype_obj:  # No exhaustiveness checking
-        case Dog(): sumtype_obj.bark()
-        case Person(): sumtype_obj.greet()
-        case Robot(): sumtype_obj.initiate()
+def nourish(combined: Person | Robot):
+    match combined:  # No exhaustiveness checking
+        case Person(): combined.consume()
+        case Robot(): combined.charge()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)
     # nourish("")  # Type-check error
 ```
@@ -1059,100 +747,38 @@ def nourish(x: Dog | Person | Robot | Slug) = x match
 ```
 ------
 
-```
-// src/java/src/PatternMatching.java
-// {NewFeature} Preview in JDK 17
-// Compile with javac flags:
-//   --enable-preview --source 17
-import java.util.List;
-
-class Hedgehog {
-  void groom() {}
-  void walk() {}
-}
-
-class Fish {
-  void feed() {}
-  void changeWater() {}
-}
-```
----
-```
-public class PatternMatching {
-  static void careFor(Object p) {  // No union types
-    switch(p) { // Exhaustive except for Null
-      case Hedgehog d -> {
-        d.groom();
-        d.walk();
-      }
-      case Fish f -> {
-        f.feed();
-        f.changeWater();
-      }
-      // case null -> {} // Not required
-      case default -> {}
-    };
-  }
-  public static void main(String... args) {
-    List.of(new Hedgehog(), new Fish())
-        .forEach(PatternMatching::careFor);
-  }
-}
-```
-------
-
+Cannot locate C:\Git\PolymorphismUnbound\src\java\src\PatternMatching.java
 ```
 //: src/cpp/UnionTypes.cpp
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;
 
-class Dog {
-    public:
-    void gulp() { cout << "eating dog food" << endl; }
-    void bark() { cout << "woof"  << endl; }
-};
-
 class Person {
     public:
-    void scarf() { cout << "eating pizza" << endl; }
-    void greet() { cout << "hello"  << endl; }
+    void eat() { cout << "eating pizza" << endl; }
 };
 
 class Robot {
     public:
     void charge() { cout << "charging" << endl; }
-    void initiate() { cout << "operational" << endl; }
 };
 
-class Slug {
-    public:
-    void absorb() { cout << "eating grass"  << endl; }
-};
-```
----
-```
-// sumTypeObj is a 'union type':
-void nourish(variant<Dog, Person, Robot, Slug> sumTypeObj) {
-    if(auto dogPtr(get_if<Dog>(&sumTypeObj)); dogPtr) {
-        dogPtr->gulp();
-        dogPtr->bark();
+typedef variant<Person, Robot> unionType;
+
+void nourish(unionType combined) {
+    if(auto personPtr(get_if<Person>(&combined)); personPtr) {
+        personPtr->eat();
     }
-    else if(auto personPtr(get_if<Person>(&sumTypeObj)); personPtr) {
-        personPtr->scarf();
-        personPtr->greet();
-    }
-    else if(auto robotPtr(get_if<Robot>(&sumTypeObj)); robotPtr) {
+    else if(auto robotPtr(get_if<Robot>(&combined)); robotPtr) {
         robotPtr->charge();
-        robotPtr->initiate();
     }
-    // No exhaustiveness checking
+    // No exhaustiveness checking (comment out the 'else if' clause)
 }
 
 int main() {
-    typedef variant<Dog, Person, Robot, Slug> Disjoint;
-    Disjoint subjects[] = { Dog(), Person(), Robot(), Slug() };
-    for(Disjoint subject: subjects)
+    unionType subjects[] = { Person(), Robot() };
+    for(unionType subject: subjects)
       nourish(subject);
 }
 ```
@@ -1166,35 +792,16 @@ int main() {
 ```
 #: src/python/protocols.py
 from typing import Protocol
-
-class Dog:
-    def eat(self): print("eating dog food")
-    def speak(self): print("woof")
-
-class Person:
-    def eat(self): print("eating pizza")
-    def speak(self): print("hello")
-
-class Robot:
-    def eat(self): print("charging")
-    def speak(self): print("operational")
-```
----
-```
-class Slug:
-    def eat(self): print("eating grass")
-    def speak(self): pass
+from inheritance import Person, Robot
 
 class Base(Protocol):
     def eat(self): ...
-    def speak(self): ...
 
 def nourish(subject: Base):
     subject.eat()
-    subject.speak()
 
 if __name__ == '__main__':
-    for subject in [Dog(), Person(), Robot(), Slug()]:
+    for subject in [Person(), Robot()]:
         nourish(subject)
 ```
 ------
@@ -1333,36 +940,22 @@ package algebraic
 import algebraic.ADT.*
 
 sealed class ADT(val eats: String) {
-    fun eat() = println("eating $eats")
-
-    class Dog(food: String = "dog food") : ADT(food) {
-        fun bark() { println("woof") }
-    }
     class Person(food: String) : ADT(food) {
-        fun greet() { println("hello") }
+        fun consume() = println("eating pizza")
     }
     class Robot : ADT("electricity") {
-        fun initiate() { println("operational") }
-    }
-    class Slug(food: String) : ADT(food)
-}
-```
----
-```
-fun nourish(subject: ADT) {
-    subject.eat()
-    when (subject) {
-        is Dog -> subject.bark()
-        is Person -> subject.greet()
-        is Robot -> subject.initiate()
-        is Slug -> {}
+        fun charge() = println("charging")
     }
 }
 
-fun main() = listOf(
-    Dog(), Person("pizza"),
-    Robot(), Slug("grass")
-).forEach { nourish(it) }
+fun nourish(subject: ADT) {
+    when (subject) {
+        is Person -> subject.consume()
+        is Robot -> subject.charge()
+    }
+}
+
+fun main() = listOf(Person("pizza"), Robot()).forEach { nourish(it) }
 ```
 ------
 
@@ -1420,48 +1013,44 @@ def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
 
 ```
 //: src/rust/typeclasses/src/main.rs
-
-struct Dog;
-impl Dog {
-    fn bark(&self) {
-        println!("woof");
-    }
-}
-
 struct Person;
+struct Robot;
+
 impl Person {
-    fn greet(&self) {
-        println!("hello");
+  fn consume(&self) { println!("eating pizza"); }
+}
+
+impl Robot {
+  fn charge(&self) { println!("charging"); }
+}
+```
+---
+```
+pub trait Eater {
+    fn eat(&self);
+}
+
+impl Eater for Person {
+    fn eat(&self) {
+        self.consume();
+    }
+}
+
+impl Eater for Robot {
+    fn eat(&self) {
+        self.charge();
     }
 }
 ```
 ---
 ```
-pub trait Communicate {
-    fn speak(&self);
-}
-
-impl Communicate for Dog {
-    fn speak(&self) {
-        self.bark();
-    }
-}
-
-impl Communicate for Person {
-    fn speak(&self) {
-        self.greet();
-    }
-}
-```
----
-```
-pub fn talk<T: Communicate>(x: &T) {
-    x.speak();
+pub fn nourish<T: Eater>(x: &T) {
+    x.eat();
 }
 
 fn main() {
-    talk(&Dog {});
-    talk(&Person {});
+    nourish(&Person {});
+    nourish(&Robot {});
 }
 ```
 ------
