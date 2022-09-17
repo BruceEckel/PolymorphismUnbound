@@ -7,4 +7,4 @@ def nourish(subject: object):
 if __name__ == '__main__':
     for subject in [Person(), Robot()]:
         nourish(subject)
-        # nourish("")  # Runtime error
+    # nourish("")  # Runtime error

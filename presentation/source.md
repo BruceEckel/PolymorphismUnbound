@@ -76,9 +76,7 @@ h2 {
 ## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
 
 * Usually appears in the form of a function parameter
-* Achieving polymorphism
-  * Modifying types vs.
-  * Modifying functions
+* Modifying types vs. Modifying functions
 
 ---
 
@@ -98,7 +96,6 @@ www.AtomicKotlin.com
 
 # Java
 
-(_without reflection_)
 www.OnJava8.com
 ![bg fit left](TIJava4cover.jpg)
 ![bg fit left](OnJava8Cover.jpg)
@@ -131,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ```
 f("hello")
+
 f(42.24)
 ```
 
@@ -145,7 +143,10 @@ f(42.24)
 
 ---
 
-# Classic Inheritance following Liskov Substitution
+# Subtype Polymorphism
+
+- "Classic" inheritance
+- Follows the Liskov Substitution Principle
 
 ---
 
@@ -196,7 +197,13 @@ Holder<List<Car>>(listOf(car))
 |==> #: src/python/duck_typing.py
 |==> //: src/cpp/StructuralTyping.cpp
 
-# Union Types aka Sum Types
+# Union Types
+
+- aka Sum Types
+
+```
+UnionType = Type1 | Type2 | Type3 | ...
+```
 
 ---
 
@@ -205,14 +212,18 @@ Holder<List<Car>>(listOf(car))
 |==> //: src/scala/DisjointTypes.scala
 |==> //: src/scala/UnionTypes.scala
 |==> //: src/golang/uniontypes/uniontypes.go
-|==> //: src/cpp/UnionTypes.cpp
+
+- `src/cpp/UnionTypes.cpp`
 
 # Protocols
 
 ---
 
-|==> #: src/python/protocols.py
 |==> //: src/golang/structural/structural.go
+
+- `src/python/protocols.py`
+
+---
 
 # Algebraic Data Types (ADTs)
 
@@ -237,11 +248,14 @@ Holder<List<Car>>(listOf(car))
 
 ---
 
-# Moving Away from Code-Reuse Inheritance
+# Inheritance for Code-Reuse
+- We seem to be moving away from this
 
 ---
 
 |==> //: src/rust/inheritance/src/main.rs
+
+- Go only allows interface-implementation
 
 # Takeaways
 

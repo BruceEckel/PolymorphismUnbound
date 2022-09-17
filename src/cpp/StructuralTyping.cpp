@@ -12,7 +12,7 @@ class Robot {
     public:
     void eat() { cout << "charging" << endl; }
 };
-
+//---
 // 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {

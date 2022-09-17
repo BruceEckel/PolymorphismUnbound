@@ -9,7 +9,7 @@ type Robot struct{}
 
 func (robot Robot) Consume() { println("charging") }
 
-// ---
+//---
 type Consumer interface {
 	Consume()
 }

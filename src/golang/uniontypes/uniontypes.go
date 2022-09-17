@@ -9,7 +9,7 @@ type Robot struct{}
 
 func (robot Robot) Charge() { println("charging") }
 
-// ---
+//---
 func Nourish[T Person | Robot](subject T) {
 	switch subjectTyped := any(subject).(type) {
 	case Person:

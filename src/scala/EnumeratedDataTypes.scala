@@ -12,5 +12,4 @@ enum EnumType:
 def nourish(x: EnumType): Unit =
     x.eat()
 
-@main def main() =
-    List(Person, Robot).foreach(nourish)
+@main def main() = List(Person, Robot).foreach(nourish)

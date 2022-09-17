@@ -76,9 +76,7 @@ h2 {
 ## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
 
 * Usually appears in the form of a function parameter
-* Achieving polymorphism
-  * Modifying types vs.
-  * Modifying functions
+* Modifying types vs. Modifying functions
 
 ---
 
@@ -98,7 +96,6 @@ www.AtomicKotlin.com
 
 # Java
 
-(_without reflection_)
 www.OnJava8.com
 ![bg fit left](TIJava4cover.jpg)
 ![bg fit left](OnJava8Cover.jpg)
@@ -131,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ```
 f("hello")
+
 f(42.24)
 ```
 
@@ -172,7 +170,10 @@ fun main() {
 
 ---
 
-# Classic Inheritance following Liskov Substitution
+# Subtype Polymorphism
+
+- "Classic" inheritance
+- Follows the Liskov Substitution Principle
 
 ---
 
@@ -202,7 +203,7 @@ fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
   - `src/scala/Inheritance.scala`
   - `src/java/src/Inheritance.java`
   - `src/cpp/Inheritance.cpp`
-  - `src/python/base.py`
+  <!-- - `src/python/base.py` -->
   - `src/python/inheritance.py`
 
 ---
@@ -303,10 +304,41 @@ int main() {
 
 # Parametric Polymorphism (Generics)
 
+```
+class Holder<T> ...
+
+Holder<Car>(car)
+Holder<Robot>(robot)
+Holder<List<Car>>(listOf(car))
+```
+
 ---
 
 ```
-//: src/kotlin/src/main/kotlin/Generics.kt                         [Kotlin]
+//: src/kotlin/src/main/kotlin/Holder.kt                           [Kotlin]
+
+class Holder<T>(private val value: T) {
+    fun get(): T = value
+}
+
+fun main() {
+    class Car; class Robot
+
+    val car = Car()
+    val garage = Holder<Car>(car)
+    val c: Car = garage.get()
+
+    val robot = Robot()
+    val chargingStation = Holder<Robot>(robot)
+    val r: Robot = chargingStation.get()
+
+    val carList = Holder<List<Car>>(listOf(car))
+}
+```
+------
+
+```
+//: src/kotlin/src/main/kotlin/GenericFunctions.kt                 [Kotlin]
 package generics
 import disjoint.*
 
@@ -359,7 +391,7 @@ def nourish(subject: object):
 if __name__ == '__main__':
     for subject in [Person(), Robot()]:
         nourish(subject)
-        # nourish("")  # Runtime error
+    # nourish("")  # Runtime error
 ```
 ------
 
@@ -378,7 +410,9 @@ class Robot {
     public:
     void eat() { cout << "charging" << endl; }
 };
-
+```
+---
+```
 // 'Structural typing' aka 'duck typing'
 template <class T>
 void nourish(T subject) {
@@ -393,7 +427,13 @@ int main() {
 ------
 
 
-# Union Types aka Sum Types
+# Union Types
+
+- aka Sum Types
+
+```
+UnionType = Type1 | Type2 | Type3 | ...
+```
 
 ---
 
@@ -426,7 +466,6 @@ if __name__ == '__main__':
 
 ```
 //: src/scala/DisjointTypes.scala                                   [Scala]
-// Nothing in common
 package disjointtypes
 
 class Person:
@@ -465,7 +504,9 @@ type Robot struct{}
 
 func (robot Robot) Charge() { println("charging") }
 
-// ---
+```
+---
+```
 func Nourish[T Person | Robot](subject T) {
     switch subjectTyped := any(subject).(type) {
     case Person:
@@ -483,63 +524,12 @@ func main() {
 ```
 ------
 
-```
-//: src/cpp/UnionTypes.cpp                                            [C++]
-#include <variant>  // C++ 17
-#include <iostream>
-using namespace std;
 
-class Person {
-    public:
-    void eat() { cout << "eating pizza" << endl; }
-};
-
-class Robot {
-    public:
-    void charge() { cout << "charging" << endl; }
-};
-
-typedef variant<Person, Robot> unionType;
-
-void nourish(unionType combined) {
-    if(auto personPtr(get_if<Person>(&combined)); personPtr) {
-        personPtr->eat();
-    }
-    else if(auto robotPtr(get_if<Robot>(&combined)); robotPtr) {
-        robotPtr->charge();
-    }
-    // No exhaustiveness checking (comment out the 'else if' clause)
-}
-
-int main() {
-    unionType subjects[] = { Person(), Robot() };
-    for(unionType subject: subjects)
-      nourish(subject);
-}
-```
-------
-
+- `src/cpp/UnionTypes.cpp`
 
 # Protocols
 
 ---
-
-```
-#: src/python/protocols.py                                         [Python]
-from typing import Protocol
-from inheritance import Person, Robot
-
-class Base(Protocol):
-    def eat(self): ...
-
-def nourish(subject: Base):
-    subject.eat()
-
-if __name__ == '__main__':
-    for subject in [Person(), Robot()]:
-        nourish(subject)
-```
-------
 
 ```
 //: src/golang/structural/structural.go                                [Go]
@@ -553,7 +543,9 @@ type Robot struct{}
 
 func (robot Robot) Consume() { println("charging") }
 
-// ---
+```
+---
+```
 type Consumer interface {
     Consume()
 }
@@ -571,6 +563,10 @@ func main() {
 ```
 ------
 
+
+- `src/python/protocols.py`
+
+---
 
 # Algebraic Data Types (ADTs)
 
@@ -591,8 +587,7 @@ enum EnumType:
 def nourish(x: EnumType): Unit =
     x.eat()
 
-@main def main() =
-    List(Person, Robot).foreach(nourish)
+@main def main() = List(Person, Robot).foreach(nourish)
 ```
 ------
 
@@ -609,8 +604,7 @@ enum EnumType(food: String):
 def nourish(x: EnumType): Unit =
     x.eat()
 
-@main def main() =
-    List(Person, Robot).foreach(nourish)
+@main def main() = List(Person, Robot).foreach(nourish)
 ```
 ------
 
@@ -743,7 +737,8 @@ fn main() {
 
 ---
 
-# Moving Away from Code-Reuse Inheritance
+# Inheritance for Code-Reuse
+- We seem to be moving away from this
 
 ---
 
@@ -773,6 +768,8 @@ fn main() {
 ```
 ------
 
+
+- Go only allows interface-implementation
 
 # Takeaways
 

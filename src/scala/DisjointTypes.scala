@@ -1,5 +1,4 @@
 //: src/scala/DisjointTypes.scala
-// Nothing in common
 package disjointtypes
 
 class Person:
