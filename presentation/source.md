@@ -76,6 +76,9 @@ h2 {
 ## _A type represents multiple types_
 <br/><br/>
 Usually appears in the form of a function parameter
+Achieving polymorphism:
+- Modifying types vs.
+- Modifying functions
 
 ---
 
@@ -119,7 +122,8 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-# Python, Rust, Go
+## Python: 25 years
+## Rust, Go: Hours
 
 ---
 
@@ -127,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-|==> //: src/kotlin/src/main/kotlin/DisjointTypes.kt
+|==> //: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
 
 - Java overloading: `src/java/src/AdHoc.java`
@@ -147,29 +151,27 @@ h1, h2, h3, h4, h5, h6 {
   - `src/cpp/Inheritance.cpp`
   - `src/python/base.py`
   - `src/python/inheritance.py`
-  - `src/rust/inheritance/src/main.rs`
+
+---
 
 # Multiple Inheritance
 
 ---
 
-|==> //: src/kotlin/src/main/kotlin/DisjointTypes.kt
 |==> //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 |==> //: src/kotlin/src/main/kotlin/Composition.kt
-|==> //: src/kotlin/src/main/kotlin/Delegation.kt
+<!-- |==> //: src/kotlin/src/main/kotlin/Delegation.kt -->
 |==> //: src/cpp/MultipleInheritance.cpp
-|==> #: src/python/disjoint_types.py
-|==> #: src/python/multiple_inheritance.py
+<!-- |==> #: src/python/multiple_inheritance.py -->
 
-# Parametric Polymorphism
+# Parametric Polymorphism (Generics)
 
 ---
 
-|==> //: src/java/src/Generics.java
 |==> //: src/kotlin/src/main/kotlin/Generics.kt
-|==> //: src/golang/generic/generics.go
 
-Scala & Rust?
+- Java: `src/java/src/Generics.java`
+- Kotlin has reified generics
 
 ---
 
@@ -184,10 +186,11 @@ Scala & Rust?
 
 ---
 
+|==> #: src/python/disjoint_types.py
 |==> #: src/python/union_types.py
 |==> //: src/scala/DisjointTypes.scala
 |==> //: src/scala/UnionTypes.scala
-|==> // src/java/src/PatternMatching.java
+|==> //: src/golang/uniontypes/uniontypes.go
 |==> //: src/cpp/UnionTypes.cpp
 
 # Protocols
@@ -219,6 +222,12 @@ Scala & Rust?
 - Julia
 
 ---
+
+# Moving Away from Code-Reuse Inheritance
+
+---
+
+|==> //: src/rust/inheritance/src/main.rs
 
 # Takeaways
 

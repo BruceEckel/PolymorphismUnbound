@@ -1,40 +1,25 @@
 //: src/golang/structural/structural.go
 package main
 
-type Dog struct{}
-
-func (dog Dog) Eat()     { println("eating dog food") }
-func (dog Dog) Speak() { println("woof") }
-
 type Person struct{}
 
-func (person Person) Eat()     { println("eating pizza") }
-func (person Person) Speak() { println("hello") }
-//---
+func (person Person) Consume() { println("eating pizza") }
+
 type Robot struct{}
 
-func (robot Robot) Eat()     { println("charging") }
-func (robot Robot) Speak() { println("operational") }
+func (robot Robot) Consume() { println("charging") }
 
-type Slug struct{}
-
-func (slug Slug) Eat()     { println("eating grass") }
-func (slug Slug) Speak() {}
-//---
-type EaterSpeaker interface {
-	Eat()
-	Speak()
+// ---
+type Consumer interface {
+	Consume()
 }
 
-func Nourish(x EaterSpeaker) {
-	x.Eat()
-	x.Speak()
+func Nourish(x Consumer) {
+	x.Consume()
 }
 
 func main() {
-	subjects := []EaterSpeaker{
-		Dog{}, Person{}, Robot{}, Slug{},
-	}
+	subjects := []Consumer{Person{}, Robot{}}
 	for _, subject := range subjects {
 		Nourish(subject)
 	}

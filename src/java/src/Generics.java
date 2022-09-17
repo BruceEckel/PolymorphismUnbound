@@ -1,4 +1,4 @@
-//: src/kotlin/src/main/kotlin/Generics.java
+//: src/java/src/Generics.java
 // {NewFeature} Preview in JDK 17
 // Compile with javac flags:
 //   --enable-preview --source 17

@@ -119,13 +119,28 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-# Python, Rust, Go
+## Python: 25 years
+## Rust, Go: Hours
 
 ---
 
 # Ad-Hoc Polymorphism (Overloading)
 
 ---
+
+```
+//: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
+package disjoint
+
+open class Person {
+    fun consume() = println("eating pizza")
+}
+
+open class Robot {
+    fun charge() = println("charging")
+}
+```
+------
 
 ```
 //: src/kotlin/src/main/kotlin/AdHoc.kt
@@ -142,36 +157,9 @@ fun main() {
 ```
 ------
 
-```
-//: src/cpp/AdHoc.cpp
-// All C++ examples tested with https://cpp.sh
-#include <string>
-#include <iostream>
-using namespace std;
 
-class Person {
-    public:
-    void eat() { cout << "eating pizza" << endl; }
-};
-
-class Robot {
-    public:
-    void charge() { cout << "charging" << endl; }
-};
-
-void nourish(Person p) { p.eat(); }
-
-void nourish(Robot r) { r.charge(); }
-
-int main() {
-    nourish(Person());
-    nourish(Robot());
-}
-```
-------
-
-Cannot locate C:\Git\PolymorphismUnbound\src\java\src\DisjointTypes.java
-
+- Java overloading: `src/java/src/AdHoc.java`
+- C++ overloading: `src/cpp/AdHoc.cpp`
 - Python overloading: `src/python/single_dispatch.py`
 
 ---
@@ -202,164 +190,19 @@ fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
 ```
 ------
 
-```
-//: src/scala/Inheritance.scala
-package inheritance
 
-trait Base:
-    def eat(): Unit
-    def speak(): Unit
+  - `src/scala/Inheritance.scala`
+  - `src/java/src/Inheritance.java`
+  - `src/cpp/Inheritance.cpp`
+  - `src/python/base.py`
+  - `src/python/inheritance.py`
 
-class Dog extends Base:
-    def eat() = println("eating dog food")
-    def speak() = println("woof")
-
-class Person extends Base:
-    def eat() = println("eating pizza")
-    def speak() = println("hello")
-```
 ---
-```
-class Robot extends Base:
-    def eat() = println("charging")
-    def speak() = println("operational")
-
-class Slug extends Base:
-    def eat() = println("eating grass")
-    def speak() = {}
-
-def nourish(x: Base): Unit =
-    x.eat()
-    x.speak()
-
-@main def main() =
-    List(Dog(), Person(), Robot(), Slug()).foreach(nourish(_))
-```
-------
-
-```
-//: src/java/src/Inheritance.java
-package inheritance;
-import java.util.List;
-
-interface Base {
-  void eat();
-}
-
-class Person implements Base {
-  @Override
-  public void eat() { System.out.println("eating pizza"); }
-}
-
-class Robot implements Base {
-  @Override
-  public void eat() { System.out.println("charging"); }
-}
-
-public class Inheritance {
-  static void nourish(Base subject) {
-    subject.eat();
-  }
-  public static void main(String... args) {
-    List.of(new Person(), new Robot()).forEach(Inheritance::nourish);
-  }
-}
-```
-------
-
-```
-//: src/cpp/Inheritance.cpp
-#include <iostream>
-using namespace std;
-
-class Base {
-    public:
-    virtual void eat() = 0;  // Pure virtual == abstract
-};
-
-class Person: public Base {
-    public:
-    void eat() override { cout << "eating pizza" << endl; }
-};
-
-class Robot: public Base {
-    public:
-    void eat() override { cout << "charging" << endl; }
-};
-
-void nourish(Base* base) {
-    base->eat();
-}
-
-int main() {
-    Base* subjects[] = { new Person(), new Robot() };
-    for(Base* subject: subjects)
-      nourish(subject);
-}
-```
-------
-
-```
-#: src/python/base.py
-from abc import ABC, abstractmethod
-
-class Base(ABC):
-    @abstractmethod
-    def eat(self) -> None: ...
-```
-------
-
-```
-#: src/python/inheritance.py
-from base import Base
-
-class Person(Base):
-    def eat(self): print("eating pizza")
-
-class Robot(Base):
-    def eat(self): print("charging")
-
-def nourish(subject: Base):
-    subject.eat()
-
-if __name__ == '__main__':
-    for subject in [Person(), Robot()]:
-        nourish(subject)
-```
-------
-
-```
-//: src/rust/inheritance/src/main.rs
-struct Person;
-struct Robot;
-
-trait Base {
-  fn eat(&self);
-}
-
-impl Base for Person {
-  fn eat(&self) { println!("eating pizza"); }
-}
-
-impl Base for Robot {
-  fn eat(&self) { println!("charging"); }
-}
-
-fn main() {
-  let v: Vec<&dyn Base> = vec![&Person{}, &Robot{}];
-  for d in v.iter() {
-    d.eat();
-  }
-}
-```
-------
-
 
 # Multiple Inheritance
 
 ---
 
-Cannot locate C:\Git\PolymorphismUnbound\src\kotlin\src\main\kotlin\DisjointTypes.kt
 ```
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
 // Can also do this in Java
@@ -402,22 +245,7 @@ fun main() = listOf(Person3(), Robot3()).forEach { nourish(it) }
 ```
 ------
 
-```
-//: src/kotlin/src/main/kotlin/Delegation.kt
-package delegation
-import inheritance.*
-
-class Delegate(b: Base) : Base by b {
-    fun consume() = eat()
-}
-
-fun nourish(d: Delegate) = d.consume()
-
-fun main() = listOf(Delegate(Person()), Delegate(Robot()))
-    .forEach { nourish(it) }
-```
-------
-
+<!-- |==> //: src/kotlin/src/main/kotlin/Delegation.kt -->
 ```
 //: src/cpp/MultipleInheritance.cpp
 // Combining disjoint types using MI
@@ -438,7 +266,9 @@ class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
 };
-
+```
+---
+```
 class Person2: public Base, private Person {
     public:
     void eat() override { scarf(); }
@@ -461,78 +291,11 @@ int main() {
 ```
 ------
 
-```
-#: src/python/disjoint_types.py
+<!-- |==> #: src/python/multiple_inheritance.py -->
 
-class Person:
-    def consume(self): print("eating pizza")
-
-class Robot:
-    def charge(self): print("charging")
-```
-------
-
-```
-#: src/python/multiple_inheritance.py
-from base import Base
-from disjoint_types import Person, Robot
-
-class Person2(Person, Base):
-    def eat(self): super().consume()
-
-class Robot2(Robot, Base):
-    def eat(self): super().charge()
-
-def nourish(base: Base):
-    base.eat()
-
-if __name__ == '__main__':
-    for subject in [Person2(), Robot2()]:
-        nourish(subject)
-```
-------
-
-
-# Parametric Polymorphism
+# Parametric Polymorphism (Generics)
 
 ---
-
-```
-//: src/kotlin/src/main/kotlin/Generics.java
-// {NewFeature} Preview in JDK 17
-// Compile with javac flags:
-//   --enable-preview --source 17
-import java.util.List;
-
-public class Generics {
-  static <T> T nourish(T x) {
-    // x.consume(); // Nope
-    switch(x) {
-      case Person p -> p.consume();
-      case Robot r -> r.charge();
-      default -> throw new IllegalStateException("Unexpected: " + x);
-    }
-    return x;
-  }
-  static Object nourish2(Object x) {
-    switch(x) {
-      case Person p -> p.consume();
-      case Robot r -> r.charge();
-      default -> throw new IllegalStateException("Unexpected: " + x);
-    }
-    return x;
-  }
-  ```
----
-```
-  public static void main(String... args) {
-    List.of(new Person(), new Robot()).forEach(Generics::nourish);
-    Person p = nourish(new Person());
-    Object p2 = nourish2(new Person());
-  }
-}
-```
-------
 
 ```
 //: src/kotlin/src/main/kotlin/Generics.kt
@@ -566,65 +329,9 @@ fun main() {
 ```
 ------
 
-```
-//: src/golang/generic/generics.go
-package main
 
-type Dog struct{}
-
-func (dog Dog) Eat()  { println("eating dog food") }
-func (dog Dog) Bark() { println("woof") }
-
-type Person struct{}
-
-func (person Person) Eat()   { println("eating pizza") }
-func (person Person) Greet() { println("hello") }
-```
----
-```
-type Robot struct{}
-
-func (robot Robot) Eat()      { println("charging") }
-func (robot Robot) Initiate() { println("operational") }
-
-type Slug struct{}
-
-func (slug Slug) Eat() { println("eating grass") }
-```
----
-```
-type Eater interface {
-    Eat()
-}
-// T is a Union type:
-func Poly[T Dog | Person | Robot | Slug](subject T) {
-    switch subjectTyped := any(subject).(type) {
-    case Eater:
-        subjectTyped.Eat()
-    }
-    switch subjectTyped := any(subject).(type) {
-    case Dog:
-        subjectTyped.Bark()
-    case Person:
-        subjectTyped.Greet()
-    case Robot:
-        subjectTyped.Initiate()
-    }  // Not exhaustive
-}
-```
----
-```
-func main() {
-    Poly(Dog{})
-    Poly(Person{})
-    Poly(Robot{})
-    Poly(Slug{})
-}
-```
-------
-
-
-Scala & Rust?
+- Java: `src/java/src/Generics.java`
+- Kotlin has reified generics
 
 ---
 
@@ -681,6 +388,17 @@ int main() {
 ---
 
 ```
+#: src/python/disjoint_types.py
+
+class Person:
+    def consume(self): print("eating pizza")
+
+class Robot:
+    def charge(self): print("charging")
+```
+------
+
+```
 #: src/python/union_types.py
 from disjoint_types import Person, Robot
 
@@ -701,20 +419,11 @@ if __name__ == '__main__':
 // Nothing in common
 package disjointtypes
 
-class Dog:
-    def eat() = println("eating dog food")
-    def bark() = println("woof")
-
 class Person:
-    def scarf() = println("eating pizza")
-    def talk() = println("hello")
+    def consume() = println("eating pizza")
 
 class Robot:
     def charge() = println("charging")
-    def communicate() = println("operational")
-
-class Slug:
-    def absorb() = println("eating grass")
 ```
 ------
 
@@ -724,30 +433,46 @@ class Slug:
 package uniontypes
 import disjointtypes.*
 
-// 'x' is a union type:
-def nourish(x: Dog | Person | Robot | Slug) = x match
-    case d: Dog =>
-        d.eat()
-        d.bark()
-    case p: Person =>
-        p.scarf()
-        p.talk()
-    case r: Robot =>
-        r.charge()
-        r.communicate()
-    case s: Slug =>
-        s.absorb()
-```
----
-```
+def nourish(x: Person | Robot) = x match
+    case p: Person => p.consume()
+    case r: Robot  => r.charge()
+
 @main def main() =
-    val list: List[Dog | Person | Robot | Slug] =
-        List(Dog(), Person(), Robot(), Slug())
-    list.foreach(nourish(_))
+    val list: List[Person | Robot] = List(Person(), Robot())
+    list.foreach(nourish)
 ```
 ------
 
-Cannot locate C:\Git\PolymorphismUnbound\src\java\src\PatternMatching.java
+```
+//: src/golang/uniontypes/uniontypes.go
+package main
+
+type Person struct{}
+
+func (person Person) Consume() { println("eating pizza") }
+
+type Robot struct{}
+
+func (robot Robot) Charge() { println("charging") }
+
+// ---
+func Nourish[T Person | Robot](subject T) {
+    switch subjectTyped := any(subject).(type) {
+    case Person:
+        subjectTyped.Consume()
+//     case Robot:
+//         subjectTyped.Charge()
+    } // Not exhaustive
+}
+
+func main() {
+    Nourish(Person{})
+    Nourish(Robot{})
+    // Nourish("")  // Error
+}
+```
+------
+
 ```
 //: src/cpp/UnionTypes.cpp
 #include <variant>  // C++ 17
@@ -810,44 +535,25 @@ if __name__ == '__main__':
 //: src/golang/structural/structural.go
 package main
 
-type Dog struct{}
-
-func (dog Dog) Eat()     { println("eating dog food") }
-func (dog Dog) Speak() { println("woof") }
-
 type Person struct{}
 
-func (person Person) Eat()     { println("eating pizza") }
-func (person Person) Speak() { println("hello") }
-```
----
-```
+func (person Person) Consume() { println("eating pizza") }
+
 type Robot struct{}
 
-func (robot Robot) Eat()     { println("charging") }
-func (robot Robot) Speak() { println("operational") }
+func (robot Robot) Consume() { println("charging") }
 
-type Slug struct{}
-
-func (slug Slug) Eat()     { println("eating grass") }
-func (slug Slug) Speak() {}
-```
----
-```
-type EaterSpeaker interface {
-    Eat()
-    Speak()
+// ---
+type Consumer interface {
+    Consume()
 }
 
-func Nourish(x EaterSpeaker) {
-    x.Eat()
-    x.Speak()
+func Nourish(x Consumer) {
+    x.Consume()
 }
 
 func main() {
-    subjects := []EaterSpeaker{
-        Dog{}, Person{}, Robot{}, Slug{},
-    }
+    subjects := []Consumer{Person{}, Robot{}}
     for _, subject := range subjects {
         Nourish(subject)
     }
@@ -867,26 +573,16 @@ package enumtypes
 import EnumType.*
 
 enum EnumType:
-    case Dog, Person, Robot, Slug
+    case Person, Robot
     def eat() = this match
-        case Dog => println("eating dog food")
         case Person => println("eating pizza")
         case Robot => println("charging")
-        case Slug => println("eating grass")
-    def speak() = this match
-        case Dog => println("woof")
-        case Person => println("hello")
-        case Robot => println("operational")
-        case Slug => ()
-```
----
-```
+
 def nourish(x: EnumType): Unit =
     x.eat()
-    x.speak()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(nourish(_))
+    List(Person, Robot).foreach(nourish)
 ```
 ------
 
@@ -895,20 +591,16 @@ def nourish(x: EnumType): Unit =
 package enumtypes2
 import EnumType.*
 
-enum EnumType(food: String, talk: String):
-    case Dog extends EnumType("eating dog food", "woof")
-    case Person extends EnumType("eating pizza", "hello")
-    case Robot extends EnumType("charging", "operational")
-    case Slug extends EnumType("eating grass", "")
+enum EnumType(food: String):
+    case Person extends EnumType("eating pizza")
+    case Robot extends EnumType("charging")
     def eat() = println(food)
-    def speak() = println(talk)
 
 def nourish(x: EnumType): Unit =
     x.eat()
-    x.speak()
 
 @main def main() =
-    List(Dog, Person, Robot, Slug).foreach(nourish(_))
+    List(Person, Robot).foreach(nourish)
 ```
 ------
 
@@ -917,20 +609,16 @@ def nourish(x: EnumType): Unit =
 package adts
 import ADT.*
 
-enum ADT(food: String, talk: String):
-    case Dog(says: String) extends ADT("eating dog food", says)
-    case Person(says: String) extends ADT("eating pizza", says)
-    case Robot extends ADT("charging", "operational")
-    case Slug extends ADT("eating grass", "")
+enum ADT(food: String):
+    case Person(cuisine: String) extends ADT(s"eating $cuisine")
+    case Robot extends ADT("charging")
     def eat() = println(food)
-    def speak() = println(talk)
 
 def nourish(x: ADT): Unit =
     x.eat()
-    x.speak()
 
 @main def main() =
-    List(Dog("woof"), Person("hi!"), Robot, Slug).foreach(nourish(_))
+    List(Person("pizza"), Robot).foreach(nourish)
 ```
 ------
 
@@ -973,41 +661,23 @@ import disjointtypes.*
 trait EaterSpeaker[T]:
     extension (t: T)
         def eat(): Unit
-        def speak(): Unit
 
-given EaterSpeaker[Dog] with
-    extension (t: Dog)
-        def eat(): Unit = t.eat()
-        def speak(): Unit = t.bark()
+given EaterSpeaker[Person] with
+    extension (t: Person)
+        def eat(): Unit = t.consume()
 ```
 ---
 ```
-given EaterSpeaker[Person] with
-    extension (t: Person)
-        def eat(): Unit = t.scarf()
-        def speak(): Unit = t.talk()
-
 given EaterSpeaker[Robot] with
     extension (t: Robot)
         def eat(): Unit = t.charge()
-        def speak(): Unit = t.communicate()
 
-given EaterSpeaker[Slug] with
-    extension (t: Slug)
-        def eat(): Unit = t.absorb()
-        def speak() = {}
-```
----
-```
 def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
     x.eat()
-    x.speak()
 
 @main def main() =
-    nourish(Dog())
     nourish(Person())
     nourish(Robot())
-    nourish(Slug())
 ```
 ------
 
@@ -1056,12 +726,50 @@ fn main() {
 ------
 
 
+# Multiple Dispatching
+
+- Some versions of Lisp
+- Julia
+
+---
+
+# Moving Away from Code-Reuse Inheritance
+
+---
+
+```
+//: src/rust/inheritance/src/main.rs
+struct Person;
+struct Robot;
+
+trait Base {
+  fn eat(&self);
+}
+
+impl Base for Person {
+  fn eat(&self) { println!("eating pizza"); }
+}
+
+impl Base for Robot {
+  fn eat(&self) { println!("charging"); }
+}
+
+fn main() {
+  let v: Vec<&dyn Base> = vec![&Person{}, &Robot{}];
+  for d in v.iter() {
+    d.eat();
+  }
+}
+```
+------
+
+
 # Takeaways
 
 * Why do we want to treat multiple types as the same type?
   * Separate things that change from things that stay the same?
   * Reduce code duplication?
-  * Code understanding & maintenance?
+  * Capturing & reusing common concepts
   * Don't do it without question
 
 ---

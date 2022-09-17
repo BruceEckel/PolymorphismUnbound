@@ -1,4 +1,4 @@
-//: src/kotlin/src/main/kotlin/DisjointTypes.kt
+//: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
 package disjoint
 
 open class Person {

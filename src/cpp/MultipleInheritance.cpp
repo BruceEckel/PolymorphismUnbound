@@ -5,7 +5,7 @@ using namespace std;
 
 class Person {
     public:
-    void scarf() { cout << "eating pizza" << endl; }
+    void consume() { cout << "eating pizza" << endl; }
 };
 
 class Robot {
@@ -17,10 +17,10 @@ class Base {
     public:
     virtual void eat() = 0;  // Pure virtual function
 };
-
+//---
 class Person2: public Base, private Person {
     public:
-    void eat() override { scarf(); }
+    void eat() override { consume(); }
 };
 
 class Robot2: public Base, private Robot {
