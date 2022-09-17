@@ -172,9 +172,13 @@ f(42.24)
 # Parametric Polymorphism (Generics)
 
 ```
+class Holder<T> ...
+
 Holder<Car>(car)
 Holder<Robot>(robot)
 Holder<List<Car>>(listOf(car))
+```
+
 ---
 
 |==> //: src/kotlin/src/main/kotlin/Holder.kt
