@@ -22,7 +22,7 @@ fun main() {
     listOf(Person(), Robot())
         .map { nourish(it) }.forEach{ println(it) }
     val r: Robot = nourish(Robot())
-    println(r)
+
     // val p: Person = nourish2(Person()) // Nope
     val o: Any = nourish2(Person())
 }

@@ -72,13 +72,13 @@ h2 {
 }
 </style>
 # Polymorphism
-<br/><br/>
-## _A type represents multiple types_
-<br/><br/>
-Usually appears in the form of a function parameter
-Achieving polymorphism:
-- Modifying types vs.
-- Modifying functions
+
+## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
+
+* Usually appears in the form of a function parameter
+* Achieving polymorphism
+  * Modifying types vs.
+  * Modifying functions
 
 ---
 
@@ -86,6 +86,13 @@ Achieving polymorphism:
 
 - Different forms of polymorphism
 - Implemented in different languages:
+
+---
+
+# Kotlin
+
+www.AtomicKotlin.com
+![bg fit right](AtomicKotlinCover.png)
 
 ---
 
@@ -101,13 +108,6 @@ www.OnJava8.com
 # C++
 
 ![bg fit right](eckel-c-front-cover-only.jpg)
-
----
-
-# Kotlin
-
-www.AtomicKotlin.com
-![bg fit right](AtomicKotlinCover.png)
 
 ---
 
@@ -129,6 +129,11 @@ h1, h2, h3, h4, h5, h6 {
 
 # Ad-Hoc Polymorphism (Overloading)
 
+```
+f("hello")
+f(42.24)
+```
+
 ---
 
 |==> //: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
@@ -149,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   - `src/scala/Inheritance.scala`
   - `src/java/src/Inheritance.java`
   - `src/cpp/Inheritance.cpp`
-  - `src/python/base.py`
+  <!-- - `src/python/base.py` -->
   - `src/python/inheritance.py`
 
 ---
@@ -175,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-# Structural Typing aka Duck Typing
+# Structural Typing <br/>(Duck Typing)
 
 ---
 
@@ -249,6 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 # Code Reuse with Inheritance
 
 * Maybe conflating these should have been left to Smalltalk
+  * Have I used more than one level of inheritance? (except examples)
   * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
   * Luciano Ramalho: implement interfaces only for "frameworks"

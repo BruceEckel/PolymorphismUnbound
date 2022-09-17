@@ -72,10 +72,13 @@ h2 {
 }
 </style>
 # Polymorphism
-<br/><br/>
-## _A type represents multiple types_
-<br/><br/>
-Usually appears in the form of a function parameter
+
+## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
+
+* Usually appears in the form of a function parameter
+* Achieving polymorphism
+  * Modifying types vs.
+  * Modifying functions
 
 ---
 
@@ -83,6 +86,13 @@ Usually appears in the form of a function parameter
 
 - Different forms of polymorphism
 - Implemented in different languages:
+
+---
+
+# Kotlin
+
+www.AtomicKotlin.com
+![bg fit right](AtomicKotlinCover.png)
 
 ---
 
@@ -98,13 +108,6 @@ www.OnJava8.com
 # C++
 
 ![bg fit right](eckel-c-front-cover-only.jpg)
-
----
-
-# Kotlin
-
-www.AtomicKotlin.com
-![bg fit right](AtomicKotlinCover.png)
 
 ---
 
@@ -126,10 +129,15 @@ h1, h2, h3, h4, h5, h6 {
 
 # Ad-Hoc Polymorphism (Overloading)
 
+```
+f("hello")
+f(42.24)
+```
+
 ---
 
 ```
-//: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
+//: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt           [Kotlin]
 package disjoint
 
 open class Person {
@@ -143,7 +151,7 @@ open class Robot {
 ------
 
 ```
-//: src/kotlin/src/main/kotlin/AdHoc.kt
+//: src/kotlin/src/main/kotlin/AdHoc.kt                            [Kotlin]
 import disjoint.*
 
 fun nourish(p: Person) = p.consume()
@@ -169,7 +177,7 @@ fun main() {
 ---
 
 ```
-//: src/kotlin/src/main/kotlin/Inheritance.kt
+//: src/kotlin/src/main/kotlin/Inheritance.kt                      [Kotlin]
 package inheritance
 
 interface Base {
@@ -204,7 +212,7 @@ fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
 ---
 
 ```
-//: src/kotlin/src/main/kotlin/MultipleInheritance.kt
+//: src/kotlin/src/main/kotlin/MultipleInheritance.kt              [Kotlin]
 // Can also do this in Java
 import disjoint.*
 
@@ -227,7 +235,7 @@ fun main() = listOf(Person2(), Robot2()).forEach { nourish(it) }
 ------
 
 ```
-//: src/kotlin/src/main/kotlin/Composition.kt
+//: src/kotlin/src/main/kotlin/Composition.kt                      [Kotlin]
 // Can use this approach in most languages
 import disjoint.*
 
@@ -247,14 +255,14 @@ fun main() = listOf(Person3(), Robot3()).forEach { nourish(it) }
 
 <!-- |==> //: src/kotlin/src/main/kotlin/Delegation.kt -->
 ```
-//: src/cpp/MultipleInheritance.cpp
+//: src/cpp/MultipleInheritance.cpp                                   [C++]
 // Combining disjoint types using MI
 #include <iostream>
 using namespace std;
 
 class Person {
     public:
-    void scarf() { cout << "eating pizza" << endl; }
+    void consume() { cout << "eating pizza" << endl; }
 };
 
 class Robot {
@@ -271,7 +279,7 @@ class Base {
 ```
 class Person2: public Base, private Person {
     public:
-    void eat() override { scarf(); }
+    void eat() override { consume(); }
 };
 
 class Robot2: public Base, private Robot {
@@ -298,7 +306,7 @@ int main() {
 ---
 
 ```
-//: src/kotlin/src/main/kotlin/Generics.kt
+//: src/kotlin/src/main/kotlin/Generics.kt                         [Kotlin]
 package generics
 import disjoint.*
 
@@ -317,12 +325,14 @@ fun nourish2(subject: Any) : Any {
     }
     return subject
 }
-
+```
+---
+```
 fun main() {
     listOf(Person(), Robot())
         .map { nourish(it) }.forEach{ println(it) }
     val r: Robot = nourish(Robot())
-    println(r)
+
     // val p: Person = nourish2(Person()) // Nope
     val o: Any = nourish2(Person())
 }
@@ -335,12 +345,12 @@ fun main() {
 
 ---
 
-# Structural Typing aka Duck Typing
+# Structural Typing <br/>(Duck Typing)
 
 ---
 
 ```
-#: src/python/duck_typing.py
+#: src/python/duck_typing.py                                       [Python]
 from inheritance import Person, Robot
 
 def nourish(subject: object):
@@ -354,7 +364,7 @@ if __name__ == '__main__':
 ------
 
 ```
-//: src/cpp/StructuralTyping.cpp
+//: src/cpp/StructuralTyping.cpp                                      [C++]
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;
@@ -388,7 +398,7 @@ int main() {
 ---
 
 ```
-#: src/python/disjoint_types.py
+#: src/python/disjoint_types.py                                    [Python]
 
 class Person:
     def consume(self): print("eating pizza")
@@ -399,7 +409,7 @@ class Robot:
 ------
 
 ```
-#: src/python/union_types.py
+#: src/python/union_types.py                                       [Python]
 from disjoint_types import Person, Robot
 
 def nourish(combined: Person | Robot):
@@ -415,7 +425,7 @@ if __name__ == '__main__':
 ------
 
 ```
-//: src/scala/DisjointTypes.scala
+//: src/scala/DisjointTypes.scala                                   [Scala]
 // Nothing in common
 package disjointtypes
 
@@ -428,7 +438,7 @@ class Robot:
 ------
 
 ```
-//: src/scala/UnionTypes.scala
+//: src/scala/UnionTypes.scala                                      [Scala]
 // Union types aka sum types
 package uniontypes
 import disjointtypes.*
@@ -444,7 +454,7 @@ def nourish(x: Person | Robot) = x match
 ------
 
 ```
-//: src/golang/uniontypes/uniontypes.go
+//: src/golang/uniontypes/uniontypes.go                                [Go]
 package main
 
 type Person struct{}
@@ -474,7 +484,7 @@ func main() {
 ------
 
 ```
-//: src/cpp/UnionTypes.cpp
+//: src/cpp/UnionTypes.cpp                                            [C++]
 #include <variant>  // C++ 17
 #include <iostream>
 using namespace std;
@@ -515,7 +525,7 @@ int main() {
 ---
 
 ```
-#: src/python/protocols.py
+#: src/python/protocols.py                                         [Python]
 from typing import Protocol
 from inheritance import Person, Robot
 
@@ -532,7 +542,7 @@ if __name__ == '__main__':
 ------
 
 ```
-//: src/golang/structural/structural.go
+//: src/golang/structural/structural.go                                [Go]
 package main
 
 type Person struct{}
@@ -567,7 +577,7 @@ func main() {
 ---
 
 ```
-//: src/scala/EnumeratedDataTypes.scala
+//: src/scala/EnumeratedDataTypes.scala                             [Scala]
 // Enumerated Data Types
 package enumtypes
 import EnumType.*
@@ -587,7 +597,7 @@ def nourish(x: EnumType): Unit =
 ------
 
 ```
-//: src/scala/EnumeratedDataTypes2.scala
+//: src/scala/EnumeratedDataTypes2.scala                            [Scala]
 package enumtypes2
 import EnumType.*
 
@@ -605,7 +615,7 @@ def nourish(x: EnumType): Unit =
 ------
 
 ```
-//: src/scala/AlgebraicDataTypes.scala
+//: src/scala/AlgebraicDataTypes.scala                              [Scala]
 package adts
 import ADT.*
 
@@ -623,7 +633,7 @@ def nourish(x: ADT): Unit =
 ------
 
 ```
-//: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
+//: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt               [Kotlin]
 package algebraic
 import algebraic.ADT.*
 
@@ -653,7 +663,7 @@ fun main() = listOf(Person("pizza"), Robot()).forEach { nourish(it) }
 ---
 
 ```
-//: src/scala/TypeClasses.scala
+//: src/scala/TypeClasses.scala                                     [Scala]
 // "Automating the adapter pattern"
 package typeclasses
 import disjointtypes.*
@@ -682,7 +692,7 @@ def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
 ------
 
 ```
-//: src/rust/typeclasses/src/main.rs
+//: src/rust/typeclasses/src/main.rs                                 [Rust]
 struct Person;
 struct Robot;
 
@@ -738,7 +748,7 @@ fn main() {
 ---
 
 ```
-//: src/rust/inheritance/src/main.rs
+//: src/rust/inheritance/src/main.rs                                 [Rust]
 struct Person;
 struct Robot;
 
@@ -784,6 +794,7 @@ fn main() {
 # Code Reuse with Inheritance
 
 * Maybe conflating these should have been left to Smalltalk
+  * Have I used more than one level of inheritance? (except examples)
   * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
   * Luciano Ramalho: implement interfaces only for "frameworks"
