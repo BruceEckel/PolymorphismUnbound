@@ -171,9 +171,14 @@ f(42.24)
 
 # Parametric Polymorphism (Generics)
 
+```
+Holder<Car>(car)
+Holder<Robot>(robot)
+Holder<List<Car>>(listOf(car))
 ---
 
-|==> //: src/kotlin/src/main/kotlin/Generics.kt
+|==> //: src/kotlin/src/main/kotlin/Holder.kt
+|==> //: src/kotlin/src/main/kotlin/GenericFunctions.kt
 
 - Java: `src/java/src/Generics.java`
 - Kotlin has reified generics

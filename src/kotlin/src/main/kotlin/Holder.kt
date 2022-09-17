@@ -1,12 +1,19 @@
+//: src/kotlin/src/main/kotlin/Holder.kt
+
 class Holder<T>(private val value: T) {
     fun get(): T = value
 }
 
 fun main() {
-    class Car
-    val garage = Holder(Car())
-    val car: Car = garage.get()
+    class Car; class Robot
 
-    val carList = Holder(listOf(Car()))
-    val cars: List<Car> = carList.get()
+    val car = Car()
+    val garage = Holder<Car>(car)
+    val c: Car = garage.get()
+
+    val robot = Robot()
+    val chargingStation = Holder<Robot>(robot)
+    val r: Robot = chargingStation.get()
+
+    val carList = Holder<List<Car>>(listOf(car))
 }

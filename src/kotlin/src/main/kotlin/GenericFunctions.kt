@@ -1,4 +1,4 @@
-//: src/kotlin/src/main/kotlin/Generics.kt
+//: src/kotlin/src/main/kotlin/GenericFunctions.kt
 package generics
 import disjoint.*
 
