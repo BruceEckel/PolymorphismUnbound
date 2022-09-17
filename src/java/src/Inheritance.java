@@ -17,9 +17,7 @@ class Robot implements Base {
 }
 
 public class Inheritance {
-  static void nourish(Base subject) {
-    subject.eat();
-  }
+  static void nourish(Base subject) { subject.eat(); }
   public static void main(String... args) {
     List.of(new Person(), new Robot()).forEach(Inheritance::nourish);
   }

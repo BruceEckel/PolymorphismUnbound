@@ -213,12 +213,19 @@ Scala & Rust?
 |==> //: src/scala/TypeClasses.scala
 |==> //: src/rust/typeclasses/src/main.rs
 
+# Multiple Dispatching
+
+- Some versions of Lisp
+- Julia
+
+---
+
 # Takeaways
 
 * Why do we want to treat multiple types as the same type?
   * Separate things that change from things that stay the same?
   * Reduce code duplication?
-  * Code understanding & maintenance?
+  * Capturing & reusing common concepts
   * Don't do it without question
 
 ---

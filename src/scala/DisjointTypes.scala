@@ -3,7 +3,7 @@
 package disjointtypes
 
 class Person:
-    def scarf() = println("eating pizza")
+    def consume() = println("eating pizza")
 
 class Robot:
     def charge() = println("charging")

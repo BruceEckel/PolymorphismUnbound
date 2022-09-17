@@ -3,21 +3,10 @@
 package uniontypes
 import disjointtypes.*
 
-// 'x' is a union type:
-def nourish(x: Dog | Person | Robot | Slug) = x match
-    case d: Dog =>
-        d.eat()
-        d.bark()
-    case p: Person =>
-        p.scarf()
-        p.talk()
-    case r: Robot =>
-        r.charge()
-        r.communicate()
-    case s: Slug =>
-        s.absorb()
-//---
+def nourish(x: Person | Robot) = x match
+    case p: Person => p.consume()
+    case r: Robot  => r.charge()
+
 @main def main() =
-    val list: List[Dog | Person | Robot | Slug] =
-        List(Dog(), Person(), Robot(), Slug())
-    list.foreach(nourish(_))
+    val list: List[Person | Robot] = List(Person(), Robot())
+    list.foreach(nourish)

@@ -10,8 +10,7 @@ class Person extends Base:
 class Robot extends Base:
     def eat() = println("charging")
 
-def nourish(x: Base): Unit =
-    x.eat()
+def nourish(x: Base): Unit = x.eat()
 
 @main def main() =
     List(Person(), Robot()).foreach(nourish)
