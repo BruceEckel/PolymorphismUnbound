@@ -2,17 +2,13 @@
 package adts
 import ADT.*
 
-enum ADT(food: String, talk: String):
-    case Dog(says: String) extends ADT("eating dog food", says)
-    case Person(says: String) extends ADT("eating pizza", says)
-    case Robot extends ADT("charging", "operational")
-    case Slug extends ADT("eating grass", "")
+enum ADT(food: String):
+    case Person(cuisine: String) extends ADT(s"eating $cuisine")
+    case Robot extends ADT("charging")
     def eat() = println(food)
-    def speak() = println(talk)
 
 def nourish(x: ADT): Unit =
     x.eat()
-    x.speak()
 
 @main def main() =
-    List(Dog("woof"), Person("hi!"), Robot, Slug).foreach(nourish(_))
+    List(Person("pizza"), Robot).foreach(nourish)
