@@ -2,13 +2,13 @@
 package adts
 import ADT.*
 
-enum ADT(food: String):
-    case Person(cuisine: String) extends ADT(s"eating $cuisine")
-    case Robot extends ADT("charging")
-    def eat() = println(food)
+enum ADT:
+    case Person(val eats: String)
+    case Robot(val chargesWith: String)
 
-def nourish(x: ADT): Unit =
-    x.eat()
+def nourish(x: ADT) = x match   // Exhaustive
+    case p: Person => println(s"eating ${p.eats}")
+    case r: Robot  => println(s"charging with ${r.chargesWith}")
 
 @main def main() =
-    List(Person("pizza"), Robot).foreach(nourish)
+    List(Person("pizza"), Robot("electricity")).foreach(nourish)

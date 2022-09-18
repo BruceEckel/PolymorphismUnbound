@@ -2,20 +2,16 @@
 package algebraic
 import algebraic.ADT.*
 
-sealed class ADT(val eats: String) {
-    class Person(food: String) : ADT(food) {
-        fun consume() = println("eating pizza")
-    }
-    class Robot : ADT("electricity") {
-        fun charge() = println("charging")
-    }
+sealed class ADT {
+    class Person(val eats: String) : ADT()
+    class Robot(val chargesWith: String): ADT()
 }
 
 fun nourish(subject: ADT) {
-    when (subject) {
-        is Person -> subject.consume()
-        is Robot -> subject.charge()
+    when (subject) {  // Exhaustive
+        is Person -> println("eating ${subject.eats}")
+        is Robot -> println("charging with ${subject.chargesWith}")
     }
 }
 
-fun main() = listOf(Person("pizza"), Robot()).forEach { nourish(it) }
+fun main() = listOf(Person("pizza"), Robot("electricity")).forEach { nourish(it) }

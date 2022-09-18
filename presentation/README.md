@@ -21,9 +21,9 @@ It will insert a break in the code listing so that the resulting slides are
 properly paginated.
 
 The following PowerShell command runs `inject_code.py` to produce `slides.md`,
-then runs `marp` to produce `slides.html`. Finally it uses `start` to open
+then runs `marp` to produce `slides.html`. Finally, it uses `start` to open
 `slides.html` in a browser window:
 
 ```powershell
-python .\inject_code.py source2.md; marp .\slides.md; start .\slides.html
+python .\inject_code.py source.md; marp .\slides.md; python .\html_post_process.py; start .\slides.html
 ```

@@ -2,7 +2,7 @@
 from disjoint_types import Person, Robot
 
 def nourish(combined: Person | Robot):
-    match combined:  # No exhaustiveness checking
+    match combined:  # No exhaustiveness checking (yet)
         case Person(): combined.consume()
         case Robot(): combined.charge()
 

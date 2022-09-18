@@ -76,7 +76,7 @@ h2 {
 ## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
 
 * Usually appears in the form of a function parameter
-* Modifying types vs. Modifying functions
+* Modifying types vs. modifying functions
 
 ---
 
@@ -383,7 +383,11 @@ fun main() {
 
 ```
 #: src/python/duck_typing.py                                       [Python]
-from inheritance import Person, Robot
+class Person:
+    def eat(self): print("eating pizza")
+
+class Robot:
+    def eat(self): print("charging")
 
 def nourish(subject: object):
     subject.eat()  # Duck typing
@@ -432,8 +436,10 @@ int main() {
 - aka Sum Types
 
 ```
-UnionType = Type1 | Type2 | Type3 | ...
+Type1 | Type2 | Type3 | ...
 ```
+
+- New for many people so I'll spend more time on it
 
 ---
 
@@ -453,7 +459,7 @@ class Robot:
 from disjoint_types import Person, Robot
 
 def nourish(combined: Person | Robot):
-    match combined:  # No exhaustiveness checking
+    match combined:  # No exhaustiveness checking (yet)
         case Person(): combined.consume()
         case Robot(): combined.charge()
 
@@ -503,7 +509,6 @@ func (person Person) Consume() { println("eating pizza") }
 type Robot struct{}
 
 func (robot Robot) Charge() { println("charging") }
-
 ```
 ---
 ```
@@ -511,21 +516,23 @@ func Nourish[T Person | Robot](subject T) {
     switch subjectTyped := any(subject).(type) {
     case Person:
         subjectTyped.Consume()
-//     case Robot:
-//         subjectTyped.Charge()
+//  case Robot:
+//    subjectTyped.Charge()
     } // Not exhaustive
 }
 
 func main() {
     Nourish(Person{})
     Nourish(Robot{})
-    // Nourish("")  // Error
+    // Nourish("")  // Compile-time error
 }
 ```
 ------
 
 
 - `src/cpp/UnionTypes.cpp`
+
+---
 
 # Protocols
 
@@ -738,6 +745,7 @@ fn main() {
 ---
 
 # Inheritance for Code-Reuse
+
 - We seem to be moving away from this
 
 ---
@@ -784,7 +792,7 @@ fn main() {
 # What can we do with the aggregate?
 
 * If there's no intersection of either syntax or semantics, does it make sense?
-* Yes: erasure in Java allows no behavior, only preserves exact return type
+* Yes: erasure on the JVM allows no behavior, only preserves exact return type
 
 ---
 

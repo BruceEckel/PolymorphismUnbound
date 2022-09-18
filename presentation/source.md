@@ -76,7 +76,7 @@ h2 {
 ## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
 
 * Usually appears in the form of a function parameter
-* Modifying types vs. Modifying functions
+* Modifying types vs. modifying functions
 
 ---
 
@@ -202,8 +202,10 @@ Holder<List<Car>>(listOf(car))
 - aka Sum Types
 
 ```
-UnionType = Type1 | Type2 | Type3 | ...
+Type1 | Type2 | Type3 | ...
 ```
+
+- New for many people so I'll spend more time on it
 
 ---
 
@@ -213,7 +215,9 @@ UnionType = Type1 | Type2 | Type3 | ...
 |==> //: src/scala/UnionTypes.scala
 |==> //: src/golang/uniontypes/uniontypes.go
 
-- `src/cpp/UnionTypes.cpp`
+- `src/cpp/UnionTypes.cpp` (Not pretty)
+
+---
 
 # Protocols
 
@@ -230,7 +234,6 @@ UnionType = Type1 | Type2 | Type3 | ...
 ---
 
 |==> //: src/scala/EnumeratedDataTypes.scala
-|==> //: src/scala/EnumeratedDataTypes2.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
 |==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
 
@@ -249,6 +252,7 @@ UnionType = Type1 | Type2 | Type3 | ...
 ---
 
 # Inheritance for Code-Reuse
+
 - We seem to be moving away from this
 
 ---
@@ -256,6 +260,8 @@ UnionType = Type1 | Type2 | Type3 | ...
 |==> //: src/rust/inheritance/src/main.rs
 
 - Go only allows interface-implementation
+
+---
 
 # Takeaways
 
@@ -270,7 +276,7 @@ UnionType = Type1 | Type2 | Type3 | ...
 # What can we do with the aggregate?
 
 * If there's no intersection of either syntax or semantics, does it make sense?
-* Yes: erasure in Java allows no behavior, only preserves exact return type
+* Yes: erasure on the JVM allows no behavior, only preserves exact return type
 
 ---
 
