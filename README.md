@@ -1,33 +1,7 @@
 # Polymorphism Unbound
 
 This repository contains the code examples for the presentation I gave
-at StrangeLoop 2022, along with some prose and notes that
-I wrote in the process of creating the presentation.
-
-## Notes
-
-- Prefer single-level inheritance (implementing traits). 
-  - Use composition for code reuse instead of multi-level inheritance.
-- Liskov because of static languages vs Smalltalk and Python
-- Duck typing in Python and C++ (Go with help from Jack)
-- No duck typing with erasure, unless you do it by hand
-- Polymorphism -> "many forms." I assumed this meant "many forms of
-  objects" but it really meant that a function argument could take on multiple
-  forms.
-- How we got here:
-  - Simula: a simulation needs a common interface for all simulation objects, so you can tell them all to update themselves.
-  - Smalltalk: takes Simula concept and applies it to all elements
-    - BUT Smalltalk is inherently dynamic
-    - It's really about "message-oriented programming"
-  - C++: Object-Based Encapsulation for data control
-    - BUT Objects are completely optional
-    - Might as well add inheritance and dynamic binding
-    - Everything statically typed for safety, very different from Smalltalk
-  - Java: Everything is an Object, like Smalltalk
-    - BUT static typing makes it quite different
-    - The concept of dynamic messages is lost, not really like Smalltalk
-    - Making new types by inheritance didn't really work out
-    
+at StrangeLoop 2022.
 
 ## The Inheritance Bias
 
@@ -40,7 +14,8 @@ At that time C++ was implemented as a program called `cfront` and distributed by
 mailing a reel of magnetic tape. The brilliance of `cfront` was that it took
 your C++ program and translated it into C. One of the few things you could
 expect for most machines at the time was that they had a C compiler, so this
-meant that C++ could be immediately targeted to any platform.
+meant that C++ could be immediately targeted to any platform. (There was no C
+standard at that time, so `cfront` had to work with a common subset of C).
 
 Note that this explains C++'s rigid conformance to C source-code compatibility,
 which later resulted in folks unfamiliar with C++'s origins to claim that it was
@@ -51,16 +26,16 @@ In those early days there was very little in the way of documentation for the
 language, and it was not clear that C++ would become the behemoth that it did
 (primarily because of C source compatibility). When I first encountered
 the `virtual` keyword, there were no clear explanations of why it existed. I 
-floundered for awhile, but eventually realized I could look at the C output of 
+floundered for a while, but eventually realized I could look at the C output of 
 `cfront` to discover what was going on.
 
-To even create a compiling program containing the `virtual` keyword required a
+To create a compiling program containing the `virtual` keyword required a
 lot of scaffolding: you needed a base class and a derived class, and a member
 function in the base class that was marked `virtual`. Once this was done,
 `cfront` generated a jump table that called different versions of the `virtual`
-function based on type. You know the drill.
+function based on type.
 
-It required days of poring over the generated C code for me to figure this out.
+It required days of poring over the `cfront`-generated C code for me to figure this out.
 Once I did, the *mechanism* of inheritance polymorphism became clear---but not
 the "why"---that would take many years to begin creating a useful mental model.
 The one thing that *was* clear, however, was there were a lot of special gears
@@ -73,7 +48,7 @@ polymorphism were essential to our programming future. In Java, *everything* is
 an object because it was modeled after Smalltalk. (Note that there's a huge
 difference: Smalltalk is a dynamic language while Java is statically typed.
 Smalltalk's essential nature is dynamic and what you write in Smalltalk or
-another dynamic language is often fundamentally different than what you can do
+another dynamic language is often fundamentally different from what you can do
 with a static language).
 
 Then we got Design Patterns, which showed how to solve all kinds of problems by
@@ -122,24 +97,25 @@ thought.
 
 It turns out that overloading contains the essence of what polymorphism is, because
 the `f()` parameter *represents different types of arguments*. Calling it "ad-hoc"
-unfortunately de-emphasized the meaning of the word "polymorphism" (at least, to
+seemed to de-emphasize the meaning of the word "polymorphism" (at least, to
 me). In hindsight, I can see why "ad-hoc" might have been chosen, because
 overloading only makes it *look* like the same function when you call it,
 whereas when you look at the definition it's clearly two distinct functions. The
 idea that it's *the same function with different argument types* gets lost in
 the process.
 
-What I want to accomplish in this article is to re-frame your thinking about
+What I hope to accomplish in this presentation is to re-frame your thinking about
 polymorphism. In particular, to get you unstuck from my initial impression that
 it was all about inheritance and dynamic binding, and to broaden your view so
-that terms like "ad-hoc," "parametric," etc. make sense to you. I will also ask
-the question, "Objects: Have we Made a Huge Mistake?"
+that terms like "ad-hoc," "parametric," etc. make sense to you. 
+I also ask, "Objects: Have we Made a Huge Mistake?"
 
 ## Changing Our Thinking About Polymorphism
 
-- It's about one type representing multiple types (Decouple from inheritance)
+- It's about one type representing multiple types. 
+  - Inheritance is just one way to do this.
 - What problem are we solving by creating a polymorphic function?
-- What mechanism are we using (ad hoc, parameterized, inheritance, enum types, sum types)?
+- What mechanism are we using (ad hoc, parameterized, inheritance, union types, etc.)?
 - How are the different parameters distinguished within the function?
 - When is it helping vs simply adding complication?
-- Revisit inheritance polymorphism from a function perspective
+
