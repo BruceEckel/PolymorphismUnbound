@@ -137,9 +137,11 @@ f(42.24)
 |==> //: src/kotlin/src/main/kotlin/disjoint/DisjointTypes.kt
 |==> //: src/kotlin/src/main/kotlin/AdHoc.kt
 
-- Java overloading: `src/java/src/AdHoc.java`
-- C++ overloading: `src/cpp/AdHoc.cpp`
-- Python overloading: `src/python/single_dispatch.py`
+# Overloading in Other Languages
+
+- Java: `src/java/src/AdHoc.java`
+- C++: `src/cpp/AdHoc.cpp`
+- Python: `src/python/single_dispatch.py`
 
 ---
 
@@ -152,11 +154,11 @@ f(42.24)
 
 |==> //: src/kotlin/src/main/kotlin/Inheritance.kt
 
-  - `src/scala/Inheritance.scala`
-  - `src/java/src/Inheritance.java`
-  - `src/cpp/Inheritance.cpp`
+  - Scala: `src/scala/Inheritance.scala`
+  - Java: `src/java/src/Inheritance.java`
+  - C++: `src/cpp/Inheritance.cpp`
   <!-- - `src/python/base.py` -->
-  - `src/python/inheritance.py`
+  - Python: `src/python/inheritance.py`
 
 ---
 
@@ -215,7 +217,7 @@ Type1 | Type2 | Type3 | ...
 |==> //: src/scala/UnionTypes.scala
 |==> //: src/golang/uniontypes/uniontypes.go
 
-- `src/cpp/UnionTypes.cpp` (Not pretty)
+- C++: `src/cpp/UnionTypes.cpp` (Not pretty)
 
 ---
 
@@ -225,7 +227,7 @@ Type1 | Type2 | Type3 | ...
 
 |==> //: src/golang/structural/structural.go
 
-- `src/python/protocols.py`
+- Python: `src/python/protocols.py`
 
 ---
 
@@ -235,7 +237,8 @@ Type1 | Type2 | Type3 | ...
 
 |==> //: src/scala/EnumeratedDataTypes.scala
 |==> //: src/scala/AlgebraicDataTypes.scala
-|==> //: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt
+
+- Kotlin: `src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt`
 
 # Type Classes
 

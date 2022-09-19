@@ -164,9 +164,11 @@ fun main() {
 ------
 
 
-- Java overloading: `src/java/src/AdHoc.java`
-- C++ overloading: `src/cpp/AdHoc.cpp`
-- Python overloading: `src/python/single_dispatch.py`
+# Overloading in Other Languages
+
+- Java: `src/java/src/AdHoc.java`
+- C++: `src/cpp/AdHoc.cpp`
+- Python: `src/python/single_dispatch.py`
 
 ---
 
@@ -200,11 +202,11 @@ fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
 ------
 
 
-  - `src/scala/Inheritance.scala`
-  - `src/java/src/Inheritance.java`
-  - `src/cpp/Inheritance.cpp`
+  - Scala: `src/scala/Inheritance.scala`
+  - Java: `src/java/src/Inheritance.java`
+  - C++: `src/cpp/Inheritance.cpp`
   <!-- - `src/python/base.py` -->
-  - `src/python/inheritance.py`
+  - Python: `src/python/inheritance.py`
 
 ---
 
@@ -458,10 +460,10 @@ class Robot:
 #: src/python/union_types.py                                       [Python]
 from disjoint_types import Person, Robot
 
-def nourish(combined: Person | Robot):
-    match combined:  # No exhaustiveness checking (yet)
-        case Person(): combined.consume()
-        case Robot(): combined.charge()
+def nourish(x: Person | Robot):
+    match x:  # No exhaustiveness checking (yet)
+        case Person(): x.consume()
+        case Robot(): x.charge()
 
 if __name__ == '__main__':
     for subject in [Person(), Robot()]:
@@ -530,7 +532,7 @@ func main() {
 ------
 
 
-- `src/cpp/UnionTypes.cpp`
+- C++: `src/cpp/UnionTypes.cpp` (Not pretty)
 
 ---
 
@@ -571,7 +573,7 @@ func main() {
 ------
 
 
-- `src/python/protocols.py`
+- Python: `src/python/protocols.py`
 
 ---
 
@@ -591,25 +593,7 @@ enum EnumType:
         case Person => println("eating pizza")
         case Robot => println("charging")
 
-def nourish(x: EnumType): Unit =
-    x.eat()
-
-@main def main() = List(Person, Robot).foreach(nourish)
-```
-------
-
-```
-//: src/scala/EnumeratedDataTypes2.scala                            [Scala]
-package enumtypes2
-import EnumType.*
-
-enum EnumType(food: String):
-    case Person extends EnumType("eating pizza")
-    case Robot extends EnumType("charging")
-    def eat() = println(food)
-
-def nourish(x: EnumType): Unit =
-    x.eat()
+def nourish(x: EnumType) = x.eat()
 
 @main def main() = List(Person, Robot).foreach(nourish)
 ```
@@ -620,44 +604,21 @@ def nourish(x: EnumType): Unit =
 package adts
 import ADT.*
 
-enum ADT(food: String):
-    case Person(cuisine: String) extends ADT(s"eating $cuisine")
-    case Robot extends ADT("charging")
-    def eat() = println(food)
+enum ADT:
+    case Person(val eats: String)
+    case Robot(val chargesWith: String)
 
-def nourish(x: ADT): Unit =
-    x.eat()
+def nourish(x: ADT) = x match   // Exhaustive
+    case p: Person => println(s"eating ${p.eats}")
+    case r: Robot  => println(s"charging with ${r.chargesWith}")
 
 @main def main() =
-    List(Person("pizza"), Robot).foreach(nourish)
+    List(Person("pizza"), Robot("electricity")).foreach(nourish)
 ```
 ------
 
-```
-//: src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt               [Kotlin]
-package algebraic
-import algebraic.ADT.*
 
-sealed class ADT(val eats: String) {
-    class Person(food: String) : ADT(food) {
-        fun consume() = println("eating pizza")
-    }
-    class Robot : ADT("electricity") {
-        fun charge() = println("charging")
-    }
-}
-
-fun nourish(subject: ADT) {
-    when (subject) {
-        is Person -> subject.consume()
-        is Robot -> subject.charge()
-    }
-}
-
-fun main() = listOf(Person("pizza"), Robot()).forEach { nourish(it) }
-```
-------
-
+- Kotlin: `src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt`
 
 # Type Classes
 
@@ -778,6 +739,8 @@ fn main() {
 
 
 - Go only allows interface-implementation
+
+---
 
 # Takeaways
 
