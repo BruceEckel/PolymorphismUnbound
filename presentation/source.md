@@ -24,6 +24,10 @@ a {
 
 ---
 
+![bg contain](happypath.png)
+
+---
+
 ## `cfront`, `virtual`, and dynamic binding
 
 ![bg right](tape.jpg)
@@ -76,7 +80,7 @@ h2 {
 ## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _A type represents multiple types_
 
 * Usually appears in the form of a function parameter
-* Modifying types vs. modifying functions
+* To fit: Modifying types vs. modifying functions
 
 ---
 
@@ -271,7 +275,7 @@ Type1 | Type2 | Type3 | ...
 * Why do we want to treat multiple types as the same type?
   * Separate things that change from things that stay the same?
   * Reduce code duplication?
-  * Capturing & reusing common concepts
+  * --> Capturing & reusing common concepts
   * Don't do it without question
 
 ---
@@ -280,13 +284,14 @@ Type1 | Type2 | Type3 | ...
 
 * If there's no intersection of either syntax or semantics, does it make sense?
 * Yes: erasure on the JVM allows no behavior, only preserves exact return type
+  * Limits generics to "holder" types
 
 ---
 
 # Code Reuse with Inheritance
 
 * Maybe conflating these should have been left to Smalltalk
-  * Have I used more than one level of inheritance? (except examples)
+  * Have I ever used more than one level of inheritance? (except examples)
   * Some newer languages (Rust, Go) explicitly disallow it
   * Code reuse means embedding an object rather than inheriting
   * Luciano Ramalho: implement interfaces only for "frameworks"
