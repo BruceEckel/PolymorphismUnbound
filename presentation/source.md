@@ -168,6 +168,8 @@ f(42.24)
 
 # Multiple Inheritance
 
+Force an existing set of types into a hierarchy
+
 ---
 
 |==> //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
@@ -193,6 +195,7 @@ Holder<List<Car>>(listOf(car))
 
 - Java: `src/java/src/Generics.java`
 - Kotlin has reified generics
+- C++ templates do not erase types
 
 ---
 

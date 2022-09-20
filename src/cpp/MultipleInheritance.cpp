@@ -15,7 +15,7 @@ class Robot {
 
 class Base {
     public:
-    virtual void eat() = 0;  // Pure virtual function
+    virtual void eat() = 0;  // Pure virtual == abstract
 };
 //---
 class Person2: public Base, private Person {
