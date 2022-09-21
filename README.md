@@ -1,7 +1,7 @@
 # Polymorphism Unbound
 
 This repository contains the code examples for the presentation I gave
-at StrangeLoop 2022.
+at StrangeLoop 2022, along with the slide presentation.
 
 ## The Inheritance Bias
 
