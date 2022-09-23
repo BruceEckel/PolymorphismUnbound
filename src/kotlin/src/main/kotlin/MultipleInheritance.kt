@@ -1,5 +1,4 @@
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt
-// Can also do this in Java
 import disjoint.*
 
 interface Base {

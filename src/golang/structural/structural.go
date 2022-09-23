@@ -3,23 +3,23 @@ package main
 
 type Person struct{}
 
-func (person Person) Consume() { println("eating pizza") }
+func (person Person) Eat() { println("eating pizza") }
 
 type Robot struct{}
 
-func (robot Robot) Consume() { println("charging") }
+func (robot Robot) Eat() { println("charging") }
 
 //---
-type Consumer interface {
-	Consume()
+type Eater interface {
+	Eat()
 }
 
-func Nourish(x Consumer) {
-	x.Consume()
+func Nourish(x Eater) {
+	x.Eat()
 }
 
 func main() {
-	subjects := []Consumer{Person{}, Robot{}}
+	subjects := []Eater{Person{}, Robot{}}
 	for _, subject := range subjects {
 		Nourish(subject)
 	}

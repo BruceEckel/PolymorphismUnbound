@@ -12,12 +12,12 @@ class Robot {
     public:
     void charge() { cout << "charging" << endl; }
 };
-
+//---
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual == abstract
 };
-//---
+
 class Person2: public Base, private Person {
     public:
     void eat() override { consume(); }
@@ -27,7 +27,7 @@ class Robot2: public Base, private Robot {
     public:
     void eat() override { charge(); }
 };
-
+//---
 void nourish(Base* base) {
     base->eat();
 }

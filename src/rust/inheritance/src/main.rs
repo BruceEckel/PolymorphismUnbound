@@ -9,7 +9,7 @@ trait Base {
 impl Base for Person {
   fn eat(&self) { println!("eating pizza"); }
 }
-
+//---
 impl Base for Robot {
   fn eat(&self) { println!("charging"); }
 }

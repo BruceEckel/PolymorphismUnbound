@@ -179,7 +179,7 @@ fun main() {
 # Subtype Polymorphism
 
 - "Classic" inheritance
-- Follows the Liskov Substitution Principle
+- Follows the Liskov Substitution Principle (un-Smalltalk)
 
 ---
 
@@ -222,7 +222,6 @@ Force an existing set of types into a hierarchy
 
 ```
 //: src/kotlin/src/main/kotlin/MultipleInheritance.kt              [Kotlin]
-// Can also do this in Java
 import disjoint.*
 
 interface Base {
@@ -278,14 +277,14 @@ class Robot {
     public:
     void charge() { cout << "charging" << endl; }
 };
-
+```
+---
+```
 class Base {
     public:
     virtual void eat() = 0;  // Pure virtual == abstract
 };
-```
----
-```
+
 class Person2: public Base, private Person {
     public:
     void eat() override { consume(); }
@@ -295,7 +294,9 @@ class Robot2: public Base, private Robot {
     public:
     void eat() override { charge(); }
 };
-
+```
+---
+```
 void nourish(Base* base) {
     base->eat();
 }
@@ -553,25 +554,25 @@ package main
 
 type Person struct{}
 
-func (person Person) Consume() { println("eating pizza") }
+func (person Person) Eat() { println("eating pizza") }
 
 type Robot struct{}
 
-func (robot Robot) Consume() { println("charging") }
+func (robot Robot) Eat() { println("charging") }
 
 ```
 ---
 ```
-type Consumer interface {
-    Consume()
+type Eater interface {
+    Eat()
 }
 
-func Nourish(x Consumer) {
-    x.Consume()
+func Nourish(x Eater) {
+    x.Eat()
 }
 
 func main() {
-    subjects := []Consumer{Person{}, Robot{}}
+    subjects := []Eater{Person{}, Robot{}}
     for _, subject := range subjects {
         Nourish(subject)
     }
@@ -714,7 +715,7 @@ fn main() {
 
 ---
 
-# Inheritance for Code-Reuse
+# Inheritance for Code Reuse
 
 - We seem to be moving away from this
 
@@ -732,7 +733,9 @@ trait Base {
 impl Base for Person {
   fn eat(&self) { println!("eating pizza"); }
 }
-
+```
+---
+```
 impl Base for Robot {
   fn eat(&self) { println!("charging"); }
 }
@@ -747,7 +750,7 @@ fn main() {
 ------
 
 
-- Go only allows interface-implementation
+- Go also only allows interface-implementation
 
 ---
 
@@ -774,8 +777,9 @@ fn main() {
 * Maybe conflating these should have been left to Smalltalk
   * Have I ever used more than one level of inheritance? (except examples)
   * Some newer languages (Rust, Go) explicitly disallow it
-  * Code reuse means embedding an object rather than inheriting
-  * Luciano Ramalho: implement interfaces only for "frameworks"
+    * Code reuse means embedding an object rather than inheriting
+* Interface implementation allows later incorporation of new types
+  * The essence of a "framework" (Luciano Ramalho)
 
 ---
 

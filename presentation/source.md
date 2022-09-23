@@ -152,7 +152,7 @@ f(42.24)
 # Subtype Polymorphism
 
 - "Classic" inheritance
-- Follows the Liskov Substitution Principle
+- Follows the Liskov Substitution Principle (un-Smalltalk)
 
 ---
 
@@ -263,7 +263,7 @@ Type1 | Type2 | Type3 | ...
 
 ---
 
-# Inheritance for Code-Reuse
+# Inheritance for Code Reuse
 
 - We seem to be moving away from this
 
@@ -271,7 +271,7 @@ Type1 | Type2 | Type3 | ...
 
 |==> //: src/rust/inheritance/src/main.rs
 
-- Go only allows interface-implementation
+- Go also only allows interface-implementation
 
 ---
 
@@ -298,8 +298,9 @@ Type1 | Type2 | Type3 | ...
 * Maybe conflating these should have been left to Smalltalk
   * Have I ever used more than one level of inheritance? (except examples)
   * Some newer languages (Rust, Go) explicitly disallow it
-  * Code reuse means embedding an object rather than inheriting
-  * Luciano Ramalho: implement interfaces only for "frameworks"
+    * Code reuse means embedding an object rather than inheriting
+* Interface implementation allows later incorporation of new types
+  * The essence of a "framework" (Luciano Ramalho)
 
 ---
 
