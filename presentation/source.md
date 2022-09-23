@@ -247,6 +247,8 @@ Type1 | Type2 | Type3 | ...
 
 - Kotlin: `src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt`
 
+---
+
 # Type Classes
 
 ---
@@ -323,6 +325,6 @@ Type1 | Type2 | Type3 | ...
 
 # Questions
 
-... In the hall
+... In the hall/at lunch
 
 ![bg fit right](workwithcare.jpg)

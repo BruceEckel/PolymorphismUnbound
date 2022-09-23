@@ -3,19 +3,19 @@
 package typeclasses
 import disjointtypes.*
 
-trait EaterSpeaker[T]:
+trait Eater[T]:
     extension (t: T)
         def eat(): Unit
 
-given EaterSpeaker[Person] with
+given Eater[Person] with
     extension (t: Person)
         def eat(): Unit = t.consume()
 //---
-given EaterSpeaker[Robot] with
+given Eater[Robot] with
     extension (t: Robot)
         def eat(): Unit = t.charge()
 
-def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
+def nourish[T](x: T)(using Eater[T]): Unit =
     x.eat()
 
 @main def main() =

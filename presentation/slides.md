@@ -216,6 +216,8 @@ fun main() = listOf(Person(), Robot()).forEach { nourish(it) }
 
 # Multiple Inheritance
 
+Force an existing set of types into a hierarchy
+
 ---
 
 ```
@@ -279,7 +281,7 @@ class Robot {
 
 class Base {
     public:
-    virtual void eat() = 0;  // Pure virtual function
+    virtual void eat() = 0;  // Pure virtual == abstract
 };
 ```
 ---
@@ -380,6 +382,7 @@ fun main() {
 
 - Java: `src/java/src/Generics.java`
 - Kotlin has reified generics
+- C++ templates do not erase types
 
 ---
 
@@ -624,6 +627,8 @@ def nourish(x: ADT) = x match   // Exhaustive
 
 - Kotlin: `src/kotlin/src/main/kotlin/AlgebraicDataTypes.kt`
 
+---
+
 # Type Classes
 
 ---
@@ -634,21 +639,21 @@ def nourish(x: ADT) = x match   // Exhaustive
 package typeclasses
 import disjointtypes.*
 
-trait EaterSpeaker[T]:
+trait Eater[T]:
     extension (t: T)
         def eat(): Unit
 
-given EaterSpeaker[Person] with
+given Eater[Person] with
     extension (t: Person)
         def eat(): Unit = t.consume()
 ```
 ---
 ```
-given EaterSpeaker[Robot] with
+given Eater[Robot] with
     extension (t: Robot)
         def eat(): Unit = t.charge()
 
-def nourish[T](x: T)(using EaterSpeaker[T]): Unit =
+def nourish[T](x: T)(using Eater[T]): Unit =
     x.eat()
 
 @main def main() =
@@ -796,6 +801,6 @@ fn main() {
 
 # Questions
 
-... In the hall
+... In the hall/at lunch
 
 ![bg fit right](workwithcare.jpg)
