@@ -5,12 +5,12 @@ interface Base {
     fun eat()
 }
 
-fun Base.smile() = println("Base.smile()")
-
 fun f(b: Base) {
     b.eat()
     b.smile()
 }
+
+fun Base.smile() = println("Base.smile()")
 
 class Derived : Base {
     override fun eat() = println("Derived.eat()")
@@ -21,8 +21,18 @@ class Derived : Base {
 // Doesn't override Base.smile():
 fun Derived.smile() = println("Derived.smile()")
 
-fun main() = f(Derived())
+fun g(d: Derived) {
+    d.eat()
+    d.smile()
+}
+
+fun main() {
+    f(Derived())
+    g(Derived())
+}
 /*
 Derived.eat()
 Base.smile()
+Derived.eat()
+Derived.smile()
  */
