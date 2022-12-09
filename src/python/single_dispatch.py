@@ -1,5 +1,4 @@
 #: src/python/single_dispatch.py
-# (Not included in presentation)
 from functools import singledispatch
 from disjoint_types import Person, Robot
 

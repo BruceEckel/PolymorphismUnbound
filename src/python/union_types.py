@@ -5,8 +5,9 @@ def nourish(x: Person | Robot):
     match x:  # No exhaustiveness checking (yet)
         case Person(): x.consume()
         case Robot(): x.charge()
+        case _: print("Unknown type")
 
 if __name__ == '__main__':
     for subject in [Person(), Robot()]:
         nourish(subject)
-    # nourish("")  # Type-check error
+    nourish("")  # Type-check error
